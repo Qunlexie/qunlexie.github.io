@@ -1,16 +1,12 @@
-function filterProjects() {
-    const category = document.getElementById("category").value;
-    const articles = document.getElementsByTagName("article");
-    for (let i = 0; i < articles.length; i++) {
-      const article = articles[i];
-      if (category === "all" || article.classList.contains(category)) {
-        article.style.display = "";
+function filterByCategory(category) {
+    const articles = document.querySelectorAll('article');
+    articles.forEach((article) => {
+      const categoryElement = article.querySelector('h3');
+      if (categoryElement.innerText !== category) {
+        article.style.display = 'none';
       } else {
-        article.style.display = "none";
+        article.style.display = 'block';
       }
-    }
+    });
   }
-  
-  document.getElementById("category").addEventListener("change", filterProjects);
-  filterProjects();
   
