@@ -1,12 +1,12 @@
 function filterByCategory(category) {
-    const articles = document.querySelectorAll('article');
-    articles.forEach((article) => {
-      const categoryElement = article.querySelector('h3');
-      if (categoryElement.innerText !== category) {
-        article.style.display = 'none';
+    const articles = document.getElementsByTagName("article");
+    for (let i = 0; i < articles.length; i++) {
+      const categories = articles[i].getAttribute("category").split(", ");
+      if (categories.includes(category)) {
+        articles[i].style.display = "block";
       } else {
-        article.style.display = 'block';
+        articles[i].style.display = "none";
       }
-    });
+    }
   }
   
