@@ -1,59 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>ML Engineer | Projects and Research</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="projects.html">Projects and Research</a></li>
-        <li><a href="activities.html">Activities and Engagements</a></li>
-      </ul>
-    </nav>
-  </header>
-  <main>
-    <section>
-      <h2>My Projects</h2>
-      <ul>
-        <li>
-          <h3>Project 1: Text Classification using Deep Learning</h3>
-          <p>A deep learning model for classifying news articles into different categories based on their content.</p>
-          <ul>
-            <li>Built a deep learning model using a convolutional neural network (CNN) and long short-term memory (LSTM) layers.</li>
-            <li>Preprocessed and cleaned text data using natural language processing (NLP) techniques such as tokenization and stemming.</li>
-            <li>Used transfer learning to fine-tune a pre-trained language model for improved classification accuracy.</li>
-          </ul>
-          <a href="#" class="btn">View Project</a>
-        </li>
-        <li>
-          <h3>Project 2: Object Detection using Computer Vision</h3>
-          <p>A computer vision model for detecting objects in images and videos.</p>
-          <ul>
-            <li>Built a deep learning model using the You Only Look Once (YOLO) algorithm for real-time object detection.</li>
-            <li>Trained the model on a custom dataset of images and videos.</li>
-            <li>Used transfer learning to fine-tune a pre-trained model for improved object detection accuracy.</li>
-          </ul>
-          <a href="#" class="btn">View Project</a>
-        </li>
-        <li>
-          <h3>Project 3: Anomaly Detection in Time Series Data</h3>
-          <p>A machine learning model for detecting anomalies in time series data.</p>
-          <ul>
-            <li>Built a machine learning model using the Isolation Forest algorithm for detecting anomalies in time series data.</li>
-            <li>Preprocessed and cleaned time series data using techniques such as smoothing and detrending.</li>
-            <li>Used feature engineering to extract relevant features from the time series data.</li>
-          </ul>
-          <a href="#" class="btn">View Project</a>
-        </li>
-      </ul>
-    </section>
-  </main>
-  <footer>
-    <p>&copy; 2023 ML Engineer</p>
-  </footer>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>ML Engineer | Projects and Research</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Research and Projects</a></li>
+          <li><a href="activities.html">Activities and Engagements</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section>
+        <h1>Research and Projects</h1>
+        <h2>Research</h2>
+        <article>
+          <h3>Neural Network Model for Critical Coning Rate Prediction</h3>
+          <p>
+            Carried out Sensitivity Analysis to determining the important input
+            variables and the magnitude of their impacts on critical rates.
+          </p>
+          <p>
+            Developed a feed-forward layered network with 12 input variables and
+            Bayesian regularization to predict critical rates.
+          </p>
+          <p>
+            Comparison of results from the Neural Network with other
+            correlations for predicting critical rates.
+          </p>
+          <p><a href="https://doi.org/10.2118/189153-MS">Link to paper</a></p>
+        </article>
+
+        <article>
+          <h3>
+            Bayesian Optimization and Time Series Forecasting for Power Outages
+          </h3>
+          <p>
+            Built a Bayesian optimization and hierarchical time series
+            forecasting models to estimate non-weather-related power outages
+            (NWO) with high accuracy, significantly outperforming baseline ARIMA
+            and SARIMA models.
+          </p>
+          <p>
+            Defined a robust metric for NWO (non-weather outage count index,
+            NWOCI) and leverage advanced pre-processing and forecasting
+            techniques in Kats and Prophet.
+          </p>
+          <p><a href="https://doi.org/10.3390/en15061958">Link to paper</a></p>
+        </article>
+
+        <article>
+          <h3>
+            Statistical and Quantitative Analysis of Electricity Price
+            Volatility
+          </h3>
+          <p>
+            Built a web scrapping API to scrape data from New England
+            Independent System Operator (ISONE).
+          </p>
+          <p>
+            Built a Robust Quantile Regression Model to analyse the effects of
+            Hydro on Electricity Price and Volatility
+          </p>
+          <p>
+            <a href="https://doi.org/10.1088/2515-7620/ac7b74">Link to paper</a>
+          </p>
+        </article>
+
+        <article>
+          <h3>
+            Data Driven Model for Risk Analysis in Complex Interconnected
+            Human-Natural Systems
+          </h3>
+          <p>
+            Proposed a multi-layer dynamic interconnection model for assessing
+            risk in interdependent systems.
+          </p>
+          <p>
+            Developed a supporting data scientific framework that uses
+            multiresolution data for knowledge discovery across complex systems.
+          </p>
+          <p>
+            <a href="https://dl.acm.org/doi/abs/10.1145/3447548.3469480"
+              >Link to paper</a
+            >
+          </p>
+        </article>
+      </section>
+
+      <section>
+        <h2>Projects</h2>
+        <article>
+          <h3>Deep learning Time Series Forecasting</h3>
+          <p>
+            Developed a time series regression model to predict future horizons.
+            Both linear and non-linear models, including Prophet and Neural
+            Prophet, were explored. Feature engineering and cross-validation
+            were conducted, with the Hyperparameter-tuned Neural Prophet model
+            achieving the best performance.
+          </p>
+          <p>
+            <a
+              href="https://github.com/Qunlexie/Deep-Learning-Time-Series-Forecasting"
+              >Link to GitHub repository</a
+            >
+          </p>
+        </article>
+
+        <article>
+          <h3>Sentiment Analysis using word Embedding</h3>
+          <p>
+            Developed an Embedding model and a bag of word model (using Glove
+            representation) for feature extraction for raw sentiment. Built
+            Machine Learning models to be able to determine whether a review was
+            good or bad from the sentence structure for each review. Compared
+            and analysed performance of the models.
+          </p>
+          <p>
+            <a
+              href="https://github.com/Qunlexie/Machine-Learning-for-Sentiment-Analysis"
+              >Link to GitHub repository</a
+            >
+          </p>
+        </article>
+
+        <article>
+          <h3>Ensemble Based Machine Learning Multiclass Classification</h3>
+          <p>
+            Built and trained a classifier to distinguish between the three
+            classes using a hypothetical dataset. Extensive Feature Engineering
+            including categorical feature encoding and intelligent feature
+            creation. Built three variations of the boosted ensemble model: A
+            pre-tuned model was trained with default parameters, A tuned model
+            from extensive hyperparameter search and a model accounting for
+            class imbalance.
+          </p>
+          <p>
+            <a
+              href="https://github.com/Qunlexie/Machine-Learning-Multiclass-Classification"
+              >Link to GitHub repository</a
+            >
+          </p>
+        </article>
+
+        <article>
+          <h3>Machine Learning Model for Predicting Wildfire</h3>
+          <p>
+            Built 11 classification models to predict whether or not there is an
+            occurrence of wildfire using Normalized Difference Vegetation Index
+            (NDVI), Land Surface Temperature (LST) and the Thermal Anomalies.
+            Accounted for class biases by building models with and without
+            weight balance. Performed comparative Analysis the performance of
+            different Machine learning models (with careful hyperparameter
+            selection) for wildfire prediction.
+          </p>
+          <p>
+            <a
+              href="https://github.com/Qunlexie/A-Comprehensive-Classification-Model-for-Predicting-Wildfires-with-Uncertainty"
+              >Link to GitHub repository</a
+            >
+          </p>
+        </article>
+
+        <article>
+          <h3>Extractive Text Summarization for UN SDG</h3>
+          <p>
+            Built unsupervised ML model to for extractive summarization of
+            articles that capture the United Nations Sustainable Development
+            Goals. Data collection, cleaning as well as pre-processing operation
+            for articles including tokenization and removing stop words. Used
+            cosine similarity to generate similarity matrix and rank to produce
+            summarized sentences.
+          </p>
+          <p><a href="#">Link to GitHub repository (coming soon)</a></p>
+        </article>
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2023 Olukunle O.</p>
+    </footer>
+  </body>
 </html>
