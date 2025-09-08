@@ -257,6 +257,37 @@ a, button {
   transition: all 0.2s ease;
 }
 
+/* Social Links */
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.social-link {
+  display: inline-block;
+  padding: 0.5rem;
+  border: 2px solid #000000;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.social-link:hover {
+  background: #000000;
+  transform: translateY(-2px);
+}
+
+.social-icon {
+  width: 24px;
+  height: 24px;
+  filter: invert(0);
+  transition: filter 0.2s ease;
+}
+
+.social-link:hover .social-icon {
+  filter: invert(1);
+}
+
 /* Remove complex styling */
 .tech-accent {
   font-weight: 600;
