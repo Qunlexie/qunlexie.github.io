@@ -9,18 +9,49 @@ import os
 from pathlib import Path
 
 def parse_markdown_to_html(md_file):
-    """Convert markdown file to HTML content with hyperlinks"""
+    """Convert markdown file to HTML content with table of contents"""
     with open(md_file, 'r', encoding='utf-8') as f:
         lines = f.readlines()
     
     html_content = []
+    toc_items = []
     in_list = False
     in_nested_list = False
     in_deep_nested_list = False
     
-    # Create anchor links for questions
+    # First pass: collect all questions for TOC
     question_counter = 0
+    for line in lines:
+        line = line.rstrip()
+        if not line.strip():
+            continue
+            
+        # Questions (no leading spaces, starts with -)
+        if line.startswith('- ') and not line.startswith('-   '):
+            content = line[2:].strip()
+            if content and not content.startswith('-'):
+                question_counter += 1
+                safe_content = re.sub(r'[^a-zA-Z0-9\s]', '', content).replace(' ', '-').lower()
+                anchor_id = f"q-{safe_content[:30]}"
+                toc_items.append({
+                    'title': content,
+                    'anchor': anchor_id,
+                    'number': question_counter
+                })
     
+    # Generate Table of Contents
+    if toc_items:
+        html_content.append('            <div class="table-of-contents">')
+        html_content.append('              <h3>📋 Table of Contents</h3>')
+        html_content.append('              <ul class="toc-list">')
+        for item in toc_items:
+            html_content.append(f'                <li><a href="#{item["anchor"]}">{item["number"]}. {item["title"]}</a></li>')
+        html_content.append('              </ul>')
+        html_content.append('            </div>')
+        html_content.append('')
+    
+    # Second pass: generate content
+    question_counter = 0
     for line in lines:
         original_line = line
         line = line.rstrip()
@@ -62,8 +93,8 @@ def parse_markdown_to_html(md_file):
             safe_content = re.sub(r'[^a-zA-Z0-9\s]', '', content).replace(' ', '-').lower()
             anchor_id = f"q-{safe_content[:30]}"
             
-            # Add question with anchor
-            html_content.append(f'            <p id="{anchor_id}"><strong>{content}</strong> <a href="#{anchor_id}" style="color: #666; text-decoration: none;">🔗</a></p>')
+            # Add question without individual link
+            html_content.append(f'            <p id="{anchor_id}" class="question"><strong>{content}</strong></p>')
             
         # First level indent (4 spaces) - Top-level answers
         elif leading_spaces == 4:
@@ -222,9 +253,61 @@ def create_html_template(title, content, password):
         text-decoration: underline;
       }}
       
+      /* Table of Contents Styles */
+      .table-of-contents {{
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+      }}
+      
+      .table-of-contents h3 {{
+        margin-top: 0;
+        margin-bottom: 1rem;
+        color: #495057;
+        font-size: 1.2rem;
+      }}
+      
+      .toc-list {{
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+      }}
+      
+      .toc-list li {{
+        margin-bottom: 0.5rem;
+      }}
+      
+      .toc-list a {{
+        color: #007bff;
+        text-decoration: none;
+        font-weight: 500;
+        display: block;
+        padding: 0.25rem 0;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+      }}
+      
+      .toc-list a:hover {{
+        background-color: #e7f3ff;
+        padding-left: 0.5rem;
+        text-decoration: none;
+      }}
+      
+      .question {{
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #e9ecef;
+      }}
+      
       @media (max-width: 768px) {{
         .notes-header h1 {{
           font-size: 2rem;
+        }}
+        .table-of-contents {{
+          padding: 1rem;
         }}
       }}
     </style>

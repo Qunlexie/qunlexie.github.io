@@ -54,9 +54,61 @@
         text-decoration: underline;
       }
       
+      /* Table of Contents Styles */
+      .table-of-contents {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+      }
+      
+      .table-of-contents h3 {
+        margin-top: 0;
+        margin-bottom: 1rem;
+        color: #495057;
+        font-size: 1.2rem;
+      }
+      
+      .toc-list {
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+      }
+      
+      .toc-list li {
+        margin-bottom: 0.5rem;
+      }
+      
+      .toc-list a {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: 500;
+        display: block;
+        padding: 0.25rem 0;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+      }
+      
+      .toc-list a:hover {
+        background-color: #e7f3ff;
+        padding-left: 0.5rem;
+        text-decoration: none;
+      }
+      
+      .question {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #e9ecef;
+      }
+      
       @media (max-width: 768px) {
         .notes-header h1 {
           font-size: 2rem;
+        }
+        .table-of-contents {
+          padding: 1rem;
         }
       }
     </style>
@@ -85,11 +137,73 @@
           <a href="notes.html" class="back-link">← Back to Notes Hub</a>
           <h2>ML Theory (Deep Learning)</h2>
           <div style="line-height: 1.8;">
-            <p id="q-what-are-generator-models"><strong>What are generator models</strong> <a href="#q-what-are-generator-models" style="color: #666; text-decoration: none;">🔗</a></p>
+            <div class="table-of-contents">
+              <h3>📋 Table of Contents</h3>
+              <ul class="toc-list">
+                <li><a href="#q-what-are-generator-models">1. What are generator models</a></li>
+                <li><a href="#q-how-deep-learning-model-combat">2. How deep learning model combat curse of dimensionality</a></li>
+                <li><a href="#q-what-is-the-curse-of-dimension">3. What is the curse of dimensionality in ML and AI</a></li>
+                <li><a href="#q-l1-and-l2-effects-on-large-and">4. L1 and L2 effects on large and small weights</a></li>
+                <li><a href="#q-what-its-l1-and-l2-in-nn-and-h">5. What its L1 and L2 in NN and how do they help with overfitting</a></li>
+                <li><a href="#q-what-is-the-impact-of-dropout-">6. What is the impact of dropout on training and testing</a></li>
+                <li><a href="#q-is-dropout-like-random-forest-">7. Is dropout like random forest ?</a></li>
+                <li><a href="#q-what-is-drop-out-and-how-does-">8. What is drop out and how does it work. Follow up how does it prevent overfitting</a></li>
+                <li><a href="#q-the-random-sampling-is-made-fr">9. The random sampling is made from the Bernoulli distribution where Neurons is directly proportional to 1-p where p is the deactivation rate.</a></li>
+                <li><a href="#q-what-happens-if-nn-is-sufferin">10. What happens if NN is suffering from overfitting related to weights in NN</a></li>
+                <li><a href="#q-what-are-the-different-ways-to">11. What are the different ways to solve the exploding gradient problem</a></li>
+                <li><a href="#q-what-are-the-different-ways-to">12. What are the different ways to solve the  vanishing gradient problem</a></li>
+                <li><a href="#q-what-is-xavier-and-he-initiali">13. What is Xavier and He initialization and why is it used NN</a></li>
+                <li><a href="#q-exploding-gradient-problem">14. Exploding gradient problem</a></li>
+                <li><a href="#q-what-is-the-difference-between">15. What is the difference between GRU, LSTM and RNN</a></li>
+                <li><a href="#q-residual-connections-and-vanis">16. Residual Connections and vanishing gradient problem</a></li>
+                <li><a href="#q-what-is-layer-normalization">17. What is layer normalization</a></li>
+                <li><a href="#q-what-is-batch-normalization">18. What is batch normalization</a></li>
+                <li><a href="#q-what-is-adam-w-and-why-is-it-i">19. What is Adam W and why is it is preferred over Adam</a></li>
+                <li><a href="#q-what-is-adam-and-why-is-it-use">20. What is Adam and why is it used in NN</a></li>
+                <li><a href="#q-what-is-rms-prop">21. What is RMS prop</a></li>
+                <li><a href="#q-what-is-adagrad">22. What is Adagrad</a></li>
+                <li><a href="#q-what-is-adaptive-learning-rate">23. What is adaptive learning rate</a></li>
+                <li><a href="#q-what-is-hessian-and-how-is-it-">24. What is Hessian and how is it used in NN</a></li>
+                <li><a href="#q-what-is-the-jacobian-matrix">25. What is the Jacobian Matrix</a></li>
+                <li><a href="#q-how-does-batch-size-affect-the">26. How does batch size affect the performance of NN</a></li>
+                <li><a href="#q-effect-of-small-and-large-batc">27. Effect of small and large batch sizes in neural network</a></li>
+                <li><a href="#q-batch-gradient-vs-mini-batch-v">28. Batch Gradient vs Mini batch vs stochastic</a></li>
+                <li><a href="#q-how-can-optimization-algorithm">29. How can optimization algorithm like SGD be improved and what is the role of the momentum term</a></li>
+                <li><a href="#q-how-is-gd-differ-from-sgd">30. How is GD differ from SGD</a></li>
+                <li><a href="#q-why-does-sgd-oscillate-towards">31. Why does SGD oscillate towards the local minima</a></li>
+                <li><a href="#q-what-is-sgd-and-why-is-it-used">32. What is SGD and why is it used</a></li>
+                <li><a href="#q-what-loss-fiction-can-you-appl">33. What loss fiction can you apply when dealing with multi class classification</a></li>
+                <li><a href="#q-what-is-cross-entropy-and-why-">34. What is cross entropy and why is is preferred as a loss fiction for classification problems</a></li>
+                <li><a href="#q-what-is-gradient-clipping-and-">35. What is gradient clipping and what is the importance of this</a></li>
+                <li><a href="#q-what-is-a-computational-graph">36. What is a computational graph</a></li>
+                <li><a href="#q-there-is-a-layer-that-causes-l">37. There is a layer that causes large error in back prop. Why could this be the problem</a></li>
+                <li><a href="#q-vanishing-gradient-and-activat">38. Vanishing gradient and activation functions</a></li>
+                <li><a href="#q-what-is-vanishing-gradient-">39. What is Vanishing gradient ?</a></li>
+                <li><a href="#q-how-is-back-prop-differ-from-g">40. How is back prop differ from Gradient descent</a></li>
+                <li><a href="#q-what-is-back-prop-and-why-is-i">41. What is Back prop and why is it important in DL</a></li>
+                <li><a href="#q-what-is-the-role-of-optimizer-">42. What is the role of optimizer in DL</a></li>
+                <li><a href="#q-what-is-gradient-descent">43. What is Gradient descent?</a></li>
+                <li><a href="#q-how-are-neural-networks-traine">44. How are neural networks trained?</a></li>
+                <li><a href="#q-what-happens-if-you-dont-use-a">45. What happens if you don’t use any activation function in a NN?</a></li>
+                <li><a href="#q-name-a-few-popular-activation-">46. Name a few popular activation functions and describe them</a></li>
+                <li><a href="#q-what-are-activation-functions">47. What are activation functions</a></li>
+                <li><a href="#q-explain-the-architecture-of-nn">48. Explain the architecture of NN in a simple way</a></li>
+                <li><a href="#q-what-is-the-concept-of-a-neuro">49. What is the concept of a neuron in NN</a></li>
+                <li><a href="#q-what-is-a-neural-network">50. What is a neural network</a></li>
+                <li><a href="#q-how-does-deep-learning-differ-">51. How does deep learning differ from machine learning</a></li>
+                <li><a href="#q-what-is-deep-learning">52. What is deep learning</a></li>
+                <li><a href="#q-how-is-the-binomial-distributi">53. How is the Binomial distribution related to the Cross Entropy in Logistic regression</a></li>
+                <li><a href="#q-what-is-the-relationship-betwe">54. What is the relationship between the Maximum Likelihood Estimate (MLE) and sample Mean, Variance</a></li>
+                <li><a href="#q-what-is-the-relationship-betwe">55. What is the relationship between the Maximum Likelihood Estimate (MLE) and  error functions of Linear regression</a></li>
+                <li><a href="#q-what-is-the-derivation-of-the-">56. What is the derivation of the  bias–variance in supervised learning:</a></li>
+              </ul>
+            </div>
+
+            <p id="q-what-are-generator-models" class="question"><strong>What are generator models</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Generative models are models that help us to model how data is generated.they learn the joint probability distribution P(y/X) e.g Bayesian networks, Hidden Markov models, GAN, VAE, GPT series models. They are particularly useful when we want to generate new data or understand underlying data distribution</li>
             </ul>
-            <p id="q-how-deep-learning-model-combat"><strong>How deep learning model combat curse of dimensionality</strong> <a href="#q-how-deep-learning-model-combat" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-how-deep-learning-model-combat" class="question"><strong>How deep learning model combat curse of dimensionality</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>ML models suffer from this because they often compute this distance metrics which become infeasible given high dinmension</li>
               <li>DL model on the other had do not suffer from it by using architecture designed for high dimensional data.</li>
@@ -101,30 +215,30 @@
                   <li>DL models are designed to earn these high dimensional features. They also include regularization techniques within themselves. They sometime use a compression technique e.g encoder architecture to combat this problem. They also use regularization techies such as L1. L2 that directly combat these</li>
                 </ul>
             </ul>
-            <p id="q-what-is-the-curse-of-dimension"><strong>What is the curse of dimensionality in ML and AI</strong> <a href="#q-what-is-the-curse-of-dimension" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-is-the-curse-of-dimension" class="question"><strong>What is the curse of dimensionality in ML and AI</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>High dimensional data often causes problem from distance based algorithms (classic ML models) including KNN, K-means and we need to compute the distance metrics.</li>
               <li>The complexity is problematic to compute these distances in high dimensional data.</li>
               <li>We have a curse when we have high dimension which can introduce data sparsity, computational challenges, risk of overfitting, distance measures issues.</li>
             </ul>
-            <p id="q-l1-and-l2-effects-on-large-and"><strong>L1 and L2 effects on large and small weights</strong> <a href="#q-l1-and-l2-effects-on-large-and" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-l1-and-l2-effects-on-large-and" class="question"><strong>L1 and L2 effects on large and small weights</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>L2 has high penalty on larger weights and lower on smaller weights. L2 tends to distribute error proportionally among the weight across the neurons s</li>
               <li>L1 has a high penalty on the small weights since this directly sets them to zero compared to the larger weights which are reduced but not set to zero.</li>
             </ul>
-            <p id="q-what-its-l1-and-l2-in-nn-and-h"><strong>What its L1 and L2 in NN and how do they help with overfitting</strong> <a href="#q-what-its-l1-and-l2-in-nn-and-h" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-its-l1-and-l2-in-nn-and-h" class="question"><strong>What its L1 and L2 in NN and how do they help with overfitting</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>L1/Lasso - Penalizes based on the absolute value. Also has a feature selection effect by shrinking weights of certain  neurons directly to zero. L1 =  Lambda * sum(abs(w)) where Lambda is the penalization parameter.</li>
               <li>L2/Ridge -  Adds square weights values (L2 norm) to the loss function. Does not directly zero but can be very close to zero. L2 =  Lambda * sum(w**2) where Lamda is the penalization parameter.</li>
               <li>Both methods help us prevent overfitting and not memorize data points and can have stability effect. They can also help to combat the exploding gradients problems.</li>
               <li>In summary L1 performs feature selection and leads to sparse weights while L2 does on not perform feature selection and does not have a scarcity effect. In terms of smoothing effect L2 has a smoothing effect since it is not harsh on low weights compared to L1.</li>
             </ul>
-            <p id="q-what-is-the-impact-of-dropout-"><strong>What is the impact of dropout on training and testing</strong> <a href="#q-what-is-the-impact-of-dropout-" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-is-the-impact-of-dropout-" class="question"><strong>What is the impact of dropout on training and testing</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Dropout is used in the input and hidden node and not the output. It is implemented by multiplying the nodes to be dropped by a masked vector or at random. Where p represents probability of not being dropped.</li>
               <li>During testing we need to address the 1-p probability of neurons being dropped in the training process since we were dropping out 1-p% of. To do this we can simply multiply the output weights from the node by p%(probability of being present) to ensure consistency with training.</li>
             </ul>
-            <p id="q-is-dropout-like-random-forest-"><strong>Is dropout like random forest ?</strong> <a href="#q-is-dropout-like-random-forest-" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-is-dropout-like-random-forest-" class="question"><strong>Is dropout like random forest ?</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Similarity</li>
                 <ul style="margin-left: 1.5rem;">
@@ -138,19 +252,19 @@
                   <li>Dropout is based on a single model, Random forest is based on multiple models and then bangs the results to create one model</li>
                 </ul>
             </ul>
-            <p id="q-what-is-drop-out-and-how-does-"><strong>What is drop out and how does it work. Follow up how does it prevent overfitting</strong> <a href="#q-what-is-drop-out-and-how-does-" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-is-drop-out-and-how-does-" class="question"><strong>What is drop out and how does it work. Follow up how does it prevent overfitting</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Dropout is a regularization technique that helps to improve the generalization capability of neural network. It works by randomly deactivating or dropping random neurons in each training iteration</li>
             </ul>
-            <p id="q-the-random-sampling-is-made-fr"><strong>The random sampling is made from the Bernoulli distribution where Neurons is directly proportional to 1-p where p is the deactivation rate.</strong> <a href="#q-the-random-sampling-is-made-fr" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-the-random-sampling-is-made-fr" class="question"><strong>The random sampling is made from the Bernoulli distribution where Neurons is directly proportional to 1-p where p is the deactivation rate.</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Dropout helps to decorellate the neural network and avoid it memorizing different aspect so the inout data leading to less overfitting and more generalizability</li>
             </ul>
-            <p id="q-what-happens-if-nn-is-sufferin"><strong>What happens if NN is suffering from overfitting related to weights in NN</strong> <a href="#q-what-happens-if-nn-is-sufferin" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-happens-if-nn-is-sufferin" class="question"><strong>What happens if NN is suffering from overfitting related to weights in NN</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Large weights in NN makes it more sensitive to noise and thus follow the training data too closely including the noise pattern. This loss of generalization is what is overfitting</li>
             </ul>
-            <p id="q-what-are-the-different-ways-to"><strong>What are the different ways to solve the exploding gradient problem</strong> <a href="#q-what-are-the-different-ways-to" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-are-the-different-ways-to" class="question"><strong>What are the different ways to solve the exploding gradient problem</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Gradient clipping</li>
               <li>Weight Regularization such as drop out</li>
@@ -158,7 +272,7 @@
               <li>Correct weight initialization</li>
               <li>Correct architecture choice</li>
             </ul>
-            <p id="q-what-are-the-different-ways-to"><strong>What are the different ways to solve the  vanishing gradient problem</strong> <a href="#q-what-are-the-different-ways-to" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-are-the-different-ways-to" class="question"><strong>What are the different ways to solve the  vanishing gradient problem</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Choosing the right activation function (for example sigmoid and tanh activation when used in the hidden layers can be prone to saturation) which can cause vanishing gradient but rather use Relu or Leaky Relu.</li>
               <li>Batch normalization can help to stabilize the network and consistent gradient and indirectly help vanishing gradient</li>
@@ -166,7 +280,7 @@
               <li>Correct weight initialization e.g using Xavier initialization</li>
               <li>Correct architecture choice e.g Transformer with automatic Layer norm and residual connections</li>
             </ul>
-            <p id="q-what-is-xavier-and-he-initiali"><strong>What is Xavier and He initialization and why is it used NN</strong> <a href="#q-what-is-xavier-and-he-initiali" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-is-xavier-and-he-initiali" class="question"><strong>What is Xavier and He initialization and why is it used NN</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>The idea is to Keep the variance of the activations and the gradient consistent across the layers.</li>
               <li>The initial weight is set based on the  number of input and output neurons in the network</li>
@@ -175,13 +289,13 @@
               <li>This will make sure that the weights will not change too much (combating the exploding) and would not change too little (combatting the vanishing gradient)</li>
               <li>Vanishing gradient can help us train more stable models by making the variance of the activations constant.</li>
             </ul>
-            <p id="q-exploding-gradient-problem"><strong>Exploding gradient problem</strong> <a href="#q-exploding-gradient-problem" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-exploding-gradient-problem" class="question"><strong>Exploding gradient problem</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>In deep networks such as LSTM, RNN we can have the opposite problem to the vanishing gradient problem where the gradient becomes too large especially in deeper network architecture.</li>
               <li>Exploding gradient means we have unstable network and the update will be too large.</li>
               <li>To solve this problem we can use gradient clipping and clip the gradient at a certain threshold.</li>
             </ul>
-            <p id="q-what-is-the-difference-between"><strong>What is the difference between GRU, LSTM and RNN</strong> <a href="#q-what-is-the-difference-between" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-is-the-difference-between" class="question"><strong>What is the difference between GRU, LSTM and RNN</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Key hierarchy:*RNN < GRU ≈ LSTM, where GRU and LSTM both solve RNN's limitations but GRU is simpler while LSTM is more flexible.​​​​​​​​​​​​​​​​</li>
               <li>RNN (Recurrent Neural Network):</li>
@@ -203,61 +317,61 @@
                   <li>Similar performance to LSTM for many tasks but more computationally efficient</li>
                 </ul>
             </ul>
-            <p id="q-residual-connections-and-vanis"><strong>Residual Connections and vanishing gradient problem</strong> <a href="#q-residual-connections-and-vanis" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-residual-connections-and-vanis" class="question"><strong>Residual Connections and vanishing gradient problem</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Residual connections add the original input directly to the output of the layer. Y = F(z) + z (assuming that the input of the previous layer is z, remember z = wx+b). DE/dz = dE/dy * dy/dz = dE/dy * (1+F’z) = DE/dy + dE/dy * F’z</li>
               <li>It is also regarded to as skip connection or shortcut I.e the input directly contribute to the final output of the layer. The gradient also directly</li>
               <li>It is used in state of the art transformers.</li>
               <li>This is also helps to overcome the vanishing Gradient problem crusade residual connection since Based on the above equation we can see that the DE/DY will separately contribute to DE/dz and skip through thus reducing the chance of vanishing gradient.</li>
             </ul>
-            <p id="q-what-is-layer-normalization"><strong>What is layer normalization</strong> <a href="#q-what-is-layer-normalization" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-is-layer-normalization" class="question"><strong>What is layer normalization</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Layer norm is done to normalize the activations across the feature dimension (think about along the x axis for a normal data, although for neural networks feature is along y axis).</li>
               <li>The reason this is done this that is because for some architecture calculating batch statistics is either infeasible or not possible. For example in architectures like RNN, LSTM, GRU and transformers where we can have samples of irregular lengths (varying batch sizes). We cannot calculate batch statistics here and the only feasible thing is layer norm</li>
               <li>For layer norm we also introduce additional learning mean and standard deviation parameters. However unlike batch norm we do not need to store moving averages and the same normalization function can be used during training and inference.</li>
             </ul>
-            <p id="q-what-is-batch-normalization"><strong>What is batch normalization</strong> <a href="#q-what-is-batch-normalization" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-is-batch-normalization" class="question"><strong>What is batch normalization</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Process of standardizing the activations to address the internal covariants shift or distributional shift of activations (z = wx +b). The normalization is done to make the activations have mean of 0 and variance of 1 as in normal distribution I.e (X-Mean) / standard deviation. Batch norm uses all the observations per batch (all the samples per batch think about it as across the y axis)</li>
               <li>Batch normalization helps to stabilize the training process using batch statistics and therefore helps to accelerate the apath to achieve to flow Al optimum</li>
               <li>Indirectly this has a regularization  effect and helps to avoid overfitting.</li>
               <li>When we normalize the pre-activations of a given layer, we need to compensate for this effect by rescaling the pre-activations of the batch with parameters alpha and beta which are learnt jointly by gradient descent during training. At inference, and for practical reasons we usually use moving averages of mean and variance stored during training to scale/process each testing sample.</li>
             </ul>
-            <p id="q-what-is-adam-w-and-why-is-it-i"><strong>What is Adam W and why is it is preferred over Adam</strong> <a href="#q-what-is-adam-w-and-why-is-it-i" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-is-adam-w-and-why-is-it-i" class="question"><strong>What is Adam W and why is it is preferred over Adam</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Adam W Decouples the weight decay parameter (lambda) which is an L2 regularization to prevent overfitting from the gradient update but rather includes it directly into the parameter update. In regular Adam the L2 regularization is part of the Gradient update whereas in Adam W it is incorporated as past of the parameter update directly. This tend to have better generalization</li>
             </ul>
-            <p id="q-what-is-adam-and-why-is-it-use"><strong>What is Adam and why is it used in NN</strong> <a href="#q-what-is-adam-and-why-is-it-use" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-is-adam-and-why-is-it-use" class="question"><strong>What is Adam and why is it used in NN</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>ADAM is another adaptive learning algorithm that combines both the characteristics of two extensions of SGG(SGD with Momentum and RMS Prop).  SGD with momentum using the idea of momentum and the RMS prop (using  the idea of running average of the second order derivative or the second moment). In summary We are using the first and second moments/derivative of gradients to adapt the learning rate. The first moment is the mean of the gradient while the second moment captures the variance of the gradient. It also has a faster convergence, robust and stability.</li>
             </ul>
-            <p id="q-what-is-rms-prop"><strong>What is RMS prop</strong> <a href="#q-what-is-rms-prop" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-is-rms-prop" class="question"><strong>What is RMS prop</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>This builds on the Adagrad given the draw back of Adagrad where it accumulates squared gradients in the denominator, leading to a rapid decrease in the learning rate during training. RMS Prop instead uses a moving average of squared gradients to adjust the learning rate based on recent Gradient magnitudes.   Reduce learning rate for large gradient and increase it for smaller ones therefore preventing vanishing and exploding gradient issues.  This allows RMS prop to perform well even on non-stationary problems and sparse gradients e.g NLP tasks and recommendation tasks.</li>
             </ul>
-            <p id="q-what-is-adagrad"><strong>What is Adagrad</strong> <a href="#q-what-is-adagrad" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-is-adagrad" class="question"><strong>What is Adagrad</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Adagrad introduced the concept of Adaptive learning rate where learning rates can be adjusted for each parameter individually. This is done by using sum of squared gradients to normalize the learning rate for each parameter update.</li>
             </ul>
-            <p id="q-what-is-adaptive-learning-rate"><strong>What is adaptive learning rate</strong> <a href="#q-what-is-adaptive-learning-rate" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-is-adaptive-learning-rate" class="question"><strong>What is adaptive learning rate</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>The adaptive learning rate increases or decreases the learning rate depending on the gradient and patterns in different model parameters. Here model parameters will have different learning rate. Examples of adaptive learning optimization algorithm is Adam, RMS Prop, Adaptive gradient algorithm (Adagrad)</li>
             </ul>
-            <p id="q-what-is-hessian-and-how-is-it-"><strong>What is Hessian and how is it used in NN</strong> <a href="#q-what-is-hessian-and-how-is-it-" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-is-hessian-and-how-is-it-" class="question"><strong>What is Hessian and how is it used in NN</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Hessian is a matrix that contains a second order partial derivative. Hessian are known tk be much more perfect estimate of the gradients given less noisy gradients and smoother. Hessian however is computationally expensive for large model parameters. It is also has memory inefficiency, impractical for large models and can cause overfitting</li>
             </ul>
-            <p id="q-what-is-the-jacobian-matrix"><strong>What is the Jacobian Matrix</strong> <a href="#q-what-is-the-jacobian-matrix" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-is-the-jacobian-matrix" class="question"><strong>What is the Jacobian Matrix</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>This is a matrix that contains the first order differential pf network outputs with respect to the inputs i.e J = dy/dx. It is typically computed in Backpropagation</li>
             </ul>
-            <p id="q-how-does-batch-size-affect-the"><strong>How does batch size affect the performance of NN</strong> <a href="#q-how-does-batch-size-affect-the" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-how-does-batch-size-affect-the" class="question"><strong>How does batch size affect the performance of NN</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Time: Large batches (takes less time per epoch) since it makes fewer updates</li>
               <li>Memory: large batch sizes are more memory intensive</li>
               <li>Convergence: small batches makes Better generalization and have unstable convergence compared to larger</li>
             </ul>
-            <p id="q-effect-of-small-and-large-batc"><strong>Effect of small and large batch sizes in neural network</strong> <a href="#q-effect-of-small-and-large-batc" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-effect-of-small-and-large-batc" class="question"><strong>Effect of small and large batch sizes in neural network</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>For this question think about the difference between stochastic and batch Gradient</li>
               <li>Gradient noise: More Gradient noise with small batches while large batches have lesser gradient noise</li>
@@ -267,51 +381,51 @@
               <li>Gradient updates: large batches have less gradient update per epoch since fewer updates compared to smaller batches</li>
               <li>Memory usage: memory usage tend to be higher for large batches compared to lower batches</li>
             </ul>
-            <p id="q-batch-gradient-vs-mini-batch-v"><strong>Batch Gradient vs Mini batch vs stochastic</strong> <a href="#q-batch-gradient-vs-mini-batch-v" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-batch-gradient-vs-mini-batch-v" class="question"><strong>Batch Gradient vs Mini batch vs stochastic</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Batch Gradient descent uses all data to compute the gradient and updates (high quality, takes time, less efficient, stable)</li>
               <li>SGD uses random sample of single sample (more efficient , unstable noisy, fast convergence but may be local optimum)</li>
               <li>Mini batch uses smaller batches and tries to strike a balance between stability and efficiency</li>
             </ul>
-            <p id="q-how-can-optimization-algorithm"><strong>How can optimization algorithm like SGD be improved and what is the role of the momentum term</strong> <a href="#q-how-can-optimization-algorithm" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-how-can-optimization-algorithm" class="question"><strong>How can optimization algorithm like SGD be improved and what is the role of the momentum term</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>SGD creates oscillations due to noisy gradients leading to inconsistent updates</li>
               <li>SGD with momentum uses momentum term (adding a fraction of the previous model updates to the current update). This accelerates the convergence and stabilizes the process and aids consistent update in order to converge to a global optimum</li>
             </ul>
-            <p id="q-how-is-gd-differ-from-sgd"><strong>How is GD differ from SGD</strong> <a href="#q-how-is-gd-differ-from-sgd" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-how-is-gd-differ-from-sgd" class="question"><strong>How is GD differ from SGD</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Size of data: GD uses all data but SGD uses random samples single or few data points to update</li>
               <li>Frequency of update: since GD uses all the data updates are less frequency compared to SGD</li>
               <li>Computation efficiency: GD is less computationally efficient for large data. Unlike GD SGD is very fast given it uses a few data points</li>
               <li>Convergence pattern: GD is smoother and of higher quality. SGD however takes a faster time to converge to the optimum though it may confuse the local optimum</li>
             </ul>
-            <p id="q-why-does-sgd-oscillate-towards"><strong>Why does SGD oscillate towards the local minima</strong> <a href="#q-why-does-sgd-oscillate-towards" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-why-does-sgd-oscillate-towards" class="question"><strong>Why does SGD oscillate towards the local minima</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Randomness and fewer training data: The SGD makes a lot of oscillations since it makes an imperfect estimate of the gradient  since it uses random subset to estimate to gradients.</li>
               <li>The step size can cause SGD to socialite towards local minima. If the learning rate is not chosen appropriate we can have too many jumps</li>
               <li>However SGD can also escape easily from local minima because of the oscillations</li>
             </ul>
-            <p id="q-what-is-sgd-and-why-is-it-used"><strong>What is SGD and why is it used</strong> <a href="#q-what-is-sgd-and-why-is-it-used" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-is-sgd-and-why-is-it-used" class="question"><strong>What is SGD and why is it used</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>In SGD Optimization algorithm used to minimize the loss function in neural networks. In SGD the update of parameters is done with randomly selected samples of training data. We are using here and imperfect estimate of the gradient since we’re using a single sample or a few samples. This noise adds some robustness to the model update however it may also confuse the local  optima with global optima. SGD is known to be faster and have better memory usage (storing a few data in memory at a time).</li>
             </ul>
-            <p id="q-what-loss-fiction-can-you-appl"><strong>What loss fiction can you apply when dealing with multi class classification</strong> <a href="#q-what-loss-fiction-can-you-appl" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-loss-fiction-can-you-appl" class="question"><strong>What loss fiction can you apply when dealing with multi class classification</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>We use multi class cross entropy. Also known as the soft max. Where we have more than 2 classes. This is given as exp(yi)/sum(exp(yi)).</li>
             </ul>
-            <p id="q-what-is-cross-entropy-and-why-"><strong>What is cross entropy and why is is preferred as a loss fiction for classification problems</strong> <a href="#q-what-is-cross-entropy-and-why-" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-is-cross-entropy-and-why-" class="question"><strong>What is cross entropy and why is is preferred as a loss fiction for classification problems</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>It is used to measure the performance of a classification model whose output is probability between 0-1. Logloss= -sum(ylogp + (1-y) log (1-p)). y is actual label, p is the predicted probability.</li>
             </ul>
-            <p id="q-what-is-gradient-clipping-and-"><strong>What is gradient clipping and what is the importance of this</strong> <a href="#q-what-is-gradient-clipping-and-" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-is-gradient-clipping-and-" class="question"><strong>What is gradient clipping and what is the importance of this</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Gradient clipping is used for solving exploding Gradient problem. It is a problem that occurs as a result of numerous transformations which results in Gradient being too large therefore model update is erratic and suboptimal training. Gradient clipping is a way to limit the gradient based on a threshold to add stability to the network. Similar to vanishing Gradient this is also popular with sequence models LSTM, RNN, GRU</li>
             </ul>
-            <p id="q-what-is-a-computational-graph"><strong>What is a computational graph</strong> <a href="#q-what-is-a-computational-graph" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-is-a-computational-graph" class="question"><strong>What is a computational graph</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>This is a way to visualize complex operations and as part of training the deep learning models including various transformations from the input data to the z scores (wx +b) to applying the activation on z A(z).  Obtain prediction and then compare with ground truth to calculate the loss. Computational graph is a neat way to show this process.</li>
             </ul>
-            <p id="q-there-is-a-layer-that-causes-l"><strong>There is a layer that causes large error in back prop. Why could this be the problem</strong> <a href="#q-there-is-a-layer-that-causes-l" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-there-is-a-layer-that-causes-l" class="question"><strong>There is a layer that causes large error in back prop. Why could this be the problem</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>There are number of reason for this including</li>
                 <ul style="margin-left: 1.5rem;">
@@ -323,41 +437,41 @@
                   <li>Poor data preprocessing</li>
                 </ul>
             </ul>
-            <p id="q-vanishing-gradient-and-activat"><strong>Vanishing gradient and activation functions</strong> <a href="#q-vanishing-gradient-and-activat" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-vanishing-gradient-and-activat" class="question"><strong>Vanishing gradient and activation functions</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Saturation which is a problem where large negative or positive values causes the activation value to be around the extreme of the activation function. Sigmoid family (sigmoid and tanh) are prone to this when they are put in the hidden layer. Linear activation functions such as Relu and Leaky relu do not suffer from this problem and are therefore best for hidden layers</li>
             </ul>
-            <p id="q-what-is-vanishing-gradient-"><strong>What is Vanishing gradient ?</strong> <a href="#q-what-is-vanishing-gradient-" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-is-vanishing-gradient-" class="question"><strong>What is Vanishing gradient ?</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Multiplication of weights and gradients can get close to zero in earlier layers  as little or no update is propagating through to the back. RNN, LSTN and other sequence models are more prone</li>
             </ul>
-            <p id="q-how-is-back-prop-differ-from-g"><strong>How is back prop differ from Gradient descent</strong> <a href="#q-how-is-back-prop-differ-from-g" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-how-is-back-prop-differ-from-g" class="question"><strong>How is back prop differ from Gradient descent</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>The output of Back prop where gradient is computed after the forward pass loss L = (y- yhat) dl/dw and  is the input to the gradient descent optimizer algo which uses the gradient to update model parameters from the deeper layers to the earlier ones</li>
             </ul>
-            <p id="q-what-is-back-prop-and-why-is-i"><strong>What is Back prop and why is it important in DL</strong> <a href="#q-what-is-back-prop-and-why-is-i" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-is-back-prop-and-why-is-i" class="question"><strong>What is Back prop and why is it important in DL</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Forward pass involves transformation to obtain the yhat and the in the back ward we compute the gradient of loss with respect to weight and Bias vectors ( chain rule dL/dw = dL/dz * dz/dw)</li>
             </ul>
-            <p id="q-what-is-the-role-of-optimizer-"><strong>What is the role of optimizer in DL</strong> <a href="#q-what-is-the-role-of-optimizer-" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-is-the-role-of-optimizer-" class="question"><strong>What is the role of optimizer in DL</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Important to iteratively update model parameter sin order to achieve global optimum (minima or maxima) without confusing the local optimum most of the time.</li>
             </ul>
-            <p id="q-what-is-gradient-descent"><strong>What is Gradient descent?</strong> <a href="#q-what-is-gradient-descent" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-is-gradient-descent" class="question"><strong>What is Gradient descent?</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>A way to minimize the cost/loss function of the model by iterative adjusting the model parameters based on the gradient of the loss wrt to the parameters dL/dZ. We initialize weights vector, w and bias vector b and then use the gradient descent to figure out how much we need to update these parameter in to minimize the loss or error the model makes while using the entire training data (batch gradient descent) to compute predictions and loss function. This update is then done using back propagation. W1 = W0 - a * DW where a is the learning rate.</li>
             </ul>
-            <p id="q-how-are-neural-networks-traine"><strong>How are neural networks trained?</strong> <a href="#q-how-are-neural-networks-traine" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-how-are-neural-networks-traine" class="question"><strong>How are neural networks trained?</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>first compute the z values z = wx + b  and then activate this with a activation function to capture nonlinearity</li>
               <li>After doing this for multiple hidden layers until the output. The output is then compared to the true label to compute the loss function L. After computing the loss fiction we compute the gradient DL/Dz which we will then use to update the parameters vectors w and b from the back of the network layer by layer (back propagation of error) in a way that reduces the overall loss.</li>
               <li>This is done until the stopping criteria is met (number of epochs or error rate).</li>
             </ul>
-            <p id="q-what-happens-if-you-dont-use-a"><strong>What happens if you don’t use any activation function in a NN?</strong> <a href="#q-what-happens-if-you-dont-use-a" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-happens-if-you-dont-use-a" class="question"><strong>What happens if you don’t use any activation function in a NN?</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>This reduces the NN to a linear model: y=wz + b</li>
             </ul>
-            <p id="q-name-a-few-popular-activation-"><strong>Name a few popular activation functions and describe them</strong> <a href="#q-name-a-few-popular-activation-" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-name-a-few-popular-activation-" class="question"><strong>Name a few popular activation functions and describe them</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Sigmoid type (non linear functions that suffers from saturation - when used as hidden layer - where we obtain convergence at the extremes for higher +ve or -ve input values):</li>
                 <ul style="margin-left: 1.5rem;">
@@ -370,44 +484,44 @@
                   <li>Leaky Relu - max(0.01z, z)</li>
                 </ul>
             </ul>
-            <p id="q-what-are-activation-functions"><strong>What are activation functions</strong> <a href="#q-what-are-activation-functions" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-are-activation-functions" class="question"><strong>What are activation functions</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Activation functions are used  in NN to introduce non linearity to the model. Without an activation network we will have a simple linear regression model that is unable to learn complex relationships in the data. Activation functions determine the output of neurons in a NN.</li>
             </ul>
-            <p id="q-explain-the-architecture-of-nn"><strong>Explain the architecture of NN in a simple way</strong> <a href="#q-explain-the-architecture-of-nn" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-explain-the-architecture-of-nn" class="question"><strong>Explain the architecture of NN in a simple way</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Multilayered structured model that transforms the input data step by step. It iteratively updates the amount of weight to put on input features in order to minimize the error in the model.</li>
               <li>Typically a NN Input layers (neuron or input features), Hidden layers (one or more) and an output layer (outputs the predicted label)</li>
             </ul>
-            <p id="q-what-is-the-concept-of-a-neuro"><strong>What is the concept of a neuron in NN</strong> <a href="#q-what-is-the-concept-of-a-neuro" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-is-the-concept-of-a-neuro" class="question"><strong>What is the concept of a neuron in NN</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>A neuron is the input signal (x) in a network. In a NN we multiple the neuron x by weight w and add a bias vector to obtain the z scores. Z = wx+b. The weights help us to understand how much each of the features contribute to the final output prediction. After we then use activation function to transform the z scores. Activation functions (signed, Relu) adds non linearity to the neural network.</li>
             </ul>
-            <p id="q-what-is-a-neural-network"><strong>What is a neural network</strong> <a href="#q-what-is-a-neural-network" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-is-a-neural-network" class="question"><strong>What is a neural network</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>A neural network is a computational model inspired by biological human brains, the way humans process information (training), they learn new information and update existing information while reducing error (becoming better at design making or judgement). A simple neural network is mad e up of an Input layer, one  hidden layer and  an output layer. The aim is to feed the input, activate the transformed input data and then compute the prettied values that minims the error while iteratively updating the model parameters</li>
             </ul>
-            <p id="q-how-does-deep-learning-differ-"><strong>How does deep learning differ from machine learning</strong> <a href="#q-how-does-deep-learning-differ-" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-how-does-deep-learning-differ-" class="question"><strong>How does deep learning differ from machine learning</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Deep learning differs from ML in the way it learns features. DL automates the feature extraction and does not depend on manual feature extraction. DL performs better on larger data set. ML on the other hand suffer from the curse of dimensionality.</li>
             </ul>
-            <p id="q-what-is-deep-learning"><strong>What is deep learning</strong> <a href="#q-what-is-deep-learning" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-is-deep-learning" class="question"><strong>What is deep learning</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Subset of ML inspired by the way human beings learn. Takes input data, transforms with activations and hidden layers to learn complex relationships and then iteratively improve the model. e.g CNN.</li>
             </ul>
-            <p id="q-how-is-the-binomial-distributi"><strong>How is the Binomial distribution related to the Cross Entropy in Logistic regression</strong> <a href="#q-how-is-the-binomial-distributi" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-how-is-the-binomial-distributi" class="question"><strong>How is the Binomial distribution related to the Cross Entropy in Logistic regression</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>For logistic regression we can assume that the probability distribution is from the binomial distribution. Given by P^k * q^(1-k). Where Q = 1-p. If we take the negative log likelihood of this we obtain directly the cross entropy of the logistic regression. Where k in this case  = (0, 1) is the actual target and P is our predicted y. There fore we have p(yhat|w) = product (y^yhat * (1-y)^(1-yhat)). The E(w) can be obtained by taking the negative log likelihood and this is the resulting cross entropy error function</li>
             </ul>
-            <p id="q-what-is-the-relationship-betwe"><strong>What is the relationship between the Maximum Likelihood Estimate (MLE) and sample Mean, Variance</strong> <a href="#q-what-is-the-relationship-betwe" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-is-the-relationship-betwe" class="question"><strong>What is the relationship between the Maximum Likelihood Estimate (MLE) and sample Mean, Variance</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>By minimizing the negative log likelihood, we can obtain estimates of the mean and variance. We where likelihood is given by the probability of observing n independent and identical distributed samples. Product of the conditional distribution Product (P(x| mean, var)).</li>
             </ul>
-            <p id="q-what-is-the-relationship-betwe"><strong>What is the relationship between the Maximum Likelihood Estimate (MLE) and  error functions of Linear regression</strong> <a href="#q-what-is-the-relationship-betwe" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-is-the-relationship-betwe" class="question"><strong>What is the relationship between the Maximum Likelihood Estimate (MLE) and  error functions of Linear regression</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>For linear regression we can also see that the Maximum Likelihood Estimate (wrt to weight w) is equivalent to minimizing the sum of error function E = 1/2sum((y - yhat)^2); yhat = f(w)</li>
             </ul>
-            <p id="q-what-is-the-derivation-of-the-"><strong>What is the derivation of the  bias–variance in supervised learning:</strong> <a href="#q-what-is-the-derivation-of-the-" style="color: #666; text-decoration: none;">🔗</a></p>
+            <p id="q-what-is-the-derivation-of-the-" class="question"><strong>What is the derivation of the  bias–variance in supervised learning:</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Err  = Bias **2 + Variance + Noise. Say we have y= f(x) + E where E = Noise. f(x) is the true function, We know that Prediction Error on a sample is Err = (y-yhat)**2</li>
               <li>Err = (fx+E-yhat)**2 = (f(x)-yhat)**2 + E**2 ==> if we take expectations, we get Bias**2 + Variance. Where E(E**2) ==> Variance and yhat = the prediction of an algorithm</li>
