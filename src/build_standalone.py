@@ -462,6 +462,10 @@ def build_notes_hub(note_structure):
     with open(hub_file, 'r', encoding='utf-8') as f:
         hub_html = f.read()
     
+    # Replace the password first
+    password_pattern = r"const PASSWORD = '[^']*';"
+    hub_html = re.sub(password_pattern, f"const PASSWORD = '{password}';", hub_html)
+    
     # Replace the dynamic content section
     start_marker = '<!-- Dynamic Content Start -->'
     end_marker = '<!-- Future Sections -->'
@@ -473,9 +477,7 @@ def build_notes_hub(note_structure):
         new_content = ''.join(hub_content)
         updated_hub = hub_html[:start_idx] + new_content + hub_html[end_idx:]
     else:
-        # Fallback: replace password only
-        password_pattern = r"const PASSWORD = '[^']*';"
-        updated_hub = re.sub(password_pattern, f"const PASSWORD = '{password}';", hub_html)
+        updated_hub = hub_html
     
     # Write back
     with open(hub_file, 'w', encoding='utf-8') as f:
