@@ -155,7 +155,10 @@ def get_file_title(md_file):
         with open(md_file, 'r', encoding='utf-8') as f:
             first_line = f.readline().strip()
             if first_line.startswith('#'):
+                # Remove # and any extra spaces
                 return first_line[1:].strip()
+            elif first_line:  # If first line exists and is not empty, use it as title
+                return first_line
             else:
                 return md_file.stem.replace('-', ' ').replace('_', ' ').title()
     except:
