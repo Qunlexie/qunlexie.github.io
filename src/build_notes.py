@@ -455,7 +455,7 @@ def build_notes_hub(note_structure):
         for file_info in files:
             file_title = file_info['title']
             file_name = file_info['name']
-            html_file = f"notes-html/{folder_name}-{file_name}.html"
+            html_file = f"../notes-html/{folder_name}-{file_name}.html"
             
             hub_content.append(f'''
             <div class="topic-card">
@@ -511,7 +511,7 @@ def main():
         print(f"  📁 {folder}: {len(files)} files")
     
     # Ensure notes-html directory exists
-    output_dir = Path('notes-html')
+    output_dir = Path('../notes-html')
     output_dir.mkdir(exist_ok=True)
     
     password = get_password()
@@ -525,16 +525,20 @@ def main():
             md_file = file_info['file']
             file_title = file_info['title']
             file_name = file_info['name']
-            html_file = f"notes-html/{folder_name}-{file_name}.html"
+            html_file = f"../notes-html/{folder_name}-{file_name}.html"
             
             print(f"  📄 {file_title} -> {html_file}")
             
-            # Parse markdown to HTML
-            html_content = parse_markdown_to_html(md_file)
+            # Check if markdown file has enough content
+            with open(md_file, 'r', encoding='utf-8') as f:
+                md_content = f.read()
             
-            if len(html_content) < 100:
+            if len(md_content.strip()) < 100:
                 print(f"    ⚠️  Warning: {file_title} seems too short!")
                 continue
+            
+            # Parse markdown to HTML
+            html_content = parse_markdown_to_html(md_file)
             
             # Create HTML file
             html_template = create_html_template(file_title, html_content, password)

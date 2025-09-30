@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Algorithm Fundamentals - Notes</title>
+    <title>Computer Vision - Notes</title>
     <link rel="stylesheet" href="../assets/style.css" />
     <style>
       /* Additional styles for notes page */
@@ -172,34 +172,66 @@
       
       <main>
         <div class="notes-header">
-          <h1>Algorithm Fundamentals</h1>
+          <h1>Computer Vision</h1>
           <p class="subtitle">comprehensive revision notes</p>
         </div>
 
         <div class="category-section">
           <a href="../pages/notes.html" class="back-link">← Back to Notes Hub</a>
-          <h2>Algorithm Fundamentals</h2>
+          <h2>Computer Vision</h2>
           <div style="line-height: 1.8;">
             <div class="table-of-contents">
               <h3>📋 Table of Contents</h3>
               <ul class="toc-list">
-                <li><a href="#q-what-is-big-o-notation">1. What is Big O notation?</a></li>
-                <li><a href="#q-what-is-a-hash-table">2. What is a hash table?</a></li>
+                <li><a href="#q-detection">1. Detection</a></li>
+                <li><a href="#q-mask-segmentation">2. Mask Segmentation</a></li>
+                <li><a href="#q-classification">3. Classification</a></li>
+                <li><a href="#q-key-concepts">4. Key Concepts</a></li>
               </ul>
             </div>
 
-            <p id="q-what-is-big-o-notation" class="question"><strong>What is Big O notation?</strong></p>
+            <p id="q-detection" class="question"><strong>Detection</strong></p>
             <ul style="margin-left: 1.5rem;">
-              <li>Describes the time/space complexity of algorithms</li>
-              <li>Shows how performance scales with input size</li>
-              <li>Common complexities: O(1), O(log n), O(n), O(n²)</li>
+              <li>TLDR: object detection predicts tow things:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>the bounding box coordinates</li>
+                  <li>and class label</li>
+                </ul>
+              <li>Starts with the input image (do some preprocessing)</li>
+              <li>Backbone feature extraction network using a CNN or ConvNET e.g. AlexNet, Microsoft's ResNET (remember ResNET solved the problem of vanishing/exploding gradient using skip connections and that's why it sis still popular till date [5]) used of extracting useful features</li>
+              <li>This features are then passed through a Region Proposal network RPN (this network is specific Faster Regional Convolutional Network - Facebook's FasterRCNN) which builds anchor or Region of Interest, ROI boxes around the objects of interest [6]. Next it does two type of detection:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Objectiveness: if an object is there (binary classification)</li>
+                  <li>Bounding Box prediction: If object is there predict the x-y coordinates using linear regression</li>
+                </ul>
+              <li>Final step is the object classification either car, goat, man</li>
+              <li>Popular Detection Models: FasterRCNN, Mask RCN, Cascade RCNN (2 stage methods optimized for detection accuracy), YOLO, SSD, RetinaNET (1-stage methods optimized for inference speed)</li>
+              <li>Popular Detection Datasets: Microsoft's Coco dataset</li>
             </ul>
-            <p id="q-what-is-a-hash-table" class="question"><strong>What is a hash table?</strong></p>
+            <p id="q-mask-segmentation" class="question"><strong>Mask Segmentation</strong></p>
             <ul style="margin-left: 1.5rem;">
-              <li>Data structure that maps keys to values</li>
-              <li>Average O(1) lookup, insertion, deletion</li>
-              <li>Uses hash function to compute array index</li>
-              <li>Handles collisions with chaining or open addressing</li>
+              <li>A special case of detection is called Mask Segmentation</li>
+              <li>The ROI boxes are first layered with the ground truth to obtain an Intersection Over Union (IoU)</li>
+              <li>IoU > 0.5 is selected as a true region of interest</li>
+              <li>After that the segmentation mask is added to the architecture to obtain the mask segmented output [6].</li>
+              <li>Popular Mask Segmentation Models: FasterRCNN, Mask RCNN [6]</li>
+              <li>Popular Mask Segmentation Datasets: Microsoft's Coco dataset</li>
+            </ul>
+            <p id="q-classification" class="question"><strong>Classification</strong></p>
+            <ul style="margin-left: 1.5rem;">
+              <li>Popular Classification Models: ResNET, VGG, AlexNet, DenseNet, EfficientNet</li>
+              <li>Popular Classification Datasets: ImageNet, CIFAR-10, CIFAR-100</li>
+            </ul>
+            <p id="q-key-concepts" class="question"><strong>Key Concepts</strong></p>
+            <ul style="margin-left: 1.5rem;">
+              <li>Data Augmentation: Techniques like rotation, flipping, cropping, color jittering to increase dataset diversity</li>
+              <li>Transfer Learning: Using pre-trained models (e.g., ImageNet) and fine-tuning for specific tasks</li>
+              <li>Feature Maps: Intermediate representations learned by CNN layers</li>
+              <li>Convolution Operations: Sliding window operations to detect features like edges, textures, patterns</li>
+              <li>Pooling: Downsampling operations (max pooling, average pooling) to reduce spatial dimensions</li>
+              <li>Activation Functions: ReLU, Leaky ReLU, Swish for introducing non-linearity</li>
+              <li>Batch Normalization: Normalizing inputs to each layer for stable training</li>
+              <li>Dropout: Regularization technique to prevent overfitting</li>
             </ul>
           </div>
         </div>
@@ -207,7 +239,7 @@
       </main>
       
       <footer>
-        <p>&copy; 2025 Algorithm Fundamentals Notes</p>
+        <p>&copy; 2025 Computer Vision Notes</p>
       </footer>
     </div>
 
