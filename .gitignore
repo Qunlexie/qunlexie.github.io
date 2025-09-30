@@ -1,0 +1,28 @@
+# Private notes - never commit these
+notes/
+*-private.html
+*-private.md
+private-*.html
+private-*.md
+
+# Configuration files with sensitive data
+config.json
+password.txt
+.env
+
+# System files
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+
+# Editor files
+.vscode/
+.idea/
+
