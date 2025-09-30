@@ -9,6 +9,10 @@ private-*.md
 README.md
 DEPLOYMENT.md
 
+# Personal documents
+resume.pdf
+*.pdf
+
 # Configuration files with sensitive data
 config.json
 password.txt
