@@ -159,7 +159,9 @@ def get_password():
 
 def discover_note_folders():
     """Discover all note folders and their markdown files"""
-    notes_dir = Path('../notes')
+    # Find notes directory relative to script location
+    script_dir = Path(__file__).parent
+    notes_dir = script_dir / '../notes'
     if not notes_dir.exists():
         return {}
     
@@ -468,7 +470,8 @@ def build_notes_hub(note_structure):
         </section>''')
     
     # Read the hub template
-    hub_file = Path('../pages/notes.html')
+    script_dir = Path(__file__).parent
+    hub_file = script_dir / '../pages/notes.html'
     if not hub_file.exists():
         print("Error: notes.html template not found")
         return False
@@ -511,7 +514,8 @@ def main():
         print(f"  📁 {folder}: {len(files)} files")
     
     # Ensure notes-html directory exists
-    output_dir = Path('../notes-html')
+    script_dir = Path(__file__).parent
+    output_dir = script_dir / '../notes-html'
     output_dir.mkdir(exist_ok=True)
     
     password = get_password()
@@ -525,7 +529,7 @@ def main():
             md_file = file_info['file']
             file_title = file_info['title']
             file_name = file_info['name']
-            html_file = f"../notes-html/{folder_name}-{file_name}.html"
+            html_file = output_dir / f"{folder_name}-{file_name}.html"
             
             print(f"  📄 {file_title} -> {html_file}")
             
