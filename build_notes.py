@@ -386,7 +386,7 @@ def build_notes_hub(note_structure):
         for file_info in files:
             file_title = file_info['title']
             file_name = file_info['name']
-            html_file = f"{folder_name}-{file_name}.html"
+            html_file = f"notes-html/{folder_name}-{file_name}.html"
             
             hub_content.append(f'''
             <div class="topic-card">
@@ -441,6 +441,10 @@ def main():
     for folder, files in note_structure.items():
         print(f"  📁 {folder}: {len(files)} files")
     
+    # Ensure notes-html directory exists
+    output_dir = Path('notes-html')
+    output_dir.mkdir(exist_ok=True)
+    
     password = get_password()
     generated_files = []
     
@@ -452,7 +456,7 @@ def main():
             md_file = file_info['file']
             file_title = file_info['title']
             file_name = file_info['name']
-            html_file = f"{folder_name}-{file_name}.html"
+            html_file = f"notes-html/{folder_name}-{file_name}.html"
             
             print(f"  📄 {file_title} -> {html_file}")
             
