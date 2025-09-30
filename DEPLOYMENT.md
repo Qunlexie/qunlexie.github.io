@@ -9,8 +9,9 @@
 - [x] Password injected into HTML by build script
 
 ### Files to Commit:
-- [x] `ml-theory.html` - Password-protected notes page
-- [x] `build_notes.py` - Build script
+- [x] `notes.html` - Main notes hub (password-protected)
+- [x] `*-*.html` - Auto-generated topic pages
+- [x] `build_notes.py` - Multi-folder build script
 - [x] `update.sh` - Helper script
 - [x] `README.md` - Documentation
 - [x] `.gitignore` - Security rules
@@ -23,11 +24,12 @@
 ## 🚀 Deployment Commands
 
 ```bash
-# Add all production files
-git add ml-theory.html build_notes.py update.sh README.md .gitignore
+# Build and add all production files
+python3 build_notes.py
+git add *.html build_notes.py update.sh README.md .gitignore
 
 # Commit
-git commit -m "Add secure ML theory notes system"
+git commit -m "Add secure multi-folder notes system"
 
 # Deploy to GitHub Pages
 git push origin main
@@ -43,8 +45,9 @@ git push origin main
 ## 📱 Access URLs
 
 - **Main site:** `https://qunlexie.github.io/`
-- **Notes page:** `https://qunlexie.github.io/ml-theory.html`
-- **Password:** Check `password.txt` locally
+- **Notes hub:** `https://qunlexie.github.io/notes`
+- **Individual topics:** `https://qunlexie.github.io/[subject]-[topic].html`
+- **Password:** `notes2025` (stored in gitignored `password.txt`)
 
 ---
 

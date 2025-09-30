@@ -124,7 +124,7 @@ def get_password():
                 if line and not line.startswith('#'):
                     return line
     print("Warning: password.txt not found or empty, using default password")
-    return 'mltheory2025'
+    return 'notes2025'
 
 def discover_note_folders():
     """Discover all note folders and their markdown files"""
