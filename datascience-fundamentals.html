@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Science Fundamentals - Notes</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* Additional styles for notes page */
+      .notes-content {
+        display: block;
+      }
+      
+      /* aman.ai inspired styles */
+      .notes-header {
+        text-align: center;
+        margin: 2rem 0;
+      }
+      
+      .notes-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      .notes-header .subtitle {
+        color: #666;
+        font-style: italic;
+      }
+      
+      .category-section {
+        background: white;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      
+      .category-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #007bff;
+      }
+      
+      .back-link {
+        display: inline-block;
+        margin-bottom: 1rem;
+        color: #007bff;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      
+      .back-link:hover {
+        text-decoration: underline;
+      }
+      
+      @media (max-width: 768px) {
+        .notes-header h1 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Notes Content -->
+    <div class="notes-content" id="notesContent">
+      <header>
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects and Research</a></li>
+            <li><a href="highlights.html">Highlights</a></li>
+            <li><a href="notes.html">Notes Hub</a></li>
+          </ul>
+        </nav>
+      </header>
+      
+      <main>
+        <div class="notes-header">
+          <h1>Data Science Fundamentals</h1>
+          <p class="subtitle">comprehensive revision notes</p>
+        </div>
+
+        <div class="category-section">
+          <a href="notes.html" class="back-link">← Back to Notes Hub</a>
+          <h2>Data Science Fundamentals</h2>
+          <div style="line-height: 1.8;">
+            <p id="q-what-is-statistical-significan"><strong>What is statistical significance?</strong> <a href="#q-what-is-statistical-significan" style="color: #666; text-decoration: none;">🔗</a></p>
+            <ul style="margin-left: 1.5rem;">
+              <li>Statistical significance indicates that the observed effect is unlikely due to random chance</li>
+              <li>Typically measured using p-values (p < 0.05 considered significant)</li>
+              <li>Helps distinguish between real patterns and random noise in data</li>
+            </ul>
+            <p id="q-what-is-correlation-vs-causati"><strong>What is correlation vs causation?</strong> <a href="#q-what-is-correlation-vs-causati" style="color: #666; text-decoration: none;">🔗</a></p>
+            <ul style="margin-left: 1.5rem;">
+              <li>Correlation: Two variables change together (positive/negative relationship)</li>
+              <li>Causation: One variable directly causes change in another</li>
+              <li>Correlation does not imply causation - need controlled experiments to establish causality</li>
+            </ul>
+            <p id="q-what-is-feature-engineering"><strong>What is feature engineering?</strong> <a href="#q-what-is-feature-engineering" style="color: #666; text-decoration: none;">🔗</a></p>
+            <ul style="margin-left: 1.5rem;">
+              <li>Process of creating new features from existing data to improve model performance</li>
+              <li>Includes: scaling, encoding categorical variables, creating interaction terms</li>
+              <li>Can significantly impact model accuracy and interpretability</li>
+            </ul>
+          </div>
+        </div>
+
+      </main>
+      
+      <footer>
+        <p>&copy; 2025 Data Science Fundamentals Notes</p>
+      </footer>
+    </div>
+
+    <script>
+      // Check if user is already authenticated
+      function checkAuth() {
+        const isAuthenticated = sessionStorage.getItem('notesAuthenticated') === 'true';
+        if (isAuthenticated) {
+          document.getElementById('notesContent').style.display = 'block';
+        } else {
+          // Redirect to main hub for authentication
+          window.location.href = 'notes.html';
+        }
+      }
+
+      // Initialize page
+      document.addEventListener('DOMContentLoaded', function() {
+        checkAuth();
+      });
+    </script>
+  </body>
+</html>

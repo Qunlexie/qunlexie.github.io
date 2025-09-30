@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithm Fundamentals - Notes</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* Additional styles for notes page */
+      .notes-content {
+        display: block;
+      }
+      
+      /* aman.ai inspired styles */
+      .notes-header {
+        text-align: center;
+        margin: 2rem 0;
+      }
+      
+      .notes-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      .notes-header .subtitle {
+        color: #666;
+        font-style: italic;
+      }
+      
+      .category-section {
+        background: white;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      
+      .category-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #007bff;
+      }
+      
+      .back-link {
+        display: inline-block;
+        margin-bottom: 1rem;
+        color: #007bff;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      
+      .back-link:hover {
+        text-decoration: underline;
+      }
+      
+      @media (max-width: 768px) {
+        .notes-header h1 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Notes Content -->
+    <div class="notes-content" id="notesContent">
+      <header>
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects and Research</a></li>
+            <li><a href="highlights.html">Highlights</a></li>
+            <li><a href="notes.html">Notes Hub</a></li>
+          </ul>
+        </nav>
+      </header>
+      
+      <main>
+        <div class="notes-header">
+          <h1>Algorithm Fundamentals</h1>
+          <p class="subtitle">comprehensive revision notes</p>
+        </div>
+
+        <div class="category-section">
+          <a href="notes.html" class="back-link">← Back to Notes Hub</a>
+          <h2>Algorithm Fundamentals</h2>
+          <div style="line-height: 1.8;">
+            <p id="q-what-is-big-o-notation"><strong>What is Big O notation?</strong> <a href="#q-what-is-big-o-notation" style="color: #666; text-decoration: none;">🔗</a></p>
+            <ul style="margin-left: 1.5rem;">
+              <li>Describes the time/space complexity of algorithms</li>
+              <li>Shows how performance scales with input size</li>
+              <li>Common complexities: O(1), O(log n), O(n), O(n²)</li>
+            </ul>
+            <p id="q-what-is-a-hash-table"><strong>What is a hash table?</strong> <a href="#q-what-is-a-hash-table" style="color: #666; text-decoration: none;">🔗</a></p>
+            <ul style="margin-left: 1.5rem;">
+              <li>Data structure that maps keys to values</li>
+              <li>Average O(1) lookup, insertion, deletion</li>
+              <li>Uses hash function to compute array index</li>
+              <li>Handles collisions with chaining or open addressing</li>
+            </ul>
+          </div>
+        </div>
+
+      </main>
+      
+      <footer>
+        <p>&copy; 2025 Algorithm Fundamentals Notes</p>
+      </footer>
+    </div>
+
+    <script>
+      // Check if user is already authenticated
+      function checkAuth() {
+        const isAuthenticated = sessionStorage.getItem('notesAuthenticated') === 'true';
+        if (isAuthenticated) {
+          document.getElementById('notesContent').style.display = 'block';
+        } else {
+          // Redirect to main hub for authentication
+          window.location.href = 'notes.html';
+        }
+      }
+
+      // Initialize page
+      document.addEventListener('DOMContentLoaded', function() {
+        checkAuth();
+      });
+    </script>
+  </body>
+</html>

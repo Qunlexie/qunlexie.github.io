@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Engineering Concepts - Notes</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* Additional styles for notes page */
+      .notes-content {
+        display: block;
+      }
+      
+      /* aman.ai inspired styles */
+      .notes-header {
+        text-align: center;
+        margin: 2rem 0;
+      }
+      
+      .notes-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      .notes-header .subtitle {
+        color: #666;
+        font-style: italic;
+      }
+      
+      .category-section {
+        background: white;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      
+      .category-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #007bff;
+      }
+      
+      .back-link {
+        display: inline-block;
+        margin-bottom: 1rem;
+        color: #007bff;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      
+      .back-link:hover {
+        text-decoration: underline;
+      }
+      
+      @media (max-width: 768px) {
+        .notes-header h1 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Notes Content -->
+    <div class="notes-content" id="notesContent">
+      <header>
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects and Research</a></li>
+            <li><a href="highlights.html">Highlights</a></li>
+            <li><a href="notes.html">Notes Hub</a></li>
+          </ul>
+        </nav>
+      </header>
+      
+      <main>
+        <div class="notes-header">
+          <h1>Software Engineering Concepts</h1>
+          <p class="subtitle">comprehensive revision notes</p>
+        </div>
+
+        <div class="category-section">
+          <a href="notes.html" class="back-link">← Back to Notes Hub</a>
+          <h2>Software Engineering Concepts</h2>
+          <div style="line-height: 1.8;">
+            <p id="q-what-is-system-design"><strong>What is system design?</strong> <a href="#q-what-is-system-design" style="color: #666; text-decoration: none;">🔗</a></p>
+            <ul style="margin-left: 1.5rem;">
+              <li>Process of defining architecture, components, modules, interfaces for a system</li>
+              <li>Focuses on scalability, reliability, performance, and maintainability</li>
+              <li>Key principles: separation of concerns, modularity, abstraction</li>
+            </ul>
+            <p id="q-what-is-microservices-architec"><strong>What is microservices architecture?</strong> <a href="#q-what-is-microservices-architec" style="color: #666; text-decoration: none;">🔗</a></p>
+            <ul style="margin-left: 1.5rem;">
+              <li>Architectural pattern where applications are built as collection of loosely coupled services</li>
+              <li>Each service is independently deployable and scalable</li>
+              <li>Benefits: fault isolation, technology diversity, team autonomy</li>
+              <li>Challenges: distributed system complexity, data consistency</li>
+            </ul>
+            <p id="q-what-is-api-design-best-practi"><strong>What is API design best practices?</strong> <a href="#q-what-is-api-design-best-practi" style="color: #666; text-decoration: none;">🔗</a></p>
+            <ul style="margin-left: 1.5rem;">
+              <li>RESTful principles: use HTTP methods appropriately, stateless, cacheable</li>
+              <li>Consistent naming conventions and URL structure</li>
+              <li>Proper HTTP status codes and error handling</li>
+              <li>Versioning strategy and backward compatibility</li>
+            </ul>
+          </div>
+        </div>
+
+      </main>
+      
+      <footer>
+        <p>&copy; 2025 Software Engineering Concepts Notes</p>
+      </footer>
+    </div>
+
+    <script>
+      // Check if user is already authenticated
+      function checkAuth() {
+        const isAuthenticated = sessionStorage.getItem('notesAuthenticated') === 'true';
+        if (isAuthenticated) {
+          document.getElementById('notesContent').style.display = 'block';
+        } else {
+          // Redirect to main hub for authentication
+          window.location.href = 'notes.html';
+        }
+      }
+
+      // Initialize page
+      document.addEventListener('DOMContentLoaded', function() {
+        checkAuth();
+      });
+    </script>
+  </body>
+</html>

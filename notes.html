@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes Hub - ML Theory & More</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* Additional styles for notes hub */
+      .password-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 60vh;
+        padding: 2rem;
+      }
+      
+      .password-box {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        max-width: 400px;
+        width: 100%;
+      }
+      
+      .password-box h2 {
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+      
+      .password-input {
+        width: 100%;
+        padding: 0.75rem;
+        margin-bottom: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+      }
+      
+      .password-btn {
+        width: 100%;
+        padding: 0.75rem;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+      
+      .password-btn:hover {
+        background-color: #0069d9;
+      }
+      
+      .error-message {
+        color: #dc3545;
+        margin-top: 0.5rem;
+        text-align: center;
+        display: none;
+      }
+      
+      .notes-content {
+        display: none;
+      }
+      
+      /* Hub styles */
+      .hub-header {
+        text-align: center;
+        margin: 2rem 0;
+      }
+      
+      .hub-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      .hub-header .subtitle {
+        color: #666;
+        font-style: italic;
+      }
+      
+      .subject-section {
+        background: white;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      
+      .subject-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #007bff;
+        color: #007bff;
+      }
+      
+      .topic-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+      
+      .topic-card {
+        background: #f8f9fa;
+        padding: 1rem;
+        border-radius: 6px;
+        border-left: 4px solid #007bff;
+        transition: transform 0.2s;
+      }
+      
+      .topic-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      }
+      
+      .topic-card h3 {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.1rem;
+        color: #333;
+      }
+      
+      .topic-card p {
+        margin: 0;
+        color: #666;
+        font-size: 0.9rem;
+      }
+      
+      .topic-card a {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      
+      .topic-card a:hover {
+        text-decoration: underline;
+      }
+      
+      .quick-access {
+        background: linear-gradient(135deg, #007bff, #0056b3);
+        color: white;
+        padding: 1.5rem;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+      }
+      
+      .quick-access h2 {
+        margin-top: 0;
+        border-bottom: 2px solid rgba(255,255,255,0.3);
+        padding-bottom: 0.5rem;
+      }
+      
+      .quick-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+      
+      .quick-link {
+        background: rgba(255,255,255,0.2);
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        color: white;
+        text-decoration: none;
+        transition: background 0.2s;
+      }
+      
+      .quick-link:hover {
+        background: rgba(255,255,255,0.3);
+        color: white;
+        text-decoration: none;
+      }
+      
+      @media (max-width: 768px) {
+        .hub-header h1 {
+          font-size: 2rem;
+        }
+        .topic-grid {
+          grid-template-columns: 1fr;
+        }
+        .quick-links {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Password Protection -->
+    <div class="password-container" id="passwordContainer">
+      <div class="password-box">
+        <h2>🔒 Access Notes Hub</h2>
+        <input 
+          type="password" 
+          id="passwordInput" 
+          class="password-input" 
+          placeholder="Enter password"
+          autocomplete="off"
+        />
+        <button onclick="checkPassword()" class="password-btn">Unlock</button>
+        <div class="error-message" id="errorMessage">Incorrect password</div>
+      </div>
+    </div>
+
+    <!-- Notes Content -->
+    <div class="notes-content" id="notesContent">
+      <header>
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects and Research</a></li>
+            <li><a href="highlights.html">Highlights</a></li>
+            <li><a href="notes.html">Notes Hub</a></li>
+          </ul>
+        </nav>
+      </header>
+      
+      <main>
+        <div class="hub-header">
+          <h1>📚 Notes Hub</h1>
+          <p class="subtitle">Your personal knowledge repository</p>
+        </div>
+
+        <!-- Quick Access -->
+        <section class="quick-access">
+          <h2>⚡ Quick Access</h2>
+          <div class="quick-links">
+            <a href="ml-theory.html" class="quick-link">Complete ML Theory</a>
+            <a href="#fundamentals" class="quick-link">Deep Learning Basics</a>
+            <a href="#optimization" class="quick-link">Training & Optimization</a>
+            <a href="#architectures" class="quick-link">Neural Architectures</a>
+          </div>
+        </section>
+
+        
+        <section class="subject-section" id="algorithms">
+          <h2>📚 Algorithms</h2>
+          <p>Comprehensive notes on algorithms topics.</p>
+          
+          <div class="topic-grid">
+          </div>
+        </section>
+        <section class="subject-section" id="mltheory">
+          <h2>📚 Mltheory</h2>
+          <p>Comprehensive notes on mltheory topics.</p>
+          
+          <div class="topic-grid">
+            <div class="topic-card">
+              <h3><a href="mltheory-dltheory.html">Dltheory</a></h3>
+              <p>Complete reference for dltheory</p>
+            </div>
+          </div>
+        </section>
+        <section class="subject-section" id="software-engineering">
+          <h2>📚 Software Engineering</h2>
+          <p>Comprehensive notes on software engineering topics.</p>
+          
+          <div class="topic-grid">
+            <div class="topic-card">
+              <h3><a href="software-engineering-concepts.html">Software Engineering Concepts</a></h3>
+              <p>Complete reference for software engineering concepts</p>
+            </div>
+          </div>
+        </section>
+        <section class="subject-section" id="datascience">
+          <h2>📚 Datascience</h2>
+          <p>Comprehensive notes on datascience topics.</p>
+          
+          <div class="topic-grid">
+            <div class="topic-card">
+              <h3><a href="datascience-fundamentals.html">Data Science Fundamentals</a></h3>
+              <p>Complete reference for data science fundamentals</p>
+            </div>
+          </div>
+        </section><!-- Future Sections -->
+
+      </main>
+      
+      <footer>
+        <p>&copy; 2025 Notes Hub - Personal Knowledge Repository</p>
+      </footer>
+    </div>
+
+    <script>
+      // Configuration
+      const PASSWORD = 'notes2025'; // Password set by build script
+
+      // Password Protection
+      function checkPassword() {
+        const input = document.getElementById('passwordInput').value;
+        if (input === PASSWORD) {
+          // Set session storage to authenticate user for all pages
+          sessionStorage.setItem('notesAuthenticated', 'true');
+          document.getElementById('passwordContainer').style.display = 'none';
+          document.getElementById('notesContent').style.display = 'block';
+        } else {
+          document.getElementById('errorMessage').style.display = 'block';
+          setTimeout(() => {
+            document.getElementById('errorMessage').style.display = 'none';
+          }, 3000);
+        }
+      }
+
+      // Check if already authenticated
+      function checkAuth() {
+        const isAuthenticated = sessionStorage.getItem('notesAuthenticated') === 'true';
+        if (isAuthenticated) {
+          document.getElementById('passwordContainer').style.display = 'none';
+          document.getElementById('notesContent').style.display = 'block';
+        }
+      }
+
+      // Allow enter key to submit password
+      document.addEventListener('DOMContentLoaded', function() {
+        checkAuth();
+        document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') {
+            checkPassword();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

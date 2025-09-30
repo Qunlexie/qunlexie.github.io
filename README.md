@@ -1,47 +1,70 @@
-# Personal Website & Private Notes System
+# Personal Website & Notes Hub
 
-This repository hosts my personal website with a secure private notes system for ML theory revision.
+This repository contains my personal website hosted on GitHub Pages, featuring a comprehensive notes system for private study materials.
 
-## 🔐 Security Features
+## 🔐 Notes System
 
-- **Password-protected notes** - Access via `ml-theory.html`
-- **Private source files** - Raw notes in `notes/` folder (gitignored)
-- **Secure password handling** - Password stored locally, not in repository
-- **Clean separation** - Public website + private notes system
+### Features
+- **Single Password Access**: One password (`notes2025`) unlocks all notes
+- **Session-based Authentication**: Enter password once, access all pages seamlessly
+- **Multi-folder Support**: Organize notes by subject (algorithms, mltheory, etc.)
+- **Mobile-friendly**: Optimized for mobile revision
+- **Private Source**: Raw markdown files are gitignored and never committed
+- **Auto-discovery**: Build system automatically finds and processes all note folders
 
-## 📝 ML Theory Notes System
+## 📚 Notes Hub System
 
 ### Quick Start:
 ```bash
-# Edit your notes
-vim notes/mltheory/dltheory.md
+# Add your notes
+echo "# My Notes" > notes/my-subject/topic.md
 
 # Build and preview
-./update.sh
+python3 build_notes.py
+open notes.html
 
 # Deploy
-git add ml-theory.html
-git commit -m "Update ML notes"
+git add *.html
+git commit -m "Update notes"
 git push
 ```
 
 ### File Structure:
 ```
-├── ml-theory.html          # Public password-protected page
+├── notes.html              # Main notes hub (password-protected)
+├── *-*.html               # Auto-generated topic pages
 ├── notes/                  # Private notes (gitignored)
-│   └── mltheory/
-│       └── dltheory.md     # Your raw markdown notes
-├── build_notes.py          # Build script
+│   ├── mltheory/
+│   │   └── dltheory.md     # ML Theory notes
+│   ├── datascience/
+│   │   └── fundamentals.md # Data Science notes
+│   ├── software-engineering/
+│   │   └── concepts.md     # Software Engineering notes
+│   └── [any-folder]/      # Add any topic folder
+├── build_notes.py          # Multi-folder build script
 ├── password.txt            # Your password (gitignored)
 └── update.sh               # Quick update script
 ```
 
+### Multi-Folder System:
+- **Automatic Discovery:** Build script scans `notes/` folder
+- **Dynamic Generation:** Creates HTML pages for all `.md` files
+- **Scalable Structure:** Add any folder/topic without code changes
+- **Consistent Navigation:** All pages use same password and styling
+- **Smart Naming:** Files named as `folder-topic.html`
+
+### Adding New Topics:
+1. Create folder: `mkdir notes/new-topic`
+2. Add markdown: `notes/new-topic/my-notes.md`
+3. Run build: `./update.sh`
+4. Access via: `qunlexie.github.io/new-topic-my-notes.html`
+
 ### Workflow:
-1. **Edit notes** in `notes/mltheory/dltheory.md` (simple markdown)
-2. **Build** with `python3 build_notes.py` or `./update.sh`
-3. **Preview** the generated HTML
-4. **Commit** only `ml-theory.html` to GitHub
-5. **Access** via website with password
+1. **Edit notes** in `notes/[subject]/[topic].md` (simple markdown)
+2. **Build** with `python3 build_notes.py`
+3. **Preview** the notes hub at `notes.html`
+4. **Commit** all generated HTML files
+5. **Access** via `qunlexie.github.io/notes` with password `notes2025`
 
 ## 🚀 Deployment
 
@@ -49,9 +72,10 @@ GitHub Pages automatically deploys when you push to main branch.
 
 ## 🔑 Password Management
 
-- Password stored in `password.txt` (gitignored)
-- Change password: Edit `password.txt` → Run build script
-- Password is injected into HTML during build process
+- **Password:** `notes2025` (stored in `password.txt` - gitignored)
+- **Security:** Password file never committed to repository
+- **Change password:** Edit `password.txt` → Run build script
+- **Auto-injection:** Password injected into all HTML pages during build
 
 ## 📱 Mobile Access
 
