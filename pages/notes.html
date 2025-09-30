@@ -6,129 +6,24 @@
     <title>Notes Hub - Private Study Materials</title>
     <link rel="stylesheet" href="../assets/style.css" />
     <style>
-      /* Additional styles for notes page */
-      .notes-content {
-        display: none;
-      }
-      
-      .login-form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 60vh;
-        text-align: center;
-      }
-      
-      .login-form h2 {
-        margin-bottom: 2rem;
-        color: #333;
-      }
-      
-      .password-input {
-        padding: 12px 20px;
-        font-size: 16px;
-        border: 2px solid #ddd;
-        border-radius: 8px;
-        width: 300px;
-        max-width: 100%;
-        margin-bottom: 1rem;
-      }
-      
-      .password-input:focus {
-        outline: none;
-      }
-      
-      .login-btn {
-        background: #007bff;
-        color: white;
-        border: none;
-        padding: 12px 30px;
-        font-size: 16px;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background 0.3s;
-      }
-      
-      .login-btn:hover {
-        background: #0056b3;
-      }
-      
-      .error-message {
-        color: #dc3545;
-        margin-top: 1rem;
-        display: none;
-      }
-      
-      /* Notes styles */
-      .subject-section {
-        margin-bottom: 3rem;
-        padding: 2rem;
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      }
-      
-      .subject-section h2 {
-        color: #007bff;
-        margin-bottom: 1rem;
-        padding-bottom: 0.5rem;
-        border-bottom: 2px solid #007bff;
-      }
-      
-      .topic-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 1.5rem;
-        margin-top: 1.5rem;
-      }
-      
-      .topic-card {
-        background: #f8f9fa;
-        padding: 1.5rem;
-        border-radius: 8px;
-        border: 1px solid #e9ecef;
-        transition: all 0.3s ease;
-      }
-      
-      .topic-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        border-color: #007bff;
-      }
-      
-      .topic-card h3 {
-        margin: 0 0 0.5rem 0;
-        color: #333;
-      }
-      
-      .topic-card h3 a {
-        color: #007bff;
-        text-decoration: none;
-        font-weight: 600;
-      }
-      
-      .topic-card h3 a:hover {
-        text-decoration: underline;
-      }
-      
-      .topic-card p {
-        color: #666;
-        margin: 0;
-        font-size: 0.9rem;
-        line-height: 1.4;
-      }
-      
-      @media (max-width: 768px) {
-        .topic-grid {
-          grid-template-columns: 1fr;
-        }
-        
-        .password-input {
-          width: 100%;
-          max-width: 300px;
-        }
-      }
+      .notes-content { display: none; }
+      .login-form { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; text-align: center; }
+      .login-form h2 { margin-bottom: 2rem; color: #333; }
+      .password-input { padding: 12px 20px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; width: 300px; max-width: 100%; margin-bottom: 1rem; }
+      .password-input:focus { outline: none; }
+      .login-btn { background: #007bff; color: white; border: none; padding: 12px 30px; font-size: 16px; border-radius: 8px; cursor: pointer; transition: background 0.3s; }
+      .login-btn:hover { background: #0056b3; }
+      .error-message { color: #dc3545; margin-top: 1rem; display: none; }
+      .subject-section { margin-bottom: 3rem; padding: 2rem; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+      .subject-section h2 { color: #007bff; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #007bff; }
+      .topic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+      .topic-card { background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border: 1px solid #e9ecef; transition: all 0.3s ease; }
+      .topic-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); border-color: #007bff; }
+      .topic-card h3 { margin: 0 0 0.5rem 0; color: #333; }
+      .topic-card h3 a { color: #007bff; text-decoration: none; font-weight: 600; }
+      .topic-card h3 a:hover { text-decoration: underline; }
+      .topic-card p { color: #666; margin: 0; font-size: 0.9rem; line-height: 1.4; }
+      @media (max-width: 768px) { .topic-grid { grid-template-columns: 1fr; } .password-input { width: 100%; max-width: 300px; } }
     </style>
   </head>
   <body>
@@ -144,7 +39,6 @@
     </header>
 
     <main>
-      <!-- Login Form -->
       <div class="login-form" id="loginForm">
         <h2>🔐 Private Notes Access</h2>
         <p>Enter password to access study materials</p>
@@ -153,11 +47,9 @@
         <div id="errorMessage" class="error-message">Invalid password. Please try again.</div>
       </div>
 
-      <!-- Notes Content -->
       <div class="notes-content" id="notesContent">
         <h1>📚 Notes Hub</h1>
         <p>Your comprehensive collection of study materials and technical notes.</p>
-
         
         <section class="subject-section" id="domains">
           <h2>📚 Domains</h2>
@@ -219,10 +111,7 @@
     </footer>
 
     <script>
-      // Configuration
-      const PASSWORD = 'REPLACE_WITH_ACTUAL_PASSWORD'; // Password set by build script
-
-      // Password Protection
+      const PASSWORD = 'REPLACE_WITH_ACTUAL_PASSWORD';
       function checkPassword() {
         const input = document.getElementById('passwordInput').value;
         if (input === PASSWORD) {
@@ -234,8 +123,6 @@
           document.getElementById('passwordInput').value = '';
         }
       }
-
-      // Check if user is already authenticated
       function checkAuth() {
         const isAuthenticated = sessionStorage.getItem('notesAuthenticated') === 'true';
         if (isAuthenticated) {
@@ -243,18 +130,10 @@
           document.getElementById('notesContent').style.display = 'block';
         }
       }
-
-      // Allow Enter key to submit
       document.getElementById('passwordInput').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-          checkPassword();
-        }
+        if (e.key === 'Enter') { checkPassword(); }
       });
-
-      // Initialize page
-      document.addEventListener('DOMContentLoaded', function() {
-        checkAuth();
-      });
+      document.addEventListener('DOMContentLoaded', function() { checkAuth(); });
     </script>
   </body>
 </html>

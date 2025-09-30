@@ -38,7 +38,7 @@ jobs:
       - name: Build notes
         run: |
           chmod +x build.sh
-          ./build.sh
+          python3 src/build_standalone.py
           
       - name: Setup Pages
         uses: actions/configure-pages@v4
