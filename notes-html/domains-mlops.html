@@ -183,125 +183,171 @@
             <div class="table-of-contents">
               <h3>📋 Table of Contents</h3>
               <ul class="toc-list">
-                <li><a href="#q-eg-mysql-postgressql-mariadb-s">1. e.g. MYSQL, PostgresSQL, MariaDB, SQLLite [10]</a></li>
-                <li><a href="#q-eg--redis-memcache-etcd">2. e.g.  Redis, Memcache, etcd</a></li>
-                <li><a href="#q-eg-mongodb-rethinkdb">3. e.g. MongoDB, RethinkDB</a></li>
-                <li><a href="#q-not-as-arbitrary-as-key-store-">4. Not as arbitrary as key store where there is complete lack of structure</a></li>
-                <li><a href="#q-document-databases-store-data-">5. document databases store data in structured formats called documents</a></li>
-                <li><a href="#q-they-often-using-formats-like-">6. They often using formats like JSON, BSON, or XML</a></li>
-                <li><a href="#q-eg-neo4j-dgraph">7. e.g. Neo4j, Dgraph</a></li>
-                <li><a href="#q-has-a-social-relationship-stru">8. Has a social relationship structure: diodes, edges, properties</a></li>
-                <li><a href="#q-eg-cassandra-hbase">9. e.g Cassandra, Hbase</a></li>
-                <li><a href="#q-has-flexible-columns-to-bridge">10. Has flexible columns to bridge the gap between relational and document databases</a></li>
-                <li><a href="#q-columnfamily-databases-have-st">11. column-family databases have structures called column families.</a></li>
-                <li><a href="#q-column-families-contain-rows-o">12. Column families contain rows of data, each of which define their own format.</a></li>
-                <li><a href="#q-a-row-is-composed-of-a-unique-">13. A row is composed of a unique row identifier — used to locate the row — followed by sets of column names and values.</a></li>
-                <li><a href="#q-eg-prometheus-opentsdb-influxd">14. e.g Prometheus, OpenTSDB, influxDB, timescale DB</a></li>
-                <li><a href="#q-data-stores-that-focus-on-coll">15. Data stores that focus on collecting and managing values that change over time.</a></li>
-                <li><a href="#q-time-series-databases-are-heav">16. Time series databases are heavily write oriented.</a></li>
-                <li><a href="#q-they-are-designed-to-handle-a-">17. They are designed to handle a constant influx of incoming data [10]</a></li>
-                <li><a href="#q-eg--memsql-voltdb-spanner-calv">18. e.g  MemSQL, VoltDB, Spanner, Calvin, CockroachDB, FaunaDB, yugabyteDB, PlanetScale</a></li>
-                <li><a href="#q-newsql-databases-follow-the-re">19. NewSQL databases follow the relational structure and semantics, but are built using more modern, scalable designs.</a></li>
-                <li><a href="#q-the-goal-is-to-offer-greater-s">20. The goal is to offer greater scalability than relational databases and greater consistency guarantees than NoSQL alternatives.</a></li>
-                <li><a href="#q-they-achieve-this-by-sacrifici">21. They achieve this by sacrificing certain amounts of availability in the event of a networking partition. The trade offs between consistency and availability is a fundamental problem of distributed databases described by the CAP theorem.</a></li>
-                <li><a href="#q-cap-theorem-asserts-that-in-th">22. Cap theorem asserts that in the event of a network partition, a distributed database can choose either to remain available or remain consistent, but it cannot do both</a></li>
-                <li><a href="#q-eg-arangodb-orientdb-couchbase">23. e.g ArangoDB, OrientDB, CouchBase</a></li>
-                <li><a href="#q-combining-the-characteristics-">24. Combining the characteristics of more than one type of database</a></li>
-                <li><a href="#q-multimodel-databases-may-allow">25. multi-model databases may allow users to access and manipulate data stored in different database types within a single query</a></li>
-                <li><a href="#q-multimodel-databases-also-help">26. Multi-model databases also help maintain data consistency, which can be a problem when performing operations that modify data in many systems at once.</a></li>
-                <li><a href="#q-amazon-elastic-cloud-compute-e">27. Amazon Elastic Cloud Compute (EC2) and Amazon  Simple Storage Service (S3) are fundamentally different types of services [12].</a></li>
-                <li><a href="#q-ec2-allows-you-to-run-servers-">28. EC2 allows you to run servers in the cloud with minimal effort on your part</a></li>
-                <li><a href="#q-s3-while-the-other-is-designed">29. S3 while the other is designed for storing large amounts of static data and ideal for data backups (storage).</a></li>
-                <li><a href="#q-similar-and-have-cloud-storage">30. similar and have cloud storage, compute services like AWS</a></li>
-                <li><a href="#q-airflow-is-a-processing--platf">31. Airflow is a processing  platform for developing, scheduling, and monitoring batch-oriented workflows [1].</a></li>
-                <li><a href="#q-very-similar-to-dataswarm-wher">32. Very similar to dataswarm where you can stick different operators together to run a pipeline task</a></li>
-                <li><a href="#q-cant-be-used-for-continuous-in">33. Can't be used for continuous infinite processing of data (only batch)</a></li>
-                <li><a href="#q-does-the-same-thing-as-airflow">34. Does the same thing as Airflow</a></li>
-                <li><a href="#q-realtime-stream-processing-sto">35. Realtime stream processing, storage and analytics system for publishing, subscribing, storing, and processing streams of records in real time.</a></li>
-                <li><a href="#q-apache-calls-these-topics-whic">36. Apache calls these Topics which are used to store real time events/logs [se video in 3]</a></li>
-                <li><a href="#q-unified-analytics-engine-for-b">37. Unified analytics engine for big data and machine learning [8]</a></li>
-                <li><a href="#q-can-connect-to-multiple-databa">38. Can connect to multiple databases and do data analytics, and ML (MLlib)</a></li>
-                <li><a href="#q-easy-to-use-and-can-be-with-sq">39. Easy to use and can be with SQL (sparksql) or python (Pyspark)</a></li>
-                <li><a href="#q-spark-can-be-100x-faster-than-">40. Spark can be 100x faster than Hadoop for large scale data processing by exploiting in memory computing and other optimizations</a></li>
-                <li><a href="#q-connects-with-multiple-data-so">41. Connects with multiple data sources e.g. Hadoop, MySQL, psotgresSQL, MongoDB, Kafka, Cassandra, elastic,</a></li>
-                <li><a href="#q-same-as-apache-kafka--stream-p">42. same as Apache Kafka  (stream processing or real time transport)</a></li>
-                <li><a href="#q-apache-hadoop-is-an-open-sourc">43. Apache Hadoop is an open source software framework that provides highly reliable distributed processing of large data sets [9]</a></li>
-                <li><a href="#q-hadoop-known-for-its-scalabili">44. Hadoop, known for its scalability, is built on clusters of commodity computers, providing a cost-effective solution for storing and processing massive amounts (MapReduce for parallel processing) of structured, semi-structured and unstructured data with no format requirements (HDFS for storing).</a></li>
-                <li><a href="#q-snowflake-is-a-cloud-data-plat">45. Snowflake is a cloud data platform built on the foundation of a data warehouse</a></li>
-                <li><a href="#q-enables-customers-to-consolida">46. Enables customers to consolidate data into a single source of truth (since data come from various databases)</a></li>
-                <li><a href="#q-analytics-can-be-done-in-snowf">47. Analytics can be done in snowflake to drive meaningful business insights, build data-driven applications, and share data.</a></li>
-                <li><a href="#q-multicloud-platform-that-can-b">48. Multi-cloud platform that can be used with different cloud providers Azure, AWS, GCP [4]</a></li>
-                <li><a href="#q-databricks-is-similarly-a-clou">49. Databricks is similarly a cloud data platform but built on the foundation of a data lake (either structured or unstructured data).</a></li>
-                <li><a href="#q-that-data-lake-is-used-for-dat">50. That data lake is used for data storage but its purpose is focused on enabling data scientists to leverage machine learning applications to analyze the data.</a></li>
-                <li><a href="#q-the-platform-is-primarily-gear">51. The platform is primarily geared towards data science and machine learning applications [4]</a></li>
-                <li><a href="#q-deploying-and-monitoring-ml-mo">52. Deploying and monitoring ML models [11]</a></li>
-                <li><a href="#q-uses-input-from-aws-cloud">53. Uses input from AWS cloud</a></li>
-                <li><a href="#q-supports-most-ml-and-dl-models">54. Supports most ML and DL models</a></li>
-                <li><a href="#q-simplifies-the-mlops-work-incl">55. Simplifies the MLops work including monitoring, yuperparameter tuning, retraining  etc.</a></li>
+                <li><a href="#q-mlops-frameworks">1. MLOPs Frameworks</a></li>
+                <li><a href="#q-databases">2. Databases</a></li>
+                <li><a href="#q-cloud-computing--cloud-storage">3. Cloud Computing & Cloud Storage</a></li>
+                <li><a href="#q-batch-processing-pipeline">4. Batch Processing Pipeline</a></li>
+                <li><a href="#q-big-data-processing--analytics">5. Big Data Processing & Analytics</a></li>
+                <li><a href="#q-containerization">6. Containerization</a></li>
+                <li><a href="#q-data-platformization">7. Data Platformization</a></li>
               </ul>
             </div>
 
-            <p id="q-eg-mysql-postgressql-mariadb-s" class="question"><strong>e.g. MYSQL, PostgresSQL, MariaDB, SQLLite [10]</strong></p>
-            <p id="q-eg--redis-memcache-etcd" class="question"><strong>e.g.  Redis, Memcache, etcd</strong></p>
-            <p id="q-eg-mongodb-rethinkdb" class="question"><strong>e.g. MongoDB, RethinkDB</strong></p>
-            <p id="q-not-as-arbitrary-as-key-store-" class="question"><strong>Not as arbitrary as key store where there is complete lack of structure</strong></p>
-            <p id="q-document-databases-store-data-" class="question"><strong>document databases store data in structured formats called documents</strong></p>
-            <p id="q-they-often-using-formats-like-" class="question"><strong>They often using formats like JSON, BSON, or XML</strong></p>
-            <p id="q-eg-neo4j-dgraph" class="question"><strong>e.g. Neo4j, Dgraph</strong></p>
-            <p id="q-has-a-social-relationship-stru" class="question"><strong>Has a social relationship structure: diodes, edges, properties</strong></p>
-            <p id="q-eg-cassandra-hbase" class="question"><strong>e.g Cassandra, Hbase</strong></p>
-            <p id="q-has-flexible-columns-to-bridge" class="question"><strong>Has flexible columns to bridge the gap between relational and document databases</strong></p>
-            <p id="q-columnfamily-databases-have-st" class="question"><strong>column-family databases have structures called column families.</strong></p>
-            <p id="q-column-families-contain-rows-o" class="question"><strong>Column families contain rows of data, each of which define their own format.</strong></p>
-            <p id="q-a-row-is-composed-of-a-unique-" class="question"><strong>A row is composed of a unique row identifier — used to locate the row — followed by sets of column names and values.</strong></p>
-            <p id="q-eg-prometheus-opentsdb-influxd" class="question"><strong>e.g Prometheus, OpenTSDB, influxDB, timescale DB</strong></p>
-            <p id="q-data-stores-that-focus-on-coll" class="question"><strong>Data stores that focus on collecting and managing values that change over time.</strong></p>
-            <p id="q-time-series-databases-are-heav" class="question"><strong>Time series databases are heavily write oriented.</strong></p>
-            <p id="q-they-are-designed-to-handle-a-" class="question"><strong>They are designed to handle a constant influx of incoming data [10]</strong></p>
-            <p id="q-eg--memsql-voltdb-spanner-calv" class="question"><strong>e.g  MemSQL, VoltDB, Spanner, Calvin, CockroachDB, FaunaDB, yugabyteDB, PlanetScale</strong></p>
-            <p id="q-newsql-databases-follow-the-re" class="question"><strong>NewSQL databases follow the relational structure and semantics, but are built using more modern, scalable designs.</strong></p>
-            <p id="q-the-goal-is-to-offer-greater-s" class="question"><strong>The goal is to offer greater scalability than relational databases and greater consistency guarantees than NoSQL alternatives.</strong></p>
-            <p id="q-they-achieve-this-by-sacrifici" class="question"><strong>They achieve this by sacrificing certain amounts of availability in the event of a networking partition. The trade offs between consistency and availability is a fundamental problem of distributed databases described by the CAP theorem.</strong></p>
-            <p id="q-cap-theorem-asserts-that-in-th" class="question"><strong>Cap theorem asserts that in the event of a network partition, a distributed database can choose either to remain available or remain consistent, but it cannot do both</strong></p>
-            <p id="q-eg-arangodb-orientdb-couchbase" class="question"><strong>e.g ArangoDB, OrientDB, CouchBase</strong></p>
-            <p id="q-combining-the-characteristics-" class="question"><strong>Combining the characteristics of more than one type of database</strong></p>
-            <p id="q-multimodel-databases-may-allow" class="question"><strong>multi-model databases may allow users to access and manipulate data stored in different database types within a single query</strong></p>
-            <p id="q-multimodel-databases-also-help" class="question"><strong>Multi-model databases also help maintain data consistency, which can be a problem when performing operations that modify data in many systems at once.</strong></p>
-            <p id="q-amazon-elastic-cloud-compute-e" class="question"><strong>Amazon Elastic Cloud Compute (EC2) and Amazon  Simple Storage Service (S3) are fundamentally different types of services [12].</strong></p>
-            <p id="q-ec2-allows-you-to-run-servers-" class="question"><strong>EC2 allows you to run servers in the cloud with minimal effort on your part</strong></p>
+            <p id="q-mlops-frameworks" class="question"><strong>MLOPs Frameworks</strong></p>
             <ul style="margin-left: 1.5rem;">
-              <li>Most Amazon EC2 server instances are virtual machines hosted on Amazon Web Services infrastructure</li>
+              <li>Databases</li>
+              <li>Cloud computing & cloud storage: AWS, Azure, GCP</li>
+              <li>Batch Processing Pipeline: Airflow (batch), Kubeflow (batch),</li>
+              <li>Big Data Processing & Analytics: Kafka (Stream Processing), Amazon kinesis (stream processing or real time transport),  Spark (Unified Data Processing & Analytics), Hadoop (Big Data Processing & storage)</li>
+              <li>Containerization: Kubernetes (Container Management), Docker(Container)</li>
+              <li>Data Platformization: Snowflake (generic), Databrick (ML), AWS Sagemaker (ML)</li>
+              <li>Computer Vision: Yolo, FasterRCNN, Bytetracker (Models), OpenCV, PyTorch (Frameworks)</li>
+              <li>NLP: BERT, GPT (Models), NLTK, Space (Frameworks)</li>
             </ul>
-            <p id="q-s3-while-the-other-is-designed" class="question"><strong>S3 while the other is designed for storing large amounts of static data and ideal for data backups (storage).</strong></p>
+            <p id="q-databases" class="question"><strong>Databases</strong></p>
             <ul style="margin-left: 1.5rem;">
-              <li>To get started with S3, users need to create a "bucket" - the endpoint resource where all uploaded data will virtually exist</li>
+              <li>Structured relational:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>e.g. MYSQL, PostgresSQL, MariaDB, SQLLite [10]</li>
+                </ul>
+              <li>Unstructured/Key value store:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>e.g.  Redis, Memcache, etcd</li>
+                </ul>
+              <li>Document databases:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>e.g. MongoDB, RethinkDB</li>
+                  <li>Not as arbitrary as key store where there is complete lack of structure</li>
+                  <li>document databases store data in structured formats called documents</li>
+                  <li>They often using formats like JSON, BSON, or XML</li>
+                </ul>
+              <li>Graph Databases:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>e.g. Neo4j, Dgraph</li>
+                  <li>Has a social relationship structure: diodes, edges, properties</li>
+                </ul>
+              <li>Column family databases</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>e.g Cassandra, Hbase</li>
+                  <li>Has flexible columns to bridge the gap between relational and document databases</li>
+                  <li>column-family databases have structures called column families.</li>
+                  <li>Column families contain rows of data, each of which define their own format.</li>
+                  <li>A row is composed of a unique row identifier — used to locate the row — followed by sets of column names and values.</li>
+                </ul>
+              <li>Time series database</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>e.g Prometheus, OpenTSDB, influxDB, timescale DB</li>
+                  <li>Data stores that focus on collecting and managing values that change over time.</li>
+                  <li>Time series databases are heavily write oriented.</li>
+                  <li>They are designed to handle a constant influx of incoming data [10]</li>
+                </ul>
+              <li>New SQL</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>e.g  MemSQL, VoltDB, Spanner, Calvin, CockroachDB, FaunaDB, yugabyteDB, PlanetScale</li>
+                  <li>NewSQL databases follow the relational structure and semantics, but are built using more modern, scalable designs.</li>
+                  <li>The goal is to offer greater scalability than relational databases and greater consistency guarantees than NoSQL alternatives.</li>
+                  <li>They achieve this by sacrificing certain amounts of availability in the event of a networking partition. The trade offs between consistency and availability is a fundamental problem of distributed databases described by the CAP theorem.</li>
+                  <li>Cap theorem asserts that in the event of a network partition, a distributed database can choose either to remain available or remain consistent, but it cannot do both</li>
+                </ul>
+              <li>Multi-model databases:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>e.g ArangoDB, OrientDB, CouchBase</li>
+                  <li>Combining the characteristics of more than one type of database</li>
+                  <li>multi-model databases may allow users to access and manipulate data stored in different database types within a single query</li>
+                  <li>Multi-model databases also help maintain data consistency, which can be a problem when performing operations that modify data in many systems at once.</li>
+                </ul>
             </ul>
-            <p id="q-similar-and-have-cloud-storage" class="question"><strong>similar and have cloud storage, compute services like AWS</strong></p>
-            <p id="q-airflow-is-a-processing--platf" class="question"><strong>Airflow is a processing  platform for developing, scheduling, and monitoring batch-oriented workflows [1].</strong></p>
-            <p id="q-very-similar-to-dataswarm-wher" class="question"><strong>Very similar to dataswarm where you can stick different operators together to run a pipeline task</strong></p>
-            <p id="q-cant-be-used-for-continuous-in" class="question"><strong>Can't be used for continuous infinite processing of data (only batch)</strong></p>
-            <p id="q-does-the-same-thing-as-airflow" class="question"><strong>Does the same thing as Airflow</strong></p>
-            <p id="q-realtime-stream-processing-sto" class="question"><strong>Realtime stream processing, storage and analytics system for publishing, subscribing, storing, and processing streams of records in real time.</strong></p>
-            <p id="q-apache-calls-these-topics-whic" class="question"><strong>Apache calls these Topics which are used to store real time events/logs [se video in 3]</strong></p>
-            <p id="q-unified-analytics-engine-for-b" class="question"><strong>Unified analytics engine for big data and machine learning [8]</strong></p>
-            <p id="q-can-connect-to-multiple-databa" class="question"><strong>Can connect to multiple databases and do data analytics, and ML (MLlib)</strong></p>
-            <p id="q-easy-to-use-and-can-be-with-sq" class="question"><strong>Easy to use and can be with SQL (sparksql) or python (Pyspark)</strong></p>
-            <p id="q-spark-can-be-100x-faster-than-" class="question"><strong>Spark can be 100x faster than Hadoop for large scale data processing by exploiting in memory computing and other optimizations</strong></p>
-            <p id="q-connects-with-multiple-data-so" class="question"><strong>Connects with multiple data sources e.g. Hadoop, MySQL, psotgresSQL, MongoDB, Kafka, Cassandra, elastic,</strong></p>
-            <p id="q-same-as-apache-kafka--stream-p" class="question"><strong>same as Apache Kafka  (stream processing or real time transport)</strong></p>
-            <p id="q-apache-hadoop-is-an-open-sourc" class="question"><strong>Apache Hadoop is an open source software framework that provides highly reliable distributed processing of large data sets [9]</strong></p>
-            <p id="q-hadoop-known-for-its-scalabili" class="question"><strong>Hadoop, known for its scalability, is built on clusters of commodity computers, providing a cost-effective solution for storing and processing massive amounts (MapReduce for parallel processing) of structured, semi-structured and unstructured data with no format requirements (HDFS for storing).</strong></p>
-            <p id="q-snowflake-is-a-cloud-data-plat" class="question"><strong>Snowflake is a cloud data platform built on the foundation of a data warehouse</strong></p>
-            <p id="q-enables-customers-to-consolida" class="question"><strong>Enables customers to consolidate data into a single source of truth (since data come from various databases)</strong></p>
-            <p id="q-analytics-can-be-done-in-snowf" class="question"><strong>Analytics can be done in snowflake to drive meaningful business insights, build data-driven applications, and share data.</strong></p>
-            <p id="q-multicloud-platform-that-can-b" class="question"><strong>Multi-cloud platform that can be used with different cloud providers Azure, AWS, GCP [4]</strong></p>
-            <p id="q-databricks-is-similarly-a-clou" class="question"><strong>Databricks is similarly a cloud data platform but built on the foundation of a data lake (either structured or unstructured data).</strong></p>
-            <p id="q-that-data-lake-is-used-for-dat" class="question"><strong>That data lake is used for data storage but its purpose is focused on enabling data scientists to leverage machine learning applications to analyze the data.</strong></p>
-            <p id="q-the-platform-is-primarily-gear" class="question"><strong>The platform is primarily geared towards data science and machine learning applications [4]</strong></p>
-            <p id="q-deploying-and-monitoring-ml-mo" class="question"><strong>Deploying and monitoring ML models [11]</strong></p>
-            <p id="q-uses-input-from-aws-cloud" class="question"><strong>Uses input from AWS cloud</strong></p>
-            <p id="q-supports-most-ml-and-dl-models" class="question"><strong>Supports most ML and DL models</strong></p>
-            <p id="q-simplifies-the-mlops-work-incl" class="question"><strong>Simplifies the MLops work including monitoring, yuperparameter tuning, retraining  etc.</strong></p>
+            <p id="q-cloud-computing--cloud-storage" class="question"><strong>Cloud Computing & Cloud Storage</strong></p>
+            <ul style="margin-left: 1.5rem;">
+              <li>AWS</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Amazon Elastic Cloud Compute (EC2) and Amazon  Simple Storage Service (S3) are fundamentally different types of services [12].</li>
+                  <li>EC2 allows you to run servers in the cloud with minimal effort on your part</li>
+                    <ul style="margin-left: 1.5rem;">
+                      <li>Most Amazon EC2 server instances are virtual machines hosted on Amazon Web Services infrastructure</li>
+                    </ul>
+                  <li>S3 while the other is designed for storing large amounts of static data and ideal for data backups (storage).</li>
+                    <ul style="margin-left: 1.5rem;">
+                      <li>To get started with S3, users need to create a "bucket" - the endpoint resource where all uploaded data will virtually exist</li>
+                    </ul>
+                </ul>
+              <li>Azure & GCP</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>similar and have cloud storage, compute services like AWS</li>
+                </ul>
+            </ul>
+            <p id="q-batch-processing-pipeline" class="question"><strong>Batch Processing Pipeline</strong></p>
+            <ul style="margin-left: 1.5rem;">
+              <li>Apache Airflow (Batch Pipeline)</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Airflow is a processing  platform for developing, scheduling, and monitoring batch-oriented workflows [1].</li>
+                  <li>Very similar to dataswarm where you can stick different operators together to run a pipeline task</li>
+                  <li>Can't be used for continuous infinite processing of data (only batch)</li>
+                </ul>
+              <li>Google Kubeflow (Batch Pipeline)</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Does the same thing as Airflow</li>
+                </ul>
+            </ul>
+            <p id="q-big-data-processing--analytics" class="question"><strong>Big Data Processing & Analytics</strong></p>
+            <ul style="margin-left: 1.5rem;">
+              <li>Apache Kafka (Stream Processing/ real time transport)</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Realtime stream processing, storage and analytics system for publishing, subscribing, storing, and processing streams of records in real time.</li>
+                  <li>Apache calls these Topics which are used to store real time events/logs [se video in 3]</li>
+                </ul>
+              <li>Apache Spark (Unified Data Processing & Analytics)</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Unified analytics engine for big data and machine learning [8]</li>
+                  <li>Can connect to multiple databases and do data analytics, and ML (MLlib)</li>
+                  <li>Easy to use and can be with SQL (sparksql) or python (Pyspark)</li>
+                  <li>Spark can be 100x faster than Hadoop for large scale data processing by exploiting in memory computing and other optimizations</li>
+                  <li>Connects with multiple data sources e.g. Hadoop, MySQL, psotgresSQL, MongoDB, Kafka, Cassandra, elastic,</li>
+                </ul>
+              <li>Amazon kinesis</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>same as Apache Kafka  (stream processing or real time transport)</li>
+                </ul>
+              <li>Hadoop (Big Data Processing & storage)</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Apache Hadoop is an open source software framework that provides highly reliable distributed processing of large data sets [9]</li>
+                  <li>Hadoop, known for its scalability, is built on clusters of commodity computers, providing a cost-effective solution for storing and processing massive amounts (MapReduce for parallel processing) of structured, semi-structured and unstructured data with no format requirements (HDFS for storing).</li>
+                </ul>
+            </ul>
+            <p id="q-containerization" class="question"><strong>Containerization</strong></p>
+            <ul style="margin-left: 1.5rem;">
+              <li>Docker (Container)</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>A Docker is a software tool that helps in building, deploying our applications efficiently. Docker is used to provide isolated environments enclosing the application and its dependencies [2]</li>
+                </ul>
+              <li>Kubernetes (Container Management)</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Kubernetes is an open-source software tool that can be used to manage containerized applications without manual intervention. In short Kubernetes can be used to manage several docker containers [2].</li>
+                </ul>
+            </ul>
+            <p id="q-data-platformization" class="question"><strong>Data Platformization</strong></p>
+            <ul style="margin-left: 1.5rem;">
+              <li>Snowflake</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Snowflake is a cloud data platform built on the foundation of a data warehouse</li>
+                  <li>Enables customers to consolidate data into a single source of truth (since data come from various databases)</li>
+                  <li>Analytics can be done in snowflake to drive meaningful business insights, build data-driven applications, and share data.</li>
+                  <li>Multi-cloud platform that can be used with different cloud providers Azure, AWS, GCP [4]</li>
+                </ul>
+              <li>Databricks</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Databricks is similarly a cloud data platform but built on the foundation of a data lake (either structured or unstructured data).</li>
+                  <li>That data lake is used for data storage but its purpose is focused on enabling data scientists to leverage machine learning applications to analyze the data.</li>
+                  <li>The platform is primarily geared towards data science and machine learning applications [4]</li>
+                </ul>
+              <li>AWS Sagemaker</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Deploying and monitoring ML models [11]</li>
+                  <li>Uses input from AWS cloud</li>
+                  <li>Supports most ML and DL models</li>
+                  <li>Simplifies the MLops work including monitoring, yuperparameter tuning, retraining  etc.</li>
+                </ul>
+            </ul>
           </div>
         </div>
 
