@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithm Fundamentals - Notes</title>
+    <link rel="stylesheet" href="../assets/style.css" />
+    <style>
+      /* Additional styles for notes page */
+      .notes-content {
+        display: block;
+      }
+      
+      /* aman.ai inspired styles */
+      .notes-header {
+        text-align: center;
+        margin: 2rem 0;
+      }
+      
+      .notes-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      .notes-header .subtitle {
+        color: #666;
+        font-style: italic;
+      }
+      
+      .category-section {
+        background: white;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      
+      .category-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #007bff;
+      }
+      
+      .back-link {
+        display: inline-block;
+        margin-bottom: 1rem;
+        color: #007bff;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      
+      .back-link:hover {
+        text-decoration: underline;
+      }
+      
+      /* Table of Contents Styles */
+      .table-of-contents {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+      }
+      
+      .table-of-contents h3 {
+        margin-top: 0;
+        margin-bottom: 1rem;
+        color: #495057;
+        font-size: 1.2rem;
+      }
+      
+      .toc-list {
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+      }
+      
+      .toc-list li {
+        margin-bottom: 0.5rem;
+      }
+      
+      .toc-list a {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: 500;
+        display: block;
+        padding: 0.25rem 0;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+      }
+      
+      .toc-list a:hover {
+        background-color: #e7f3ff;
+        padding-left: 0.5rem;
+        text-decoration: none;
+      }
+      
+      .question {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #e9ecef;
+      }
+      
+      /* Back to Top Button */
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 18px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0,123,255,0.3);
+        transition: all 0.3s ease;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 1000;
+      }
+      
+      .back-to-top:hover {
+        background: #0056b3;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0,123,255,0.4);
+      }
+      
+      .back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      .back-to-top .icon {
+        display: inline-block;
+        transform: rotate(-90deg);
+      }
+      
+      @media (max-width: 768px) {
+        .notes-header h1 {
+          font-size: 2rem;
+        }
+        .table-of-contents {
+          padding: 1rem;
+        }
+        .back-to-top {
+          bottom: 20px;
+          right: 20px;
+          width: 45px;
+          height: 45px;
+          font-size: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Notes Content -->
+    <div class="notes-content" id="notesContent">
+      <header>
+        <nav>
+          <ul>
+            <li><a href="../pages/index.html">Home</a></li>
+            <li><a href="../pages/projects.html">Projects and Research</a></li>
+            <li><a href="../pages/highlights.html">Highlights</a></li>
+            <li><a href="../pages/notes.html">Notes Hub</a></li>
+          </ul>
+        </nav>
+      </header>
+      
+      <main>
+        <div class="notes-header">
+          <h1>Algorithm Fundamentals</h1>
+          <p class="subtitle">comprehensive revision notes</p>
+        </div>
+
+        <div class="category-section">
+          <a href="../pages/notes.html" class="back-link">← Back to Notes Hub</a>
+          <h2>Algorithm Fundamentals</h2>
+          <div style="line-height: 1.8;">
+            <div class="table-of-contents">
+              <h3>📋 Table of Contents</h3>
+              <ul class="toc-list">
+                <li><a href="#q-what-is-big-o-notation">1. What is Big O notation?</a></li>
+                <li><a href="#q-what-is-a-hash-table">2. What is a hash table?</a></li>
+              </ul>
+            </div>
+
+            <p id="q-what-is-big-o-notation" class="question"><strong>What is Big O notation?</strong></p>
+            <ul style="margin-left: 1.5rem;">
+              <li>Describes the time/space complexity of algorithms</li>
+              <li>Shows how performance scales with input size</li>
+              <li>Common complexities: O(1), O(log n), O(n), O(n²)</li>
+            </ul>
+            <p id="q-what-is-a-hash-table" class="question"><strong>What is a hash table?</strong></p>
+            <ul style="margin-left: 1.5rem;">
+              <li>Data structure that maps keys to values</li>
+              <li>Average O(1) lookup, insertion, deletion</li>
+              <li>Uses hash function to compute array index</li>
+              <li>Handles collisions with chaining or open addressing</li>
+            </ul>
+          </div>
+        </div>
+
+      </main>
+      
+      <footer>
+        <p>&copy; 2025 Algorithm Fundamentals Notes</p>
+      </footer>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()" title="Back to Table of Contents">
+      <span class="icon">→</span>
+    </button>
+
+    <script>
+      // Check if user is already authenticated
+      function checkAuth() {
+        const isAuthenticated = sessionStorage.getItem('notesAuthenticated') === 'true';
+        if (isAuthenticated) {
+          document.getElementById('notesContent').style.display = 'block';
+        } else {
+          // Redirect to main hub for authentication
+          window.location.href = '../pages/notes.html';
+        }
+      }
+
+      // Scroll to top functionality
+      function scrollToTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+
+      // Show/hide back to top button based on scroll position
+      function toggleBackToTopButton() {
+        const backToTopButton = document.getElementById('backToTop');
+        if (window.pageYOffset > 300) {
+          backToTopButton.classList.add('visible');
+        } else {
+          backToTopButton.classList.remove('visible');
+        }
+      }
+
+      // Initialize page
+      document.addEventListener('DOMContentLoaded', function() {
+        checkAuth();
+        
+        // Add scroll event listener for back to top button
+        window.addEventListener('scroll', toggleBackToTopButton);
+      });
+    </script>
+  </body>
+</html>

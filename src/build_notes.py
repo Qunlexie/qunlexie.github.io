@@ -159,7 +159,7 @@ def get_password():
 
 def discover_note_folders():
     """Discover all note folders and their markdown files"""
-    notes_dir = Path('notes')
+    notes_dir = Path('../notes')
     if not notes_dir.exists():
         return {}
     
@@ -203,7 +203,7 @@ def create_html_template(title, content, password):
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title} - Notes</title>
-    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../assets/style.css" />
     <style>
       /* Additional styles for notes page */
       .notes-content {{
@@ -361,10 +361,10 @@ def create_html_template(title, content, password):
       <header>
         <nav>
           <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="projects.html">Projects and Research</a></li>
-            <li><a href="highlights.html">Highlights</a></li>
-            <li><a href="notes.html">Notes Hub</a></li>
+            <li><a href="../pages/index.html">Home</a></li>
+            <li><a href="../pages/projects.html">Projects and Research</a></li>
+            <li><a href="../pages/highlights.html">Highlights</a></li>
+            <li><a href="../pages/notes.html">Notes Hub</a></li>
           </ul>
         </nav>
       </header>
@@ -376,7 +376,7 @@ def create_html_template(title, content, password):
         </div>
 
         <div class="category-section">
-          <a href="../notes.html" class="back-link">← Back to Notes Hub</a>
+          <a href="../pages/notes.html" class="back-link">← Back to Notes Hub</a>
           <h2>{title}</h2>
           <div style="line-height: 1.8;">
 {content}
@@ -403,7 +403,7 @@ def create_html_template(title, content, password):
           document.getElementById('notesContent').style.display = 'block';
         }} else {{
           // Redirect to main hub for authentication
-          window.location.href = '../notes.html';
+          window.location.href = '../pages/notes.html';
         }}
       }}
 
@@ -468,7 +468,7 @@ def build_notes_hub(note_structure):
         </section>''')
     
     # Read the hub template
-    hub_file = Path('notes.html')
+    hub_file = Path('../pages/notes.html')
     if not hub_file.exists():
         print("Error: notes.html template not found")
         return False
