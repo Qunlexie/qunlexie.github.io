@@ -145,7 +145,8 @@ def parse_markdown_to_html(md_file):
 
 def get_password():
     """Read password from local file"""
-    password_file = Path('password.txt')
+    script_dir = Path(__file__).parent
+    password_file = script_dir / 'password.txt'
     if password_file.exists():
         with open(password_file, 'r', encoding='utf-8') as f:
             lines = f.readlines()
@@ -154,8 +155,8 @@ def get_password():
                 line = line.strip()
                 if line and not line.startswith('#'):
                     return line
-    print("Warning: password.txt not found or empty, using default password")
-    return 'notes2025'
+    print("Warning: password.txt not found or empty, using placeholder")
+    return 'REPLACE_WITH_ACTUAL_PASSWORD'
 
 def discover_note_folders():
     """Discover all note folders and their markdown files"""
