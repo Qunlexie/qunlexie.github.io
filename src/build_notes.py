@@ -477,7 +477,7 @@ def build_notes_hub(note_structure):
         hub_html = f.read()
     
     # Replace the dynamic content section
-    start_marker = '<!-- ML Theory Section -->'
+    start_marker = '<!-- Dynamic Content Start -->'
     end_marker = '<!-- Future Sections -->'
     
     start_idx = hub_html.find(start_marker)
