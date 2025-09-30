@@ -5,6 +5,10 @@ notes/
 private-*.html
 private-*.md
 
+# Documentation that might expose structure
+README.md
+DEPLOYMENT.md
+
 # Configuration files with sensitive data
 config.json
 password.txt
