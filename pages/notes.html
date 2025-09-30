@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes Hub - Private Study Materials</title>
+    <link rel="stylesheet" href="../assets/style.css" />
+    <style>
+      /* Additional styles for notes page */
+      .notes-content {
+        display: none;
+      }
+      
+      .login-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 60vh;
+        text-align: center;
+      }
+      
+      .login-form h2 {
+        margin-bottom: 2rem;
+        color: #333;
+      }
+      
+      .password-input {
+        padding: 12px 20px;
+        font-size: 16px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        width: 300px;
+        max-width: 100%;
+        margin-bottom: 1rem;
+      }
+      
+      .password-input:focus {
+        outline: none;
+      }
+      
+      .login-btn {
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+      
+      .login-btn:hover {
+        background: #0056b3;
+      }
+      
+      .error-message {
+        color: #dc3545;
+        margin-top: 1rem;
+        display: none;
+      }
+      
+      /* Notes styles */
+      .subject-section {
+        margin-bottom: 3rem;
+        padding: 2rem;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      
+      .subject-section h2 {
+        color: #007bff;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #007bff;
+      }
+      
+      .topic-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+      }
+      
+      .topic-card {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 8px;
+        border: 1px solid #e9ecef;
+        transition: all 0.3s ease;
+      }
+      
+      .topic-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        border-color: #007bff;
+      }
+      
+      .topic-card h3 {
+        margin: 0 0 0.5rem 0;
+        color: #333;
+      }
+      
+      .topic-card h3 a {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      
+      .topic-card h3 a:hover {
+        text-decoration: underline;
+      }
+      
+      .topic-card p {
+        color: #666;
+        margin: 0;
+        font-size: 0.9rem;
+        line-height: 1.4;
+      }
+      
+      @media (max-width: 768px) {
+        .topic-grid {
+          grid-template-columns: 1fr;
+        }
+        
+        .password-input {
+          width: 100%;
+          max-width: 300px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects and Research</a></li>
+          <li><a href="highlights.html">Highlights</a></li>
+          <li><a href="notes.html">Notes Hub</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Login Form -->
+      <div class="login-form" id="loginForm">
+        <h2>🔐 Private Notes Access</h2>
+        <p>Enter password to access study materials</p>
+        <input type="password" id="passwordInput" class="password-input" placeholder="Enter password" />
+        <button onclick="checkPassword()" class="login-btn">Access Notes</button>
+        <div id="errorMessage" class="error-message">Invalid password. Please try again.</div>
+      </div>
+
+      <!-- Notes Content -->
+      <div class="notes-content" id="notesContent">
+        <h1>📚 Notes Hub</h1>
+        <p>Your comprehensive collection of study materials and technical notes.</p>
+
+        
+        <section class="subject-section" id="domains">
+          <h2>📚 Domains</h2>
+          <p>Comprehensive notes on domains topics.</p>
+          
+          <div class="topic-grid">
+            <div class="topic-card">
+              <h3><a href="../notes-html/domains-cv.html">Computer Vision</a></h3>
+              <p>Complete reference for computer vision</p>
+            </div>
+            <div class="topic-card">
+              <h3><a href="../notes-html/domains-nlp.html">Natural Language Processing Domain</a></h3>
+              <p>Complete reference for natural language processing domain</p>
+            </div>
+            <div class="topic-card">
+              <h3><a href="../notes-html/domains-mlops.html">MLOps</a></h3>
+              <p>Complete reference for mlops</p>
+            </div>
+          </div>
+        </section>
+        <section class="subject-section" id="books">
+          <h2>📚 Books</h2>
+          <p>Comprehensive notes on books topics.</p>
+          
+          <div class="topic-grid">
+            <div class="topic-card">
+              <h3><a href="../notes-html/books-chip.html">[Book] Designing ML Systems By Chip Huyen</a></h3>
+              <p>Complete reference for [book] designing ml systems by chip huyen</p>
+            </div>
+          </div>
+        </section>
+        <section class="subject-section" id="recsys">
+          <h2>📚 Recsys</h2>
+          <p>Comprehensive notes on recsys topics.</p>
+          
+          <div class="topic-grid">
+            <div class="topic-card">
+              <h3><a href="../notes-html/recsys-basics.html">Recommendation Systems Basics</a></h3>
+              <p>Complete reference for recommendation systems basics</p>
+            </div>
+          </div>
+        </section>
+        <section class="subject-section" id="ml-theory">
+          <h2>📚 Ml Theory</h2>
+          <p>Comprehensive notes on ml theory topics.</p>
+          
+          <div class="topic-grid">
+            <div class="topic-card">
+              <h3><a href="../notes-html/ml-theory-dltheory.html">ML Theory (Deep Learning)</a></h3>
+              <p>Complete reference for ml theory (deep learning)</p>
+            </div>
+          </div>
+        </section><!-- Future Sections -->
+      </div>
+    </main>
+    
+    <footer>
+      <p>&copy; 2025 Private Notes Hub</p>
+    </footer>
+
+    <script>
+      // Configuration
+      const PASSWORD = 'REPLACE_WITH_ACTUAL_PASSWORD'; // Password set by build script
+
+      // Password Protection
+      function checkPassword() {
+        const input = document.getElementById('passwordInput').value;
+        if (input === PASSWORD) {
+          document.getElementById('loginForm').style.display = 'none';
+          document.getElementById('notesContent').style.display = 'block';
+          sessionStorage.setItem('notesAuthenticated', 'true');
+        } else {
+          document.getElementById('errorMessage').style.display = 'block';
+          document.getElementById('passwordInput').value = '';
+        }
+      }
+
+      // Check if user is already authenticated
+      function checkAuth() {
+        const isAuthenticated = sessionStorage.getItem('notesAuthenticated') === 'true';
+        if (isAuthenticated) {
+          document.getElementById('loginForm').style.display = 'none';
+          document.getElementById('notesContent').style.display = 'block';
+        }
+      }
+
+      // Allow Enter key to submit
+      document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          checkPassword();
+        }
+      });
+
+      // Initialize page
+      document.addEventListener('DOMContentLoaded', function() {
+        checkAuth();
+      });
+    </script>
+  </body>
+</html>
