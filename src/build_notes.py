@@ -68,6 +68,31 @@ def parse_markdown_to_html(md_file):
         leading_spaces = len(original_line) - len(original_line.lstrip())
         content = line.strip()
         
+        # Handle references section
+        if content.startswith('References & Resources:'):
+            html_content.append('            <div class="references-section">')
+            html_content.append('              <h3>📚 References & Resources</h3>')
+            html_content.append('              <ol class="references-list">')
+            continue
+        
+        # Handle numbered references
+        if content.startswith(('1. ', '2. ', '3. ', '4. ', '5. ', '6. ', '7. ', '8. ', '9. ', '10. ', '11. ', '12. ', '13. ', '14. ', '15. ')):
+            # Extract the link from markdown format [text](url)
+            link_match = re.search(r'\[([^\]]+)\]\(([^)]+)\)', content)
+            if link_match:
+                link_text = link_match.group(1)
+                link_url = link_match.group(2)
+                html_content.append(f'                <li><a href="{link_url}" target="_blank" rel="noopener noreferrer">{link_text}</a></li>')
+            else:
+                # Fallback for plain text
+                html_content.append(f'                <li>{content}</li>')
+            continue
+        
+        # Close references section if we hit a non-reference line
+        if 'references-list' in ''.join(html_content[-5:]) and not content.startswith(('1. ', '2. ', '3. ', '4. ', '5. ', '6. ', '7. ', '8. ', '9. ', '10. ', '11. ', '12. ', '13. ', '14. ', '15. ')):
+            html_content.append('              </ol>')
+            html_content.append('            </div>')
+        
         # Skip if not a bullet point
         if not content.startswith('- '):
             continue
@@ -141,22 +166,16 @@ def parse_markdown_to_html(md_file):
     if in_list:
         html_content.append('            </ul>')
     
+    # Close references section if it was opened
+    if 'references-list' in ''.join(html_content[-10:]):
+        html_content.append('              </ol>')
+        html_content.append('            </div>')
+    
     return '\n'.join(html_content)
 
 def get_password():
-    """Read password from local file"""
-    script_dir = Path(__file__).parent
-    password_file = script_dir / 'password.txt'
-    if password_file.exists():
-        with open(password_file, 'r', encoding='utf-8') as f:
-            lines = f.readlines()
-            # Get the first non-comment line
-            for line in lines:
-                line = line.strip()
-                if line and not line.startswith('#'):
-                    return line
-    print("Warning: password.txt not found or empty, using placeholder")
-    return 'REPLACE_WITH_ACTUAL_PASSWORD'
+    """No password needed - knowledge is free!"""
+    return None
 
 def discover_note_folders():
     """Discover all note folders and their markdown files"""
@@ -199,18 +218,23 @@ def get_file_title(md_file):
         return md_file.stem.replace('-', ' ').replace('_', ' ').title()
 
 def create_html_template(title, content, password):
-    """Create HTML template for a notes page"""
+    """Create HTML template for a notes page with cache-busting"""
+    import time
+    cache_buster = int(time.time())
     return f'''<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>{title} - Notes</title>
-    <link rel="stylesheet" href="../assets/style.css" />
+    <link rel="stylesheet" href="../assets/style.css?v={cache_buster}" />
     <style>
-      /* Additional styles for notes page */
+      /* Additional styles for notes page - always visible */
       .notes-content {{
-        display: block;
+        display: block !important;
       }}
       
       /* aman.ai inspired styles */
@@ -341,6 +365,42 @@ def create_html_template(title, content, password):
         transform: rotate(-90deg);
       }}
       
+      /* References section styling */
+      .references-section {{
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-top: 2rem;
+      }}
+      
+      .references-section h3 {{
+        margin-top: 0;
+        margin-bottom: 1rem;
+        color: #495057;
+        font-size: 1.2rem;
+      }}
+      
+      .references-list {{
+        margin: 0;
+        padding-left: 1.5rem;
+      }}
+      
+      .references-list li {{
+        margin-bottom: 0.5rem;
+        line-height: 1.5;
+      }}
+      
+      .references-list a {{
+        color: #007bff;
+        text-decoration: none;
+        font-weight: 500;
+      }}
+      
+      .references-list a:hover {{
+        text-decoration: underline;
+      }}
+      
       @media (max-width: 768px) {{
         .notes-header h1 {{
           font-size: 2rem;
@@ -399,15 +459,10 @@ def create_html_template(title, content, password):
     </button>
 
     <script>
-      // Check if user is already authenticated
+      // Notes are now freely accessible - no authentication required
       function checkAuth() {{
-        const isAuthenticated = sessionStorage.getItem('notesAuthenticated') === 'true';
-        if (isAuthenticated) {{
-          document.getElementById('notesContent').style.display = 'block';
-        }} else {{
-          // Redirect to main hub for authentication
-          window.location.href = '../pages/notes.html';
-        }}
+        // Always show content - knowledge is free!
+        document.getElementById('notesContent').style.display = 'block';
       }}
 
       // Scroll to top functionality
@@ -440,8 +495,7 @@ def create_html_template(title, content, password):
 </html>'''
 
 def build_notes_hub(note_structure):
-    """Build the main notes hub page with dynamic content"""
-    password = get_password()
+    """Build the main notes hub page with dynamic content - no password needed!"""
     
     # Generate hub content
     hub_content = []
@@ -491,9 +545,8 @@ def build_notes_hub(note_structure):
         new_content = ''.join(hub_content)
         updated_hub = hub_html[:start_idx] + new_content + hub_html[end_idx:]
     else:
-        # Fallback: replace password only
-        password_pattern = r"const PASSWORD = '[^']*';"
-        updated_hub = re.sub(password_pattern, f"const PASSWORD = '{password}';", hub_html)
+        # No password replacement needed - knowledge is free!
+        updated_hub = hub_html
     
     # Write back
     with open(hub_file, 'w', encoding='utf-8') as f:
@@ -519,7 +572,6 @@ def main():
     output_dir = script_dir / '../notes-html'
     output_dir.mkdir(exist_ok=True)
     
-    password = get_password()
     generated_files = []
     
     # Process each folder
@@ -546,7 +598,7 @@ def main():
             html_content = parse_markdown_to_html(md_file)
             
             # Create HTML file
-            html_template = create_html_template(file_title, html_content, password)
+            html_template = create_html_template(file_title, html_content, None)
             
             with open(html_file, 'w', encoding='utf-8') as f:
                 f.write(html_template)
@@ -571,7 +623,7 @@ def main():
     print(f"\nNext steps:")
     print(f"1. Open notes.html in browser to preview")
     print(f"2. If it looks good, commit all HTML files")
-    print(f"3. Your raw notes in notes/ folder will NOT be committed (gitignored)")
+    print(f"3. Your notes are now freely accessible to everyone!")
 
 if __name__ == '__main__':
     main()
