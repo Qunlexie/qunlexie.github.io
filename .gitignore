@@ -5,10 +5,6 @@ notes/
 private-*.html
 private-*.md
 
-# Documentation that might expose structure
-README.md
-DEPLOYMENT.md
-
 # Personal documents
 resume.pdf
 *.pdf
@@ -17,11 +13,6 @@ resume.pdf
 config.json
 password.txt
 .env
-
-# Generated HTML files (built by GitHub Actions)
-# Note: pages/notes.html contains placeholder password, gets replaced by build script
-pages/notes.html
-notes-html/*.html
 
 # System files
 .DS_Store
