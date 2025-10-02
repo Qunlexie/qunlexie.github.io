@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Gen AI System Design (Text Generation, RAG) - Notes</title>
-    <link rel="stylesheet" href="../assets/style.css?v=1759443295" />
+    <link rel="stylesheet" href="../assets/style.css?v=1759443501" />
     <style>
       /* Additional styles for notes page - always visible */
       .notes-content {
@@ -222,145 +222,60 @@
             <div class="table-of-contents">
               <h3>📋 Table of Contents</h3>
               <ul class="toc-list">
-                <li><a href="#q-business-requirement--context-">1. Business requirement & context : language support</a></li>
-                <li><a href="#q-data-availability-annotated-da">2. Data availability (annotated data? Self supervision?)</a></li>
-                <li><a href="#q-scale-qps-number-of-users-peak">3. Scale: QPS, number of users, peak QPS</a></li>
-                <li><a href="#q-latency--300ms">4. Latency: < 300ms</a></li>
-                <li><a href="#q-outline-">5. Outline —></a></li>
-                <li><a href="#q-system-choice--input-and-outpu">6. System choice —> Input and output and the type of objective.</a></li>
-                <li><a href="#q-data-processing">7. Data processing</a></li>
-                <li><a href="#q-model">8. Model</a></li>
-                <li><a href="#q-safety-filtering-filter-harmfu">9. Safety filtering (filter harmful content from prompt)</a></li>
-                <li><a href="#q-prompt-enhancer">10. Prompt enhancer</a></li>
-                <li><a href="#q-response-generator">11. Response generator</a></li>
-                <li><a href="#q-rejection-response-generator-t">12. Rejection response generator (tell user they cannot generate response that fails safety filtering)</a></li>
-                <li><a href="#q-response-safety-evaluator">13. Response safety evaluator</a></li>
-                <li><a href="#q-session-management">14. Session management</a></li>
-                <li><a href="#q-continual-learning-and-feedbac">15. Continual learning and Feedback integration</a></li>
-                <li><a href="#q-pretraining">16. Pretraining:</a></li>
-                <li><a href="#q-supervised-finetuning-cleaned-">17. Supervised fine-tuning: cleaned, conversational documents, high quality</a></li>
-                <li><a href="#q-deduplication-removing-nsfw-fi">18. Deduplication, removing NSFW, filtering low quality, data sensitivity (privacy)</a></li>
-                <li><a href="#q-preprocessing">19. Preprocessing</a></li>
-                <li><a href="#q-pros-and-cons-tokenization--co">20. (pros and cons) Tokenization - converting sentences to smaller components/chunks</a></li>
-                <li><a href="#q-token-to-ids-these-ids-are-the">21. Token to ids (these ids are then used to represent the text), the text embedding layer in the NN transforms this into an embedding vector which is then learned by the model</a></li>
-                <li><a href="#q-addressing-diversity-and-biase">22. Addressing Diversity and biases in the data (Data Augmentation)</a></li>
-                <li><a href="#q-tradeoffs-of-options-for-model">23. Trade-offs of options for model architecture and pros and cons. For text, you can talk about RNNs and how they were initially the go-to and the pros and cons vs Transformer architecture.</a></li>
-                <li><a href="#q-transformer-architecture-advan">24. Transformer architecture advantages:</a></li>
-                <li><a href="#q-pretraining-largescale-unsuper">25. Pretraining: Large-scale unsupervised learning on diverse text</a></li>
-                <li><a href="#q-supervised-finetuning-taskspec">26. Supervised Fine-tuning: Task-specific training with labeled data</a></li>
-                <li><a href="#q-reinforcement-learning-from-hu">27. Reinforcement Learning from Human Feedback (RLHF):</a></li>
-                <li><a href="#q-safety-filtering-input-validat">28. **Safety Filtering**: Input validation and harmful content detection</a></li>
-                <li><a href="#q-prompt-enhancement-context-opt">29. **Prompt Enhancement**: Context optimization and instruction following</a></li>
-                <li><a href="#q-response-generation-core-langu">30. **Response Generation**: Core language model inference</a></li>
-                <li><a href="#q-safety-evaluation-output-valid">31. **Safety Evaluation**: Output validation and content filtering</a></li>
-                <li><a href="#q-session-management-context-per">32. **Session Management**: Context persistence and user state</a></li>
-                <li><a href="#q-latency-optimization--300ms-ta">33. Latency optimization (< 300ms target)</a></li>
-                <li><a href="#q-throughput-scaling-qps-require">34. Throughput scaling (QPS requirements)</a></li>
-                <li><a href="#q-memory-management">35. Memory management</a></li>
-                <li><a href="#q-caching-strategies">36. Caching strategies</a></li>
-                <li><a href="#q-model-serving-infrastructure">37. Model serving infrastructure</a></li>
-                <li><a href="#q-load-balancing">38. Load balancing</a></li>
-                <li><a href="#q-autoscaling">39. Auto-scaling</a></li>
-                <li><a href="#q-monitoring-and-observability">40. Monitoring and observability</a></li>
-                <li><a href="#q-realtime-data-ingestion">41. Real-time data ingestion</a></li>
-                <li><a href="#q-batch-processing">42. Batch processing</a></li>
-                <li><a href="#q-feature-engineering">43. Feature engineering</a></li>
-                <li><a href="#q-model-retraining-pipeline">44. Model retraining pipeline</a></li>
-                <li><a href="#q-response-time">45. Response time</a></li>
-                <li><a href="#q-throughput-qps">46. Throughput (QPS)</a></li>
-                <li><a href="#q-model-accuracy">47. Model accuracy</a></li>
-                <li><a href="#q-safety-compliance">48. Safety compliance</a></li>
-                <li><a href="#q-user-engagement">49. User engagement</a></li>
-                <li><a href="#q-task-completion-rate">50. Task completion rate</a></li>
-                <li><a href="#q-user-satisfaction">51. User satisfaction</a></li>
-                <li><a href="#q-cost-per-interaction">52. Cost per interaction</a></li>
+                <li><a href="#q-design-a-personal-assistant-ch">1. Design a Personal Assistant Chat Bot</a></li>
+                <li><a href="#q-data-scpttb">2. Data (SCPTTB)</a></li>
+                <li><a href="#q-model">3. Model</a></li>
+                <li><a href="#q-inference-architecture">4. Inference Architecture</a></li>
+                <li><a href="#q-scalability-and-production-con">5. Scalability and Production Considerations</a></li>
+                <li><a href="#q-evaluation-metrics">6. Evaluation Metrics</a></li>
               </ul>
             </div>
 
-            <p id="q-business-requirement--context-" class="question"><strong>Business requirement & context : language support</strong></p>
-            <p id="q-data-availability-annotated-da" class="question"><strong>Data availability (annotated data? Self supervision?)</strong></p>
-            <p id="q-scale-qps-number-of-users-peak" class="question"><strong>Scale: QPS, number of users, peak QPS</strong></p>
-            <p id="q-latency--300ms" class="question"><strong>Latency: < 300ms</strong></p>
-            <p id="q-outline-" class="question"><strong>Outline —></strong></p>
-            <p id="q-system-choice--input-and-outpu" class="question"><strong>System choice —> Input and output and the type of objective.</strong></p>
-            <p id="q-data-processing" class="question"><strong>Data processing</strong></p>
+            <p id="q-design-a-personal-assistant-ch" class="question"><strong>Design a Personal Assistant Chat Bot</strong></p>
+            <ul style="margin-left: 1.5rem;">
+              <li>Business and Technical Requirements: Business requirement & context (language support), Data availability (annotated data, self supervision), Scale (QPS, number of users, peak QPS), Latency (< 300ms), System choice (input/output and objective type)</li>
+              <li>System Flow/Pipeline (High Level): Data and Training Service (DPSP), Inference Service (SPRRRS), Retraining Service</li>
+              <li>Data and Training Service (DPSP): Data processing, Model (Pretraining, Supervised finetuning, Post training RLHF)</li>
+              <li>Inference Service (SPRRRS): Safety filtering (filter harmful content from prompt), Prompt enhancer, Response generator, Rejection response generator, Response safety evaluator, Session management</li>
+              <li>Retraining Service: Continual learning and Feedback integration</li>
+            </ul>
+            <p id="q-data-scpttb" class="question"><strong>Data (SCPTTB)</strong></p>
+            <ul style="margin-left: 1.5rem;">
+              <li>Data sources: Pretraining (Common crawl dataset ~70% ~3TB, Cleaned Common Crawl C4 by Google, GitHub, Stack Exchange, arXiv, Wikipedia ~1.5-2.5 Trillion tokens), Supervised fine-tuning (cleaned, conversational documents, high quality)</li>
+              <li>Data cleaning: Deduplication, removing NSFW, filtering low quality, data sensitivity (privacy)</li>
+              <li>Data Representation: Preprocessing (normalization, lower casing, stop word removal, lemmatization), Tokenization (Character: hard to learn meaningful representation, Word: Large vocabulary, Subword BPE/Sentence Piece), Token to ids (used to represent text, embedding layer transforms to embedding vector)</li>
+              <li>Biases: Addressing Diversity and biases in the data (Data Augmentation)</li>
+            </ul>
             <p id="q-model" class="question"><strong>Model</strong></p>
             <ul style="margin-left: 1.5rem;">
-              <li>Pretraining</li>
-              <li>Supervised finetuning</li>
-              <li>Post training: RLHF</li>
+              <li>Choice: Trade-offs of model architecture (RNNs vs Transformer), Transformer advantages (Parallel processing, Better long-range dependencies, Attention mechanism, Scalability)</li>
+              <li>Training Process: Pretraining (Large-scale unsupervised learning), Supervised Fine-tuning (Task-specific training), Reinforcement Learning from Human Feedback RLHF (Reward model training, Policy optimization, Human preference alignment)</li>
             </ul>
-            <p id="q-safety-filtering-filter-harmfu" class="question"><strong>Safety filtering (filter harmful content from prompt)</strong></p>
-            <p id="q-prompt-enhancer" class="question"><strong>Prompt enhancer</strong></p>
-            <p id="q-response-generator" class="question"><strong>Response generator</strong></p>
-            <p id="q-rejection-response-generator-t" class="question"><strong>Rejection response generator (tell user they cannot generate response that fails safety filtering)</strong></p>
-            <p id="q-response-safety-evaluator" class="question"><strong>Response safety evaluator</strong></p>
-            <p id="q-session-management" class="question"><strong>Session management</strong></p>
-            <p id="q-continual-learning-and-feedbac" class="question"><strong>Continual learning and Feedback integration</strong></p>
-            <p id="q-pretraining" class="question"><strong>Pretraining:</strong></p>
+            <p id="q-inference-architecture" class="question"><strong>Inference Architecture</strong></p>
             <ul style="margin-left: 1.5rem;">
-              <li>Common crawl dataset -70% ~ 3TB, Cleaned Common Crawl (C4 by Google), Others: GitHub, Stack Exchange, arXiv, Wikipedia (~1.5-2.5 Trillion tokens)</li>
+              <li>Components: Safety Filtering (input validation, harmful content detection), Prompt Enhancement (context optimization, instruction following), Response Generation (core language model inference), Safety Evaluation (output validation, content filtering), Session Management (context persistence, user state)</li>
+              <li>Performance Considerations: Latency optimization (< 300ms target), Throughput scaling (QPS requirements), Memory management, Caching strategies</li>
             </ul>
-            <p id="q-supervised-finetuning-cleaned-" class="question"><strong>Supervised fine-tuning: cleaned, conversational documents, high quality</strong></p>
-            <p id="q-deduplication-removing-nsfw-fi" class="question"><strong>Deduplication, removing NSFW, filtering low quality, data sensitivity (privacy)</strong></p>
-            <p id="q-preprocessing" class="question"><strong>Preprocessing</strong></p>
+            <p id="q-scalability-and-production-con" class="question"><strong>Scalability and Production Considerations</strong></p>
             <ul style="margin-left: 1.5rem;">
-              <li>Normalization, lower casing, stop word removal, lemmatization</li>
+              <li>Infrastructure: Model serving infrastructure, Load balancing, Auto-scaling, Monitoring and observability</li>
+              <li>Data Pipeline: Real-time data ingestion, Batch processing, Feature engineering, Model retraining pipeline</li>
             </ul>
-            <p id="q-pros-and-cons-tokenization--co" class="question"><strong>(pros and cons) Tokenization - converting sentences to smaller components/chunks</strong></p>
+            <p id="q-evaluation-metrics" class="question"><strong>Evaluation Metrics</strong></p>
             <ul style="margin-left: 1.5rem;">
-              <li>Character: hard to learn meaningful representation</li>
-              <li>Word: Large vocabulary</li>
-              <li>Subword (Byte pair encoding or Sentence Piece) using BPE algorithm that decomposes rare/unknown words into smaller known/frequent words.</li>
-            </ul>
-            <p id="q-token-to-ids-these-ids-are-the" class="question"><strong>Token to ids (these ids are then used to represent the text), the text embedding layer in the NN transforms this into an embedding vector which is then learned by the model</strong></p>
-            <p id="q-addressing-diversity-and-biase" class="question"><strong>Addressing Diversity and biases in the data (Data Augmentation)</strong></p>
-            <p id="q-tradeoffs-of-options-for-model" class="question"><strong>Trade-offs of options for model architecture and pros and cons. For text, you can talk about RNNs and how they were initially the go-to and the pros and cons vs Transformer architecture.</strong></p>
-            <p id="q-transformer-architecture-advan" class="question"><strong>Transformer architecture advantages:</strong></p>
-            <ul style="margin-left: 1.5rem;">
-              <li>Parallel processing (vs sequential in RNNs)</li>
-              <li>Better long-range dependencies</li>
-              <li>Attention mechanism</li>
-              <li>Scalability</li>
-            </ul>
-            <p id="q-pretraining-largescale-unsuper" class="question"><strong>Pretraining: Large-scale unsupervised learning on diverse text</strong></p>
-            <p id="q-supervised-finetuning-taskspec" class="question"><strong>Supervised Fine-tuning: Task-specific training with labeled data</strong></p>
-            <p id="q-reinforcement-learning-from-hu" class="question"><strong>Reinforcement Learning from Human Feedback (RLHF):</strong></p>
-            <ul style="margin-left: 1.5rem;">
-              <li>Reward model training</li>
-              <li>Policy optimization</li>
-              <li>Human preference alignment</li>
-            </ul>
-            <p id="q-safety-filtering-input-validat" class="question"><strong>**Safety Filtering**: Input validation and harmful content detection</strong></p>
-            <p id="q-prompt-enhancement-context-opt" class="question"><strong>**Prompt Enhancement**: Context optimization and instruction following</strong></p>
-            <p id="q-response-generation-core-langu" class="question"><strong>**Response Generation**: Core language model inference</strong></p>
-            <p id="q-safety-evaluation-output-valid" class="question"><strong>**Safety Evaluation**: Output validation and content filtering</strong></p>
-            <p id="q-session-management-context-per" class="question"><strong>**Session Management**: Context persistence and user state</strong></p>
-            <p id="q-latency-optimization--300ms-ta" class="question"><strong>Latency optimization (< 300ms target)</strong></p>
-            <p id="q-throughput-scaling-qps-require" class="question"><strong>Throughput scaling (QPS requirements)</strong></p>
-            <p id="q-memory-management" class="question"><strong>Memory management</strong></p>
-            <p id="q-caching-strategies" class="question"><strong>Caching strategies</strong></p>
-            <p id="q-model-serving-infrastructure" class="question"><strong>Model serving infrastructure</strong></p>
-            <p id="q-load-balancing" class="question"><strong>Load balancing</strong></p>
-            <p id="q-autoscaling" class="question"><strong>Auto-scaling</strong></p>
-            <p id="q-monitoring-and-observability" class="question"><strong>Monitoring and observability</strong></p>
-            <p id="q-realtime-data-ingestion" class="question"><strong>Real-time data ingestion</strong></p>
-            <p id="q-batch-processing" class="question"><strong>Batch processing</strong></p>
-            <p id="q-feature-engineering" class="question"><strong>Feature engineering</strong></p>
-            <p id="q-model-retraining-pipeline" class="question"><strong>Model retraining pipeline</strong></p>
-            <p id="q-response-time" class="question"><strong>Response time</strong></p>
-            <p id="q-throughput-qps" class="question"><strong>Throughput (QPS)</strong></p>
-            <p id="q-model-accuracy" class="question"><strong>Model accuracy</strong></p>
-            <p id="q-safety-compliance" class="question"><strong>Safety compliance</strong></p>
-            <p id="q-user-engagement" class="question"><strong>User engagement</strong></p>
-            <p id="q-task-completion-rate" class="question"><strong>Task completion rate</strong></p>
-            <p id="q-user-satisfaction" class="question"><strong>User satisfaction</strong></p>
-            <p id="q-cost-per-interaction" class="question"><strong>Cost per interaction</strong></p>
+              <li>Technical Metrics: Response time, Throughput (QPS), Model accuracy, Safety compliance</li>
+              <li>Business Metrics: User engagement, Task completion rate, User satisfaction, Cost per interaction</li>
+            <div class="references-section">
+              <h3>📚 References & Resources</h3>
+              <ol class="references-list">
                 <li><a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener noreferrer">Attention Is All You Need - Vaswani et al.</a></li>
                 <li><a href="https://arxiv.org/abs/2203.02155" target="_blank" rel="noopener noreferrer">Training language models to follow instructions with human feedback</a></li>
                 <li><a href="https://arxiv.org/abs/2212.08073" target="_blank" rel="noopener noreferrer">Constitutional AI: Harmlessness from AI Feedback</a></li>
                 <li><a href="https://arxiv.org/abs/2001.08361" target="_blank" rel="noopener noreferrer">Scaling Laws for Neural Language Models</a></li>
                 <li><a href="https://arxiv.org/abs/2005.14165" target="_blank" rel="noopener noreferrer">Language Models are Few-Shot Learners</a></li>
+            </ul>
+              </ol>
+            </div>
           </div>
         </div>
 
