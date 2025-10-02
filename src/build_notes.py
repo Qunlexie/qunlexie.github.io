@@ -495,7 +495,7 @@ def create_html_template(title, content, password):
 </html>'''
 
 def build_notes_hub(note_structure):
-    """Build the main notes hub page with dynamic content - no password needed!"""
+    """Build the main notes hub page with simple table of contents format"""
     
     # Generate hub content
     hub_content = []
@@ -503,11 +503,9 @@ def build_notes_hub(note_structure):
     for folder_name, files in note_structure.items():
         folder_title = folder_name.replace('-', ' ').replace('_', ' ').title()
         hub_content.append(f'''
-        <section class="subject-section" id="{folder_name}">
-          <h2>📚 {folder_title}</h2>
-          <p>Comprehensive notes on {folder_title.lower()} topics.</p>
-          
-          <div class="topic-grid">''')
+          <div class="toc-section" id="{folder_name}">
+            <h2>📚 {folder_title}</h2>
+            <ul class="toc-list">''')
         
         for file_info in files:
             file_title = file_info['title']
@@ -515,14 +513,14 @@ def build_notes_hub(note_structure):
             html_file = f"../notes-html/{folder_name}-{file_name}.html"
             
             hub_content.append(f'''
-            <div class="topic-card">
-              <h3><a href="{html_file}">{file_title}</a></h3>
-              <p>Complete reference for {file_title.lower()}</p>
-            </div>''')
+              <li>
+                <a href="{html_file}">{file_title}</a>
+                <div class="toc-description">Complete reference for {file_title.lower()}</div>
+              </li>''')
         
         hub_content.append('''
-          </div>
-        </section>''')
+            </ul>
+          </div>''')
     
     # Read the hub template
     script_dir = Path(__file__).parent

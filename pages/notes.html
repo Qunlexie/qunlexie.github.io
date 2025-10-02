@@ -10,16 +10,112 @@
     <link rel="stylesheet" href="../assets/style.css" />
     <style>
       .notes-content { display: block; }
-      .subject-section { margin-bottom: 3rem; padding: 2rem; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-      .subject-section h2 { color: #007bff; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #007bff; }
-      .topic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
-      .topic-card { background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border: 1px solid #e9ecef; transition: all 0.3s ease; }
-      .topic-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); border-color: #007bff; }
-      .topic-card h3 { margin: 0 0 0.5rem 0; color: #333; }
-      .topic-card h3 a { color: #007bff; text-decoration: none; font-weight: 600; }
-      .topic-card h3 a:hover { text-decoration: underline; }
-      .topic-card p { color: #666; margin: 0; font-size: 0.9rem; line-height: 1.4; }
-      @media (max-width: 768px) { .topic-grid { grid-template-columns: 1fr; } .password-input { width: 100%; max-width: 300px; } }
+      
+      .notes-header {
+        text-align: center;
+        margin: 2rem 0 3rem 0;
+        padding: 2rem;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      
+      .notes-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        color: #333;
+      }
+      
+      .notes-header .subtitle {
+        color: #666;
+        font-style: italic;
+        font-size: 1.1rem;
+      }
+      
+      .toc-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        padding: 2rem;
+      }
+      
+      .toc-section {
+        margin-bottom: 2rem;
+      }
+      
+      .toc-section:last-child {
+        margin-bottom: 0;
+      }
+      
+      .toc-section h2 {
+        font-size: 1.5rem;
+        color: #007bff;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #007bff;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      
+      .toc-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      
+      .toc-list li {
+        margin-bottom: 0.75rem;
+        padding: 0.75rem;
+        background: #f8f9fa;
+        border-radius: 6px;
+        border-left: 4px solid #007bff;
+        transition: all 0.2s ease;
+      }
+      
+      .toc-list li:hover {
+        background: #e7f3ff;
+        transform: translateX(4px);
+      }
+      
+      .toc-list li:last-child {
+        margin-bottom: 0;
+      }
+      
+      .toc-list a {
+        color: #333;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1.1rem;
+        display: block;
+      }
+      
+      .toc-list a:hover {
+        color: #007bff;
+        text-decoration: none;
+      }
+      
+      .toc-description {
+        color: #666;
+        font-size: 0.9rem;
+        margin-top: 0.25rem;
+        font-style: italic;
+      }
+      
+      @media (max-width: 768px) {
+        .notes-header h1 {
+          font-size: 2rem;
+        }
+        .toc-container {
+          margin: 0 1rem;
+          padding: 1.5rem;
+        }
+        .toc-section h2 {
+          font-size: 1.3rem;
+        }
+      }
     </style>
   </head>
   <body>
@@ -36,61 +132,71 @@
 
     <main>
       <div class="notes-content" id="notesContent">
-        <h1>📚 Notes Hub</h1>
-        <p>Your comprehensive collection of study materials and technical notes.</p>
+        <div class="notes-header">
+          <h1>📚 Notes Hub</h1>
+          <p class="subtitle">Comprehensive study materials and technical notes</p>
+        </div>
         
-        <section class="subject-section" id="domains">
-          <h2>📚 Domains</h2>
-          <p>Comprehensive notes on domains topics.</p>
+        <div class="toc-container">
           
-          <div class="topic-grid">
-            <div class="topic-card">
-              <h3><a href="../notes-html/domains-cv.html">Computer Vision</a></h3>
-              <p>Complete reference for computer vision</p>
-            </div>
-            <div class="topic-card">
-              <h3><a href="../notes-html/domains-nlp.html">Natural Language Processing Domain</a></h3>
-              <p>Complete reference for natural language processing domain</p>
-            </div>
-            <div class="topic-card">
-              <h3><a href="../notes-html/domains-mlops.html">MLOps</a></h3>
-              <p>Complete reference for mlops</p>
-            </div>
+          <div class="toc-section" id="domains">
+            <h2>📚 Domains</h2>
+            <ul class="toc-list">
+              <li>
+                <a href="../notes-html/domains-cv.html">Computer Vision</a>
+                <div class="toc-description">Complete reference for computer vision</div>
+              </li>
+              <li>
+                <a href="../notes-html/domains-nlp.html">Natural Language Processing</a>
+                <div class="toc-description">Complete reference for natural language processing</div>
+              </li>
+              <li>
+                <a href="../notes-html/domains-mlops.html">MLOps</a>
+                <div class="toc-description">Complete reference for mlops</div>
+              </li>
+            </ul>
           </div>
-        </section>
-        <section class="subject-section" id="books">
-          <h2>📚 Books</h2>
-          <p>Comprehensive notes on books topics.</p>
-          
-          <div class="topic-grid">
-            <div class="topic-card">
-              <h3><a href="../notes-html/books-chip.html">[Book] Designing ML Systems By Chip Huyen</a></h3>
-              <p>Complete reference for [book] designing ml systems by chip huyen</p>
-            </div>
+          <div class="toc-section" id="books">
+            <h2>📚 Books</h2>
+            <ul class="toc-list">
+              <li>
+                <a href="../notes-html/books-chip.html">[Book] Designing ML Systems By Chip Huyen</a>
+                <div class="toc-description">Complete reference for [book] designing ml systems by chip huyen</div>
+              </li>
+            </ul>
           </div>
-        </section>
-        <section class="subject-section" id="recsys">
-          <h2>📚 Recsys</h2>
-          <p>Comprehensive notes on recsys topics.</p>
-          
-          <div class="topic-grid">
-            <div class="topic-card">
-              <h3><a href="../notes-html/recsys-basics.html">Recommendation Systems Basics</a></h3>
-              <p>Complete reference for recommendation systems basics</p>
-            </div>
+          <div class="toc-section" id="recsys">
+            <h2>📚 Recsys</h2>
+            <ul class="toc-list">
+              <li>
+                <a href="../notes-html/recsys-basics.html">Recommendation Systems Basics</a>
+                <div class="toc-description">Complete reference for recommendation systems basics</div>
+              </li>
+            </ul>
           </div>
-        </section>
-        <section class="subject-section" id="ml-theory">
-          <h2>📚 Ml Theory</h2>
-          <p>Comprehensive notes on ml theory topics.</p>
-          
-          <div class="topic-grid">
-            <div class="topic-card">
-              <h3><a href="../notes-html/ml-theory-dltheory.html">ML Theory (Deep Learning)</a></h3>
-              <p>Complete reference for ml theory (deep learning)</p>
-            </div>
+          <div class="toc-section" id="ml-theory">
+            <h2>📚 Ml Theory</h2>
+            <ul class="toc-list">
+              <li>
+                <a href="../notes-html/ml-theory-dltheory.html">ML Theory (Deep Learning)</a>
+                <div class="toc-description">Complete reference for ml theory (deep learning)</div>
+              </li>
+            </ul>
           </div>
-        </section><!-- Future Sections -->
+          <div class="toc-section" id="ml-sys">
+            <h2>📚 Ml Sys</h2>
+            <ul class="toc-list">
+              <li>
+                <a href="../notes-html/ml-sys-gen-ai-systems.html">Gen AI System Design (Text Generation, RAG)</a>
+                <div class="toc-description">Complete reference for gen ai system design (text generation, rag)</div>
+              </li>
+              <li>
+                <a href="../notes-html/ml-sys-ml-systems.html">ML System Interview</a>
+                <div class="toc-description">Complete reference for ml system interview</div>
+              </li>
+            </ul>
+          </div><!-- Future Sections -->
+        </div>
       </div>
     </main>
     
