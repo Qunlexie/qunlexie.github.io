@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>ML System Interview - Notes</title>
+    <link rel="stylesheet" href="../assets/style.css?v=1759443174" />
+    <style>
+      /* Additional styles for notes page - always visible */
+      .notes-content {
+        display: block !important;
+      }
+      
+      /* aman.ai inspired styles */
+      .notes-header {
+        text-align: center;
+        margin: 2rem 0;
+      }
+      
+      .notes-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      .notes-header .subtitle {
+        color: #666;
+        font-style: italic;
+      }
+      
+      .category-section {
+        background: white;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      
+      .category-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #007bff;
+      }
+      
+      .back-link {
+        display: inline-block;
+        margin-bottom: 1rem;
+        color: #007bff;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      
+      .back-link:hover {
+        text-decoration: underline;
+      }
+      
+      /* Table of Contents Styles */
+      .table-of-contents {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+      }
+      
+      .table-of-contents h3 {
+        margin-top: 0;
+        margin-bottom: 1rem;
+        color: #495057;
+        font-size: 1.2rem;
+      }
+      
+      .toc-list {
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+      }
+      
+      .toc-list li {
+        margin-bottom: 0.5rem;
+      }
+      
+      .toc-list a {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: 500;
+        display: block;
+        padding: 0.25rem 0;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+      }
+      
+      .toc-list a:hover {
+        background-color: #e7f3ff;
+        padding-left: 0.5rem;
+        text-decoration: none;
+      }
+      
+      .question {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #e9ecef;
+      }
+      
+      /* Back to Top Button */
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 18px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0,123,255,0.3);
+        transition: all 0.3s ease;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 1000;
+      }
+      
+      .back-to-top:hover {
+        background: #0056b3;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0,123,255,0.4);
+      }
+      
+      .back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      .back-to-top .icon {
+        display: inline-block;
+        transform: rotate(-90deg);
+      }
+      
+      /* References section styling */
+      .references-section {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-top: 2rem;
+      }
+      
+      .references-section h3 {
+        margin-top: 0;
+        margin-bottom: 1rem;
+        color: #495057;
+        font-size: 1.2rem;
+      }
+      
+      .references-list {
+        margin: 0;
+        padding-left: 1.5rem;
+      }
+      
+      .references-list li {
+        margin-bottom: 0.5rem;
+        line-height: 1.5;
+      }
+      
+      .references-list a {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      
+      .references-list a:hover {
+        text-decoration: underline;
+      }
+      
+      @media (max-width: 768px) {
+        .notes-header h1 {
+          font-size: 2rem;
+        }
+        .table-of-contents {
+          padding: 1rem;
+        }
+        .back-to-top {
+          bottom: 20px;
+          right: 20px;
+          width: 45px;
+          height: 45px;
+          font-size: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Notes Content -->
+    <div class="notes-content" id="notesContent">
+      <header>
+        <nav>
+          <ul>
+            <li><a href="../pages/index.html">Home</a></li>
+            <li><a href="../pages/projects.html">Projects and Research</a></li>
+            <li><a href="../pages/highlights.html">Highlights</a></li>
+            <li><a href="../pages/notes.html">Notes Hub</a></li>
+          </ul>
+        </nav>
+      </header>
+      
+      <main>
+        <div class="notes-header">
+          <h1>ML System Interview</h1>
+          <p class="subtitle">comprehensive revision notes</p>
+        </div>
+
+        <div class="category-section">
+          <a href="../pages/notes.html" class="back-link">← Back to Notes Hub</a>
+          <h2>ML System Interview</h2>
+          <div style="line-height: 1.8;">
+            <div class="table-of-contents">
+              <h3>📋 Table of Contents</h3>
+              <ul class="toc-list">
+                <li><a href="#q-maximize">1. Maximize:</a></li>
+                <li><a href="#q-minimize">2. Minimize:</a></li>
+                <li><a href="#q-probability-of-watch-time--k-s">3. Probability of watch time > k seconds (bucketed outcomes).</a></li>
+                <li><a href="#q-probability-of-completion">4. Probability of completion.</a></li>
+                <li><a href="#q-probability-of-engagement-like">5. Probability of engagement (like, share, follow, save) or a weighted composite engagement metric.</a></li>
+                <li><a href="#q-user-profile-demographics-app-">6. User Profile: demographics, app usage history, community affiliations, location/places history.</a></li>
+                <li><a href="#q-usercontent-interaction-recent">7. User-Content Interaction: recent history of watched, liked, shared, or skipped content.</a></li>
+                <li><a href="#q-content-attributes-creator-pro">8. Content Attributes: creator profile, topic tags, captions, text/audio/image/video features.</a></li>
+                <li><a href="#q-graph-features-followerfollowe">9. Graph Features: follower-followee links, creator interaction graph, PageRank, clustering coefficients.</a></li>
+                <li><a href="#q-contextual-information-device-">10. Contextual Information: device type, time of day, session-level activity.</a></li>
+                <li><a href="#q-hundreds-of-millions-of-daily-">11. Hundreds of millions of daily active users.</a></li>
+                <li><a href="#q-millions-of-new-content-items-">12. Millions of new content items daily.</a></li>
+                <li><a href="#q-target-latency--100-ms-per-req">13. Target latency: ≤ 100 ms per request.</a></li>
+                <li><a href="#q-batch-layer-compute-embeddings">14. Batch Layer: compute embeddings for all users and content daily.</a></li>
+                <li><a href="#q-realtime-layer-sessionenriched">15. Real-Time Layer: session-enriched embeddings updated continuously for active users.</a></li>
+                <li><a href="#q-user-demographics-usage-histor">16. User: demographics, usage history, places visited.</a></li>
+                <li><a href="#q-contentcreator-creator-metadat">17. Content/Creator: creator metadata, tags, captions, embeddings from multimodal encoders.</a></li>
+                <li><a href="#q-interaction-likes-shares-favor">18. Interaction: likes, shares, favorites, profile views.</a></li>
+                <li><a href="#q-graph-shared-followers-communi">19. Graph: shared followers, community detection, PageRank, clustering coefficient.</a></li>
+                <li><a href="#q-cross-features-between-user-an">20. Cross features between user and content</a></li>
+                <li><a href="#q-temporal-features-recency-freq">21. Temporal features (recency, frequency)</a></li>
+                <li><a href="#q-sequence-modeling-for-user-beh">22. Sequence modeling for user behavior</a></li>
+                <li><a href="#q-graphbased-features-for-social">23. Graph-based features for social signals</a></li>
+                <li><a href="#q-user-tower-encodes-user-featur">24. User Tower: encodes user features into user embedding</a></li>
+                <li><a href="#q-content-tower-encodes-content-">25. Content Tower: encodes content features into content embedding</a></li>
+                <li><a href="#q-interaction-dot-product-or-lea">26. Interaction: dot product or learned similarity between embeddings</a></li>
+                <li><a href="#q-embedding-layers-for-categoric">27. Embedding layers for categorical features</a></li>
+                <li><a href="#q-dense-layers-for-numerical-fea">28. Dense layers for numerical features</a></li>
+                <li><a href="#q-attention-mechanisms-for-seque">29. Attention mechanisms for sequence modeling</a></li>
+                <li><a href="#q-multitask-learning-for-differe">30. Multi-task learning for different objectives</a></li>
+                <li><a href="#q-binary-crossentropy-for-engage">31. Binary cross-entropy for engagement prediction</a></li>
+                <li><a href="#q-regression-loss-for-watch-time">32. Regression loss for watch time prediction</a></li>
+                <li><a href="#q-multitask-loss-combining-multi">33. Multi-task loss combining multiple objectives</a></li>
+                <li><a href="#q-positive-samples-user-interact">34. Positive samples: user interactions (likes, shares, watches)</a></li>
+                <li><a href="#q-negative-sampling-random-negat">35. Negative sampling: random negatives vs hard negatives</a></li>
+                <li><a href="#q-temporal-validation-train-on-p">36. Temporal validation: train on past data, validate on future</a></li>
+                <li><a href="#q-auc-precisionk-recallk">37. AUC, Precision@K, Recall@K</a></li>
+                <li><a href="#q-ndcg-normalized-discounted-cum">38. NDCG (Normalized Discounted Cumulative Gain)</a></li>
+                <li><a href="#q-hit-rate-coverage">39. Hit Rate, Coverage</a></li>
+                <li><a href="#q-clickthrough-rate-ctr">40. Click-through rate (CTR)</a></li>
+                <li><a href="#q-watch-time-per-session">41. Watch time per session</a></li>
+                <li><a href="#q-user-engagement-rate">42. User engagement rate</a></li>
+                <li><a href="#q-retention-metrics">43. Retention metrics</a></li>
+                <li><a href="#q-selection-bias-only-observing-">44. Selection bias: only observing interactions, not preferences</a></li>
+                <li><a href="#q-position-bias-items-higher-in-">45. Position bias: items higher in feed get more clicks</a></li>
+                <li><a href="#q-popularity-bias-popular-items-">46. Popularity bias: popular items get more exposure</a></li>
+                <li><a href="#q-demographic-bias-unfair-treatm">47. Demographic bias: unfair treatment across user groups</a></li>
+                <li><a href="#q-inverse-propensity-weighting">48. Inverse propensity weighting</a></li>
+                <li><a href="#q-positionaware-models">49. Position-aware models</a></li>
+                <li><a href="#q-diversity-constraints-in-ranki">50. Diversity constraints in ranking</a></li>
+                <li><a href="#q-fairnessaware-training-objecti">51. Fairness-aware training objectives</a></li>
+                <li><a href="#q-random-assignment-of-users-to-">52. Random assignment of users to treatment/control</a></li>
+                <li><a href="#q-statistical-significance-testi">53. Statistical significance testing</a></li>
+                <li><a href="#q-multiple-testing-correction">54. Multiple testing correction</a></li>
+                <li><a href="#q-longterm-vs-shortterm-effects">55. Long-term vs short-term effects</a></li>
+                <li><a href="#q-primary-engagement-metrics-ctr">56. Primary: engagement metrics (CTR, watch time)</a></li>
+                <li><a href="#q-secondary-user-satisfaction-re">57. Secondary: user satisfaction, retention</a></li>
+                <li><a href="#q-guardrail-safety-fairness-metr">58. Guardrail: safety, fairness metrics</a></li>
+                <li><a href="#q-revenue-maximization-cpm-cpc-c">59. Revenue maximization (CPM, CPC, CPA)</a></li>
+                <li><a href="#q-user-experience-preservation">60. User experience preservation</a></li>
+                <li><a href="#q-advertiser-satisfaction">61. Advertiser satisfaction</a></li>
+                <li><a href="#q-platform-growth">62. Platform growth</a></li>
+                <li><a href="#q-ad-selection-and-ranking">63. Ad selection and ranking</a></li>
+                <li><a href="#q-bid-optimization">64. Bid optimization</a></li>
+                <li><a href="#q-budget-pacing">65. Budget pacing</a></li>
+                <li><a href="#q-quality-scoring">66. Quality scoring</a></li>
+                <li><a href="#q-realtime-bidding">67. Real-time bidding</a></li>
+                <li><a href="#q-multiobjective-optimization">68. Multi-objective optimization</a></li>
+                <li><a href="#q-ad-relevance-vs-revenue-tradeo">69. Ad relevance vs revenue trade-offs</a></li>
+                <li><a href="#q-fraud-detection">70. Fraud detection</a></li>
+                <li><a href="#q-microservices-architecture">71. Microservices architecture</a></li>
+                <li><a href="#q-horizontal-scaling">72. Horizontal scaling</a></li>
+                <li><a href="#q-caching-strategies">73. Caching strategies</a></li>
+                <li><a href="#q-database-sharding">74. Database sharding</a></li>
+                <li><a href="#q-fault-tolerance">75. Fault tolerance</a></li>
+                <li><a href="#q-circuit-breakers">76. Circuit breakers</a></li>
+                <li><a href="#q-graceful-degradation">77. Graceful degradation</a></li>
+                <li><a href="#q-monitoring-and-alerting">78. Monitoring and alerting</a></li>
+                <li><a href="#q-realtime-streaming-kafka-flink">79. Real-time streaming (Kafka, Flink)</a></li>
+                <li><a href="#q-batch-processing-spark-hadoop">80. Batch processing (Spark, Hadoop)</a></li>
+                <li><a href="#q-feature-stores">81. Feature stores</a></li>
+                <li><a href="#q-model-serving-infrastructure">82. Model serving infrastructure</a></li>
+              </ul>
+            </div>
+
+            <p id="q-maximize" class="question"><strong>Maximize:</strong></p>
+            <ul style="margin-left: 1.5rem;">
+              <li>Watch Time: encourage longer consumption, measured across different duration buckets.</li>
+              <li>Completion Rate: e.g., proportion of users completing ≥70% of an item.</li>
+              <li>Engagement: likes, shares, saves, follows, profile views.</li>
+            </ul>
+            <p id="q-minimize" class="question"><strong>Minimize:</strong></p>
+            <ul style="margin-left: 1.5rem;">
+              <li>Safeguards: churn rate, drop in app opens, shorter session duration.</li>
+              <li>Disengagement Signals: not interested, block, report, high scroll velocity.</li>
+            </ul>
+            <p id="q-probability-of-watch-time--k-s" class="question"><strong>Probability of watch time > k seconds (bucketed outcomes).</strong></p>
+            <p id="q-probability-of-completion" class="question"><strong>Probability of completion.</strong></p>
+            <p id="q-probability-of-engagement-like" class="question"><strong>Probability of engagement (like, share, follow, save) or a weighted composite engagement metric.</strong></p>
+            <p id="q-user-profile-demographics-app-" class="question"><strong>User Profile: demographics, app usage history, community affiliations, location/places history.</strong></p>
+            <p id="q-usercontent-interaction-recent" class="question"><strong>User-Content Interaction: recent history of watched, liked, shared, or skipped content.</strong></p>
+            <p id="q-content-attributes-creator-pro" class="question"><strong>Content Attributes: creator profile, topic tags, captions, text/audio/image/video features.</strong></p>
+            <p id="q-graph-features-followerfollowe" class="question"><strong>Graph Features: follower-followee links, creator interaction graph, PageRank, clustering coefficients.</strong></p>
+            <p id="q-contextual-information-device-" class="question"><strong>Contextual Information: device type, time of day, session-level activity.</strong></p>
+            <p id="q-hundreds-of-millions-of-daily-" class="question"><strong>Hundreds of millions of daily active users.</strong></p>
+            <p id="q-millions-of-new-content-items-" class="question"><strong>Millions of new content items daily.</strong></p>
+            <p id="q-target-latency--100-ms-per-req" class="question"><strong>Target latency: ≤ 100 ms per request.</strong></p>
+            <p id="q-batch-layer-compute-embeddings" class="question"><strong>Batch Layer: compute embeddings for all users and content daily.</strong></p>
+            <p id="q-realtime-layer-sessionenriched" class="question"><strong>Real-Time Layer: session-enriched embeddings updated continuously for active users.</strong></p>
+                <li>1. **Candidate Generation**</li>
+            <ul style="margin-left: 1.5rem;">
+              <li>Embedding-based retrieval with high recall.</li>
+              <li>ANN search engines (e.g., FAISS, ScaNN) for fast retrieval over 100M+ items.</li>
+                <li>2. **Ranking**</li>
+              <li>Deep personalized models combining user, content, graph, and context features.</li>
+              <li>Multitask prediction of engagement, completion, and watch time.</li>
+                <li>3. **Post-Processing**</li>
+              <li>Re-ranking for freshness, diversity, recency.</li>
+              <li>Content safety and policy filtering.</li>
+            </ul>
+            <p id="q-user-demographics-usage-histor" class="question"><strong>User: demographics, usage history, places visited.</strong></p>
+            <p id="q-contentcreator-creator-metadat" class="question"><strong>Content/Creator: creator metadata, tags, captions, embeddings from multimodal encoders.</strong></p>
+            <p id="q-interaction-likes-shares-favor" class="question"><strong>Interaction: likes, shares, favorites, profile views.</strong></p>
+            <p id="q-graph-shared-followers-communi" class="question"><strong>Graph: shared followers, community detection, PageRank, clustering coefficient.</strong></p>
+            <p id="q-cross-features-between-user-an" class="question"><strong>Cross features between user and content</strong></p>
+            <p id="q-temporal-features-recency-freq" class="question"><strong>Temporal features (recency, frequency)</strong></p>
+            <p id="q-sequence-modeling-for-user-beh" class="question"><strong>Sequence modeling for user behavior</strong></p>
+            <p id="q-graphbased-features-for-social" class="question"><strong>Graph-based features for social signals</strong></p>
+            <p id="q-user-tower-encodes-user-featur" class="question"><strong>User Tower: encodes user features into user embedding</strong></p>
+            <p id="q-content-tower-encodes-content-" class="question"><strong>Content Tower: encodes content features into content embedding</strong></p>
+            <p id="q-interaction-dot-product-or-lea" class="question"><strong>Interaction: dot product or learned similarity between embeddings</strong></p>
+            <p id="q-embedding-layers-for-categoric" class="question"><strong>Embedding layers for categorical features</strong></p>
+            <p id="q-dense-layers-for-numerical-fea" class="question"><strong>Dense layers for numerical features</strong></p>
+            <p id="q-attention-mechanisms-for-seque" class="question"><strong>Attention mechanisms for sequence modeling</strong></p>
+            <p id="q-multitask-learning-for-differe" class="question"><strong>Multi-task learning for different objectives</strong></p>
+            <p id="q-binary-crossentropy-for-engage" class="question"><strong>Binary cross-entropy for engagement prediction</strong></p>
+            <p id="q-regression-loss-for-watch-time" class="question"><strong>Regression loss for watch time prediction</strong></p>
+            <p id="q-multitask-loss-combining-multi" class="question"><strong>Multi-task loss combining multiple objectives</strong></p>
+            <p id="q-positive-samples-user-interact" class="question"><strong>Positive samples: user interactions (likes, shares, watches)</strong></p>
+            <p id="q-negative-sampling-random-negat" class="question"><strong>Negative sampling: random negatives vs hard negatives</strong></p>
+            <p id="q-temporal-validation-train-on-p" class="question"><strong>Temporal validation: train on past data, validate on future</strong></p>
+            <p id="q-auc-precisionk-recallk" class="question"><strong>AUC, Precision@K, Recall@K</strong></p>
+            <p id="q-ndcg-normalized-discounted-cum" class="question"><strong>NDCG (Normalized Discounted Cumulative Gain)</strong></p>
+            <p id="q-hit-rate-coverage" class="question"><strong>Hit Rate, Coverage</strong></p>
+            <p id="q-clickthrough-rate-ctr" class="question"><strong>Click-through rate (CTR)</strong></p>
+            <p id="q-watch-time-per-session" class="question"><strong>Watch time per session</strong></p>
+            <p id="q-user-engagement-rate" class="question"><strong>User engagement rate</strong></p>
+            <p id="q-retention-metrics" class="question"><strong>Retention metrics</strong></p>
+            <p id="q-selection-bias-only-observing-" class="question"><strong>Selection bias: only observing interactions, not preferences</strong></p>
+            <p id="q-position-bias-items-higher-in-" class="question"><strong>Position bias: items higher in feed get more clicks</strong></p>
+            <p id="q-popularity-bias-popular-items-" class="question"><strong>Popularity bias: popular items get more exposure</strong></p>
+            <p id="q-demographic-bias-unfair-treatm" class="question"><strong>Demographic bias: unfair treatment across user groups</strong></p>
+            <p id="q-inverse-propensity-weighting" class="question"><strong>Inverse propensity weighting</strong></p>
+            <p id="q-positionaware-models" class="question"><strong>Position-aware models</strong></p>
+            <p id="q-diversity-constraints-in-ranki" class="question"><strong>Diversity constraints in ranking</strong></p>
+            <p id="q-fairnessaware-training-objecti" class="question"><strong>Fairness-aware training objectives</strong></p>
+            <p id="q-random-assignment-of-users-to-" class="question"><strong>Random assignment of users to treatment/control</strong></p>
+            <p id="q-statistical-significance-testi" class="question"><strong>Statistical significance testing</strong></p>
+            <p id="q-multiple-testing-correction" class="question"><strong>Multiple testing correction</strong></p>
+            <p id="q-longterm-vs-shortterm-effects" class="question"><strong>Long-term vs short-term effects</strong></p>
+            <p id="q-primary-engagement-metrics-ctr" class="question"><strong>Primary: engagement metrics (CTR, watch time)</strong></p>
+            <p id="q-secondary-user-satisfaction-re" class="question"><strong>Secondary: user satisfaction, retention</strong></p>
+            <p id="q-guardrail-safety-fairness-metr" class="question"><strong>Guardrail: safety, fairness metrics</strong></p>
+            <p id="q-revenue-maximization-cpm-cpc-c" class="question"><strong>Revenue maximization (CPM, CPC, CPA)</strong></p>
+            <p id="q-user-experience-preservation" class="question"><strong>User experience preservation</strong></p>
+            <p id="q-advertiser-satisfaction" class="question"><strong>Advertiser satisfaction</strong></p>
+            <p id="q-platform-growth" class="question"><strong>Platform growth</strong></p>
+            <p id="q-ad-selection-and-ranking" class="question"><strong>Ad selection and ranking</strong></p>
+            <p id="q-bid-optimization" class="question"><strong>Bid optimization</strong></p>
+            <p id="q-budget-pacing" class="question"><strong>Budget pacing</strong></p>
+            <p id="q-quality-scoring" class="question"><strong>Quality scoring</strong></p>
+            <p id="q-realtime-bidding" class="question"><strong>Real-time bidding</strong></p>
+            <p id="q-multiobjective-optimization" class="question"><strong>Multi-objective optimization</strong></p>
+            <p id="q-ad-relevance-vs-revenue-tradeo" class="question"><strong>Ad relevance vs revenue trade-offs</strong></p>
+            <p id="q-fraud-detection" class="question"><strong>Fraud detection</strong></p>
+            <p id="q-microservices-architecture" class="question"><strong>Microservices architecture</strong></p>
+            <p id="q-horizontal-scaling" class="question"><strong>Horizontal scaling</strong></p>
+            <p id="q-caching-strategies" class="question"><strong>Caching strategies</strong></p>
+            <p id="q-database-sharding" class="question"><strong>Database sharding</strong></p>
+            <p id="q-fault-tolerance" class="question"><strong>Fault tolerance</strong></p>
+            <p id="q-circuit-breakers" class="question"><strong>Circuit breakers</strong></p>
+            <p id="q-graceful-degradation" class="question"><strong>Graceful degradation</strong></p>
+            <p id="q-monitoring-and-alerting" class="question"><strong>Monitoring and alerting</strong></p>
+            <p id="q-realtime-streaming-kafka-flink" class="question"><strong>Real-time streaming (Kafka, Flink)</strong></p>
+            <p id="q-batch-processing-spark-hadoop" class="question"><strong>Batch processing (Spark, Hadoop)</strong></p>
+            <p id="q-feature-stores" class="question"><strong>Feature stores</strong></p>
+            <p id="q-model-serving-infrastructure" class="question"><strong>Model serving infrastructure</strong></p>
+                <li><a href="https://research.google/pubs/pub45530/" target="_blank" rel="noopener noreferrer">Deep Neural Networks for YouTube Recommendations</a></li>
+                <li><a href="https://arxiv.org/abs/1606.07792" target="_blank" rel="noopener noreferrer">Wide & Deep Learning for Recommender Systems</a></li>
+                <li><a href="https://arxiv.org/abs/1708.05031" target="_blank" rel="noopener noreferrer">Neural Collaborative Filtering</a></li>
+                <li><a href="https://arxiv.org/abs/1904.06690" target="_blank" rel="noopener noreferrer">BERT4Rec: Sequential Recommendation with Bidirectional Encoder Representations</a></li>
+                <li><a href="https://arxiv.org/abs/1903.00780" target="_blank" rel="noopener noreferrer">Fairness in Recommendation Ranking through Pairwise Learning</a></li>
+          </div>
+        </div>
+
+      </main>
+      
+      <footer>
+        <p>&copy; 2025 ML System Interview Notes</p>
+      </footer>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()" title="Back to Table of Contents">
+      <span class="icon">→</span>
+    </button>
+
+    <script>
+      // Notes are now freely accessible - no authentication required
+      function checkAuth() {
+        // Always show content - knowledge is free!
+        document.getElementById('notesContent').style.display = 'block';
+      }
+
+      // Scroll to top functionality
+      function scrollToTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+
+      // Show/hide back to top button based on scroll position
+      function toggleBackToTopButton() {
+        const backToTopButton = document.getElementById('backToTop');
+        if (window.pageYOffset > 300) {
+          backToTopButton.classList.add('visible');
+        } else {
+          backToTopButton.classList.remove('visible');
+        }
+      }
+
+      // Initialize page
+      document.addEventListener('DOMContentLoaded', function() {
+        checkAuth();
+        
+        // Add scroll event listener for back to top button
+        window.addEventListener('scroll', toggleBackToTopButton);
+      });
+    </script>
+  </body>
+</html>
