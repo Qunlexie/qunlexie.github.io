@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Gen AI System Design (Text Generation, RAG) - Notes</title>
-    <link rel="stylesheet" href="../assets/style.css?v=1759443501" />
+    <link rel="stylesheet" href="../assets/style.css?v=1759444768" />
     <style>
       /* Additional styles for notes page - always visible */
       .notes-content {
@@ -57,46 +57,36 @@
         text-decoration: underline;
       }
       
-      /* Table of Contents Styles */
+      /* Table of Contents Styles - aman.ai inspired */
       .table-of-contents {
-        background: #f8f9fa;
-        border: 1px solid #e9ecef;
-        border-radius: 8px;
-        padding: 1.5rem;
         margin-bottom: 2rem;
-      }
-      
-      .table-of-contents h3 {
-        margin-top: 0;
-        margin-bottom: 1rem;
-        color: #495057;
-        font-size: 1.2rem;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       }
       
       .toc-list {
         list-style: none;
-        padding-left: 0;
+        padding: 0;
         margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.6;
       }
       
       .toc-list li {
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.3rem;
+        position: relative;
       }
       
       .toc-list a {
         color: #007bff;
         text-decoration: none;
-        font-weight: 500;
         display: block;
-        padding: 0.25rem 0;
-        border-radius: 4px;
-        transition: all 0.2s ease;
+        padding: 0.1rem 0;
+        transition: color 0.2s ease;
       }
       
       .toc-list a:hover {
-        background-color: #e7f3ff;
-        padding-left: 0.5rem;
-        text-decoration: none;
+        color: #0056b3;
+        text-decoration: underline;
       }
       
       .question {
@@ -220,62 +210,473 @@
           <h2>Gen AI System Design (Text Generation, RAG)</h2>
           <div style="line-height: 1.8;">
             <div class="table-of-contents">
-              <h3>📋 Table of Contents</h3>
               <ul class="toc-list">
-                <li><a href="#q-design-a-personal-assistant-ch">1. Design a Personal Assistant Chat Bot</a></li>
-                <li><a href="#q-data-scpttb">2. Data (SCPTTB)</a></li>
-                <li><a href="#q-model">3. Model</a></li>
-                <li><a href="#q-inference-architecture">4. Inference Architecture</a></li>
-                <li><a href="#q-scalability-and-production-con">5. Scalability and Production Considerations</a></li>
-                <li><a href="#q-evaluation-metrics">6. Evaluation Metrics</a></li>
+                <li><a href="#q-design-a-personal-assistant-ch">* Design a Personal Assistant Chat Bot</a></li>
+                <li><a href="#q-data-scpttb">* Data (SCPTTB):</a></li>
+                <li><a href="#q-model">* Model:</a></li>
+                <li><a href="#q-evaluation">* Evaluation:</a></li>
+                <li><a href="#q-deployment-and-monitoring">* Deployment and monitoring:</a></li>
+                <li><a href="#q-inference--sampling">* Inference & Sampling:</a></li>
+                <li><a href="#q-infra-and-other-considerations">* Infra and other considerations:</a></li>
+                <li><a href="#q-advanced-stuff">* Advanced stuff:</a></li>
+                <li><a href="#q-prompt-engineering">* Prompt Engineering:</a></li>
+                <li><a href="#q-rag-retrievalaugmented-generat">* RAG (Retrieval-Augmented Generation):</a></li>
+                <li><a href="#q-agents-rl-planners">* Agents (RL Planners):</a></li>
               </ul>
             </div>
 
             <p id="q-design-a-personal-assistant-ch" class="question"><strong>Design a Personal Assistant Chat Bot</strong></p>
             <ul style="margin-left: 1.5rem;">
-              <li>Business and Technical Requirements: Business requirement & context (language support), Data availability (annotated data, self supervision), Scale (QPS, number of users, peak QPS), Latency (< 300ms), System choice (input/output and objective type)</li>
-              <li>System Flow/Pipeline (High Level): Data and Training Service (DPSP), Inference Service (SPRRRS), Retraining Service</li>
-              <li>Data and Training Service (DPSP): Data processing, Model (Pretraining, Supervised finetuning, Post training RLHF)</li>
-              <li>Inference Service (SPRRRS): Safety filtering (filter harmful content from prompt), Prompt enhancer, Response generator, Rejection response generator, Response safety evaluator, Session management</li>
-              <li>Retraining Service: Continual learning and Feedback integration</li>
-            </ul>
-            <p id="q-data-scpttb" class="question"><strong>Data (SCPTTB)</strong></p>
+              <li>Business and Technical Requirements:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Business requirement & context: language support</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Data availability (annotated data? Self supervision?)</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Scale: QPS, number of users, peak QPS</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Latency: < 300ms</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Outline —></li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>System choice —> Input and output and the type of objective.</li>
+                  </ul>
+                </ul>
             <ul style="margin-left: 1.5rem;">
-              <li>Data sources: Pretraining (Common crawl dataset ~70% ~3TB, Cleaned Common Crawl C4 by Google, GitHub, Stack Exchange, arXiv, Wikipedia ~1.5-2.5 Trillion tokens), Supervised fine-tuning (cleaned, conversational documents, high quality)</li>
-              <li>Data cleaning: Deduplication, removing NSFW, filtering low quality, data sensitivity (privacy)</li>
-              <li>Data Representation: Preprocessing (normalization, lower casing, stop word removal, lemmatization), Tokenization (Character: hard to learn meaningful representation, Word: Large vocabulary, Subword BPE/Sentence Piece), Token to ids (used to represent text, embedding layer transforms to embedding vector)</li>
+              <li>System Flow/Pipeline (High Level):</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Data and Training Service (DPSP):</li>
+                  <li>Data processing</li>
+                  <li>Model:</li>
+                      <li>Pretraining</li>
+                      <li>Supervised finetuning</li>
+                      <li>Post training: RLHF</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Inference Service (SPRRRS):</li>
+                  <li>Safety filtering (filter harmful content from prompt)</li>
+                  <li>Prompt enhancer</li>
+                  <li>Response generator</li>
+                  <li>Rejection response generator (tell user they cannot generate response that fails safety filtering)</li>
+                  <li>Response safety evaluator</li>
+                  <li>Session management</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Retraining Service:</li>
+                  <li>Continual learning and Feedback integration</li>
+                </ul>
+            <p id="q-data-scpttb" class="question"><strong>Data (SCPTTB):</strong></p>
+                  </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Data sources:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Pretraining:</li>
+                  <li>Common crawl dataset -70% ~ 3TB, Cleaned Common Crawl (C4 by Google), Others: GitHub, Stack Exchange, arXiv, Wikipedia (~1.5-2.5 Trillion tokens)</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Supervised fine-tuning: cleaned, conversational documents, high quality</li>
+                  </ul>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Data cleaning: deduplication, removing NSFW, filtering low quality, data sensitivity (privacy)</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Data Representation:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Preprocessing:</li>
+                  <li>Normalization, lower casing, stop word removal, lemmatization</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>(pros and cons) Tokenization - converting sentences to smaller components/chunks:</li>
+                  <li>Character: hard to learn meaningful representation</li>
+                  <li>Word: Large vocabulary</li>
+                  <li>Subword (Byte pair encoding or Sentence Piece) using BPE algorithm that decomposes rare/unknown words into smaller known/frequent words.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Token to ids (these ids are then used to represent the text), the text embedding layer in the NN transforms this into an embedding vector which is then learned by the model</li>
+                  </ul>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Biases: Addressing Diversity and biases in the data (Data Augmentation)</li>
-            </ul>
-            <p id="q-model" class="question"><strong>Model</strong></p>
+                </ul>
+            <p id="q-model" class="question"><strong>Model:</strong></p>
             <ul style="margin-left: 1.5rem;">
-              <li>Choice: Trade-offs of model architecture (RNNs vs Transformer), Transformer advantages (Parallel processing, Better long-range dependencies, Attention mechanism, Scalability)</li>
-              <li>Training Process: Pretraining (Large-scale unsupervised learning), Supervised Fine-tuning (Task-specific training), Reinforcement Learning from Human Feedback RLHF (Reward model training, Policy optimization, Human preference alignment)</li>
-            </ul>
-            <p id="q-inference-architecture" class="question"><strong>Inference Architecture</strong></p>
+              <li>Choice:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Trade-offs of options for model architecture and pros and cons. For text, you can talk about RNNs and how they were initially the go-to and the pros and cons vs Transformer architecture:</li>
+                  <li>Long-range dependencies handling</li>
+                  <li>Parallelization</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Types of architecture:</li>
+                  <li>Encoder only (sentence classification)</li>
+                  <li>Decoder only (text generation)</li>
+                  <li>Encoder-decoder (conditional generation on encoded input) used for translation. Uses cross-head attention and usually is framed as a masked language modeling task.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Transformers and how they work:</li>
+                  <li>Encoder consists of Text embedding, positional encoding, and transformer (EPT)</li>
+                  <li>Decoder contains Text embedding, positional encoding, transformer, and prediction head (EPTP). Decoder differs from encoder by three things:</li>
+                      <li>by the self-attention mechanism (masking to condition only on previous tokens), there could also be cross attention (esp in encoder-decoder models), then a prediction head.</li>
+                  <li>Components of transformer:</li>
+                      <li>Attention mechanism:</li>
+                          <li>scaled dot product self-attention - softmax((Q * trans(K))/sqrt(D))* V</li>
+                          <li>multi-head attention - multiple single attention heads concatenated and transformed with a linear layer</li>
+                      <li>Add and norm (residual connection and layer norm), feed forward, dropout</li>
+                  <li>Positional encoding (Pros and Cons):</li>
+                      <li>Absolute positional encoding - simple and performant e.g sin(w) if i = 2k and cos(w) if i = 2k+1; w = (1/10000^(2k/d))</li>
+                      <li>Learned positional encoding - loss of generalization when inferring on unseen token positions</li>
+                      <li>Relative positional embedding e.g. in T5 by Google that uses differences in positions - introduces additional complexity</li>
+                      <li>Rotary position embedding - represents positions as a rotation matrix therefore captures absolute and relative. It is generalizable and introduces additional complexity</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Objective - next token prediction for LLMs</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Loss function - cross entropy and how it works</li>
+                  </ul>
+                </ul>
             <ul style="margin-left: 1.5rem;">
-              <li>Components: Safety Filtering (input validation, harmful content detection), Prompt Enhancement (context optimization, instruction following), Response Generation (core language model inference), Safety Evaluation (output validation, content filtering), Session Management (context persistence, user state)</li>
-              <li>Performance Considerations: Latency optimization (< 300ms target), Throughput scaling (QPS requirements), Memory management, Caching strategies</li>
-            </ul>
-            <p id="q-scalability-and-production-con" class="question"><strong>Scalability and Production Considerations</strong></p>
+              <li>Training:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Training challenges and how to mitigate</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Training Optimization techniques:</li>
+                  <li>Gradient checkpointing - save only a select subset of activations in order to reduce memory footprint in back propagation. Works by recomputing part of the graph in between those nodes at the expense of a slight increase in computation time (torch.utils.checkpoint.checkpoint).</li>
+                  <li>Mixed precision training e.g. automatic mixed precision (AMP) in PyTorch. Combination of FP16 and FP32 (torch.amp, torch.autocast)</li>
+                  <li>Distributed training:</li>
+                      <li>Data parallelism:</li>
+                          <li>synchronous (update wrights after all gradient shave been collected across machines) or</li>
+                          <li>asynchronous gradient updates</li>
+                      <li>Model parallelism:</li>
+                          <li>Pipeline - layers are split across machines</li>
+                          <li>Tensor - operations in a layer are split across different machines. It can be row-wise or column-wise</li>
+                      <li>Hybrid parallelism: combination</li>
+                      <li>Others: Zero redundancy optimizer (MSFT) and Fully Sharded Data Parallel (Meta) can help reduce redundancy in memory and computation</li>
+                  </ul>
+                </ul>
             <ul style="margin-left: 1.5rem;">
-              <li>Infrastructure: Model serving infrastructure, Load balancing, Auto-scaling, Monitoring and observability</li>
-              <li>Data Pipeline: Real-time data ingestion, Batch processing, Feature engineering, Model retraining pipeline</li>
-            </ul>
-            <p id="q-evaluation-metrics" class="question"><strong>Evaluation Metrics</strong></p>
+              <li>Supervised Fine-Tuning: Same objective as pretraining but uses high quality demonstration data to make the model generate in suitable format. Main difference between this and pretraining data is size, quality and format (prompt-response)</li>
+                </ul>
             <ul style="margin-left: 1.5rem;">
-              <li>Technical Metrics: Response time, Throughput (QPS), Model accuracy, Safety compliance</li>
-              <li>Business Metrics: User engagement, Task completion rate, User satisfaction, Cost per interaction</li>
-            <div class="references-section">
-              <h3>📚 References & Resources</h3>
-              <ol class="references-list">
-                <li><a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener noreferrer">Attention Is All You Need - Vaswani et al.</a></li>
-                <li><a href="https://arxiv.org/abs/2203.02155" target="_blank" rel="noopener noreferrer">Training language models to follow instructions with human feedback</a></li>
-                <li><a href="https://arxiv.org/abs/2212.08073" target="_blank" rel="noopener noreferrer">Constitutional AI: Harmlessness from AI Feedback</a></li>
-                <li><a href="https://arxiv.org/abs/2001.08361" target="_blank" rel="noopener noreferrer">Scaling Laws for Neural Language Models</a></li>
-                <li><a href="https://arxiv.org/abs/2005.14165" target="_blank" rel="noopener noreferrer">Language Models are Few-Shot Learners</a></li>
-            </ul>
-              </ol>
-            </div>
+              <li>Post training or Alignment:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Using RLHF: PPO - Proximal Policy Optimization:</li>
+                  <li>Uses a reward model: Users preference pairs to train a reward model ranking style. It uses the margin ranking loss that minimizes Rwin - Rlose for the prompt response pair.</li>
+                  <li>Optimizes supervised fine-tuned model with RL based on the score given by the reward model.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Directly optimizing the objective (No reward model): DPO - Direct Preference Optimization:</li>
+                  <li>Optimizes supervised fine-tuned model directly</li>
+                  <li>Use human feedback (positive and negative) but without RL and not training a separate reward model but directly finetunes the SFT model using directly cross entropy to increase likelihood of positive examples</li>
+                </ul>
+            <p id="q-evaluation" class="question"><strong>Evaluation:</strong></p>
+                  </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Offline (Text generation) TTSH:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Traditional Eval:</li>
+                  <li>Perplexity (text generation): exp(1/N*sum(log(P(wi|w0..wi-1)))). Lower is better.</li>
+                  <li>Exact match at N (Text generation)</li>
+                  <li>CIDEr (text generation): Consensus-based image description evaluation compares generated text with sets of human reference texts. Uses n-gram overlap, TF-IDF, cosine similarity, and consensus averaging. A bit complex and also requires multiple references. 1+ is a good score but can range from 0-10</li>
+                  <li>BLEU (translation specific): Bilingual Evaluation Understudy, precision-based metric, matches of n-gram in prediction vs ground truth</li>
+                  <li>ROUGE (translation specific): Recall-Oriented Understudy for Gisting Evaluation focuses on recall instead of precision</li>
+                  <li>METEOR (translation specific): Metric for Evaluation of Translation with specific ordering. It considers synonyms and morphology better than BLEU and ROUGE but harder to implement</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Task-specific (CWCRMC):</li>
+                  <li>Common sense reasoning - e.g. Common Sense QA, Physical Interaction QA, HellaSwag</li>
+                  <li>World knowledge - e.g. Trivia QA, Natural Questions</li>
+                  <li>Code generation - Human Evaluation, MBPP - Multiple benchmarks for programming problems</li>
+                  <li>Reading comprehension - Stanford Question Answering Dataset (SQuAD)</li>
+                  <li>Mathematical reasoning (MATH, GSM8k - grade school math 8k)</li>
+                  <li>Composite benchmarks - MMLU (Massive Multitask Language Understanding), MMMU (Massive Multilingual Multitask Understanding), AGI Eval</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Safety (TBTUA):</li>
+                  <li>Toxicity and harmful content: RealToxicityPrompts, TOXIGEN, HateCheck</li>
+                  <li>Bias and fairness - CrowS-Pairs, BBQ, BOLD</li>
+                  <li>Truthfulness - TruthfulQA</li>
+                  <li>User privacy and data leakage - TextFooler, AdvGLUE</li>
+                  <li>Adversarial robustness</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Human evaluation:</li>
+                  <li>Helpfulness</li>
+                  <li>Safety</li>
+                  </ul>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Online:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>ML specific - user satisfaction, user retention, user engagement, conversion rate, completion rate, online leaderboard (LMSYS Chatbot Arena)</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>System:</li>
+                  <li>Latency (TPOT, TTFT, TGT)</li>
+                  <li>Throughput (TPS, RPS, Goodput - throughput that satisfies latency SLO)</li>
+                  <li>Utilization (MFU, MBU)</li>
+                  </ul>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Safeguards:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Churn rate, hallucination frequency, and adherence to content policies</li>
+                </ul>
+            <p id="q-deployment-and-monitoring" class="question"><strong>Deployment and monitoring:</strong></p>
+                  </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Dashboard (e.g., Grafana)</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Logs</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Alerts</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Audits</li>
+                </ul>
+            <p id="q-inference--sampling" class="question"><strong>Inference & Sampling:</strong></p>
+            <ul style="margin-left: 1.5rem;">
+              <li>(Pros and Cons) Sampling:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Deterministic:</li>
+                  <li>Greedy - highest probability but can be repetitive and suboptimal since it ignores alternative paths</li>
+                  <li>Beam - generates k sequences simultaneously like a decision tree but this can be inefficient for longer sentences and can also be repetitive</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Stochastic:</li>
+                  <li>Multinomial - using it probability —can be incoherent</li>
+                  <li>Top k - fixed top k tokens to include in the sampling - problematic as it only picks from a trio k</li>
+                  <li>Top p - fixed probability limit for the top tokens to sum to (more flexible and adaptable. Used with temperature parameter to modify the Softmax</li>
+                  </ul>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Inference optimization:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Model compression: Quantization (e.g., INT8)</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Caching (KV cache reuse)</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Use vLLM, Triton for token streaming and high throughput</li>
+                </ul>
+            <p id="q-infra-and-other-considerations" class="question"><strong>Infra and other considerations:</strong></p>
+                  </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>System components: Feature store, model registry, prompt manager, KV cache</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Privacy: Data minimization, opt-outs, GDPR compliance</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Security: adversarial attack, deep fakes, misinformation, prompt injection, data leakage:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Solutions: Prompt injection defense, adversarial prompt filtering, output abuse detection</li>
+                  </ul>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Biases: Guard rails, diversity-aware sampling, evaluation pipelines</li>
+                </ul>
+            <p id="q-advanced-stuff" class="question"><strong>Advanced stuff:</strong></p>
+            <ul style="margin-left: 1.5rem;">
+              <li>Inference:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Inference Phases:</li>
+                  <li>LLM inference typically involves two distinct phases:</li>
+                  <li>Prefill Phase:</li>
+                      <li>Purpose: Processes the entire input prompt to compute key-value (KV) pairs for attention mechanisms.</li>
+                      <li>Characteristics:</li>
+                          <li>Highly parallelizable and compute-intensive.</li>
+                          <li>Utilizes matrix-matrix multiplications.</li>
+                          <li>Efficiently leverages GPU capabilities.</li>
+                      <li>Optimization Techniques:</li>
+                          <li>Quantization: Reduces model size and computational requirements by representing weights with lower precision (e.g., INT8).</li>
+                          <li>Batching: Processes multiple inputs simultaneously to maximize hardware utilization.</li>
+                  <li>Decode Phase:</li>
+                      <li>Purpose: Generates output tokens one at a time, using previously computed KV pairs.</li>
+                      <li>Characteristics:</li>
+                          <li>Sequential and memory-bound.</li>
+                          <li>Involves matrix-vector multiplications.</li>
+                          <li>Less efficient in GPU utilization compared to the prefill phase.</li>
+                      <li>Challenges:</li>
+                          <li>Increased latency due to sequential processing.</li>
+                          <li>Memory bandwidth limitations can become bottlenecks.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Inference Optimization Strategies:</li>
+                  <li>Model-Level Optimization:</li>
+                      <li>Quantization: Smaller model size, faster inference (FP16, INT8, 4-bit support via AWQ, GPTQ)</li>
+                      <li>Pruning: Reduced computation (Removes redundant weights)</li>
+                      <li>Knowledge Distillation: Lower compute with minimal accuracy loss (Requires retraining)</li>
+                  <li>System: Autoregressive Bottleneck:</li>
+                      <li>Speculative Decoding: Lower latency (Needs verifier model)</li>
+                      <li>Inference with Reference: Reduced compute, faster decoding (Reuse known outputs, grammar guided)</li>
+                      <li>Parallel Decoding: Faster decode (Uses multiple decoding heads in parallel. Needs a verifier model to verify coherence. Examples of PD: Medusa, speculative tree decoding)</li>
+                  <li>System: Attention Optimization:</li>
+                      <li>PagedAttention (vLLM): Memory-efficient caching (Dynamic KV block allocation)</li>
+                      <li>KV Caching: Faster decoding (Requires cache management)</li>
+                      <li>FlashAttention, FlashInfer: Optimized memory and compute (Custom CUDA kernels)</li>
+                      <li>Sparse / Windowed Attention: Lower KV cache, better long context (BigBird, Longformer, FlashAttention-2)</li>
+                  <li>Service-Level Scheduling:</li>
+                      <li>Chunked Prefill: Reduces tail latency (Used in vLLM)</li>
+                      <li>Decode-Maximal Batching: Faster response (Prioritizes decode steps)</li>
+                      <li>Stall-Free Scheduling: Maximizes hardware use (Sarathi-Serve)</li>
+                      <li>Dynamic Batching: Higher throughput (vLLM, TGI batching)</li>
+                      <li>Static Batching: Predictable load (Fixed window scheduler)</li>
+                  <li>Compiler & Kernel:</li>
+                      <li>Fused Kernels: Reduced overhead (Combines multiple ops into one kernel)</li>
+                      <li>torch.compile, XLA, TVM: Graph-level speed-ups (Enables fusion, pruning, layout optimization)</li>
+                  <li>LLM-Specific Parallelism:</li>
+                      <li>Context Parallelism: Split input across GPUs (Attention parallelism)</li>
+                      <li>Sequence Parallelism: Operator-level parallelism (Split MLP/attention across devices)</li>
+                      <li>Pipeline Parallelism: Streaming inference (Split layers across devices)</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Key Performance Metrics:</li>
+                  <li>Latency Metrics:</li>
+                      <li>Time to First Token (TTFT): Measures the duration from input submission to the generation of the first output token. Critical for applications requiring prompt responses, such as chatbots.</li>
+                      <li>Time per Output Token (TPOT): Average time taken to generate each subsequent token after the first. Reflects the efficiency of the decode phase.</li>
+                      <li>Total Generation Time: Sum of TTFT and the time taken to generate all subsequent tokens. Important for assessing overall responsiveness.</li>
+                  <li>Throughput Metrics:</li>
+                      <li>Tokens per Second (TPS): Number of tokens generated per second. Higher TPS indicates better utilization of computational resources.</li>
+                      <li>Requests per Second (RPS): Number of inference requests processed per second. Relevant for systems handling multiple concurrent users.</li>
+                      <li>Goodput: Effective throughput that meets predefined Service Level Objectives (SLOs) for latency. Focuses on the quality of service delivered to end-users.</li>
+                  <li>Utilization Metrics:</li>
+                      <li>Compute Utilization:</li>
+                          <li>Model FLOPs Utilization (MFU): Ratio of actual floating-point operations per second (FLOPs) executed to the theoretical maximum. Indicates how effectively the model utilizes available computational resources.</li>
+                      <li>Memory Utilization:</li>
+                          <li>Model Bandwidth Utilization (MBU): Measures the efficiency of memory bandwidth usage =Data Transferred per Second/Peak Memory Bandwidth. High MBU values suggest effective memory usage, which is crucial during the decode phase.</li>
+                </ul>
+            <p id="q-prompt-engineering" class="question"><strong>Prompt Engineering:</strong></p>
+                  </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Chain on Thought: Intermediate reasoning step before converging to the answer</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Few Shot: Use few shot examples to help the model</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Role specific: Use role specific nudges e.g act like xxx</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>User context: add more context to the prompt</li>
+                </ul>
+            <p id="q-rag-retrievalaugmented-generat" class="question"><strong>RAG (Retrieval-Augmented Generation):</strong></p>
+            <ul style="margin-left: 1.5rem;">
+              <li>Purpose:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Enhances LLMs with external context to overcome context length limits and improve factual accuracy.</li>
+                  </ul>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Pipeline: Query → Retrieve → Combine (RAG Prompt) → Generate</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Retrieval Types:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Sparse Retrieval (Term-Based):</li>
+                  <li>Process: Build inverted index (mapping of term to documents) —> Rank with Techniques (TF-IDF, BM25)</li>
+                  <li>Returns: top-K most relevant documents</li>
+                  <li>Tools: Elasticsearch, Lucene</li>
+                  <li>Pros: Simple, interpretable</li>
+                  <li>Cons: Lacks semantic understanding</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Dense Retrieval (Embedding-Based):</li>
+                  <li>Process: Chunk → Embed → Approximate Nearest Neighbor (ANN) Search (e.g., Faiss, Weaviate)</li>
+                  <li>Returns: Chunks closest to the query vector</li>
+                  <li>Pros: Captures semantic similarity</li>
+                  <li>Cons: Depends on embedding model quality</li>
+                  </ul>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>ANN Algorithms:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>LSH: Uses Hashing to speed up similarity</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>HNSW: Graph-based, fast and accurate</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Inverted File Index: Clustering-based fast retrieval</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Product Quantization (PQ): Compress vectors to reduce memory usage (supported by FAISS)</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Annoy: Tree-based index using binary vector partitioning</li>
+                  </ul>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Key RAG Metrics:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Retrieval → Context Precision/Recall: Measures relevance of fetched documents</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Embedding Quality: Evaluated using MTEB benchmarks</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>System Latency and Cost: End-to-end performance and efficiency</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>ANN-specific Metrics: Recall@K, QPS, Index Size</li>
+                  </ul>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Retrieval Optimization:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Document Chunking: Fixed-size chunks constrained by LLM context length, Can be adaptive (e.g., chunk by headings or sections)</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Re-Ranking: Reorders retrieved results based on relevance + recency</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Query Rewriting: Reformulates user queries for improved retrieval quality</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Contextual Retrieval: Adds previous conversation history or metadata to the query</li>
+                  </ul>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>RAG Variants:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Multimodal RAG: Supports text ↔ image retrieval using models like CLIP</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Tabular RAG: Converts SQL or structured queries into text prompts for LLMs</li>
+                </ul>
+            <p id="q-agents-rl-planners" class="question"><strong>Agents (RL Planners):</strong></p>
+                  </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Response Generation:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Plan Generation (parallel or sequential)</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Plan Reflection and error correction</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Plan Execution:</li>
+                  <li>Query Generation:</li>
+                      <li>Query Execution:</li>
+                          <li>Tool use/Function calling:</li>
+                              <li>Knowledge Augmentation (Browser, RAG)</li>
+                              <li>Capability Extension (Calculator)</li>
+                              <li>Write Actions</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Reflection and Error correction (Using the outcomes)</li>
+                    </ul>
+                </ul>
           </div>
         </div>
 

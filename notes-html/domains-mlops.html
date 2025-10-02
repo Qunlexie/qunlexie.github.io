@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>MLOps - Notes</title>
-    <link rel="stylesheet" href="../assets/style.css?v=1759443501" />
+    <link rel="stylesheet" href="../assets/style.css?v=1759444768" />
     <style>
       /* Additional styles for notes page - always visible */
       .notes-content {
@@ -57,46 +57,36 @@
         text-decoration: underline;
       }
       
-      /* Table of Contents Styles */
+      /* Table of Contents Styles - aman.ai inspired */
       .table-of-contents {
-        background: #f8f9fa;
-        border: 1px solid #e9ecef;
-        border-radius: 8px;
-        padding: 1.5rem;
         margin-bottom: 2rem;
-      }
-      
-      .table-of-contents h3 {
-        margin-top: 0;
-        margin-bottom: 1rem;
-        color: #495057;
-        font-size: 1.2rem;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       }
       
       .toc-list {
         list-style: none;
-        padding-left: 0;
+        padding: 0;
         margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.6;
       }
       
       .toc-list li {
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.3rem;
+        position: relative;
       }
       
       .toc-list a {
         color: #007bff;
         text-decoration: none;
-        font-weight: 500;
         display: block;
-        padding: 0.25rem 0;
-        border-radius: 4px;
-        transition: all 0.2s ease;
+        padding: 0.1rem 0;
+        transition: color 0.2s ease;
       }
       
       .toc-list a:hover {
-        background-color: #e7f3ff;
-        padding-left: 0.5rem;
-        text-decoration: none;
+        color: #0056b3;
+        text-decoration: underline;
       }
       
       .question {
@@ -220,173 +210,286 @@
           <h2>MLOps</h2>
           <div style="line-height: 1.8;">
             <div class="table-of-contents">
-              <h3>📋 Table of Contents</h3>
               <ul class="toc-list">
-                <li><a href="#q-mlops-frameworks">1. MLOPs Frameworks</a></li>
-                <li><a href="#q-databases">2. Databases</a></li>
-                <li><a href="#q-cloud-computing--cloud-storage">3. Cloud Computing & Cloud Storage</a></li>
-                <li><a href="#q-batch-processing-pipeline">4. Batch Processing Pipeline</a></li>
-                <li><a href="#q-big-data-processing--analytics">5. Big Data Processing & Analytics</a></li>
-                <li><a href="#q-containerization">6. Containerization</a></li>
-                <li><a href="#q-data-platformization">7. Data Platformization</a></li>
+                <li><a href="#q-mlops-frameworks">* MLOPs Frameworks</a></li>
+                <li><a href="#q-databases">* Databases</a></li>
+                <li><a href="#q-cloud-computing--cloud-storage">* Cloud Computing & Cloud Storage</a></li>
+                <li><a href="#q-batch-processing-pipeline">* Batch Processing Pipeline</a></li>
+                <li><a href="#q-big-data-processing--analytics">* Big Data Processing & Analytics</a></li>
+                <li><a href="#q-containerization">* Containerization</a></li>
+                <li><a href="#q-data-platformization">* Data Platformization</a></li>
               </ul>
             </div>
 
             <p id="q-mlops-frameworks" class="question"><strong>MLOPs Frameworks</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Databases</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Cloud computing & cloud storage: AWS, Azure, GCP</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Batch Processing Pipeline: Airflow (batch), Kubeflow (batch),</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Big Data Processing & Analytics: Kafka (Stream Processing), Amazon kinesis (stream processing or real time transport),  Spark (Unified Data Processing & Analytics), Hadoop (Big Data Processing & storage)</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Containerization: Kubernetes (Container Management), Docker(Container)</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Data Platformization: Snowflake (generic), Databrick (ML), AWS Sagemaker (ML)</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Computer Vision: Yolo, FasterRCNN, Bytetracker (Models), OpenCV, PyTorch (Frameworks)</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>NLP: BERT, GPT (Models), NLTK, Space (Frameworks)</li>
-            </ul>
+                </ul>
             <p id="q-databases" class="question"><strong>Databases</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Structured relational:</li>
                 <ul style="margin-left: 1.5rem;">
                   <li>e.g. MYSQL, PostgresSQL, MariaDB, SQLLite [10]</li>
+                  </ul>
                 </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Unstructured/Key value store:</li>
                 <ul style="margin-left: 1.5rem;">
                   <li>e.g.  Redis, Memcache, etcd</li>
+                  </ul>
                 </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Document databases:</li>
                 <ul style="margin-left: 1.5rem;">
                   <li>e.g. MongoDB, RethinkDB</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Not as arbitrary as key store where there is complete lack of structure</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>document databases store data in structured formats called documents</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>They often using formats like JSON, BSON, or XML</li>
+                  </ul>
                 </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Graph Databases:</li>
                 <ul style="margin-left: 1.5rem;">
                   <li>e.g. Neo4j, Dgraph</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Has a social relationship structure: diodes, edges, properties</li>
+                  </ul>
                 </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Column family databases</li>
                 <ul style="margin-left: 1.5rem;">
                   <li>e.g Cassandra, Hbase</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Has flexible columns to bridge the gap between relational and document databases</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>column-family databases have structures called column families.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Column families contain rows of data, each of which define their own format.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>A row is composed of a unique row identifier — used to locate the row — followed by sets of column names and values.</li>
+                  </ul>
                 </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Time series database</li>
                 <ul style="margin-left: 1.5rem;">
                   <li>e.g Prometheus, OpenTSDB, influxDB, timescale DB</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Data stores that focus on collecting and managing values that change over time.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Time series databases are heavily write oriented.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>They are designed to handle a constant influx of incoming data [10]</li>
+                  </ul>
                 </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>New SQL</li>
                 <ul style="margin-left: 1.5rem;">
                   <li>e.g  MemSQL, VoltDB, Spanner, Calvin, CockroachDB, FaunaDB, yugabyteDB, PlanetScale</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>NewSQL databases follow the relational structure and semantics, but are built using more modern, scalable designs.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>The goal is to offer greater scalability than relational databases and greater consistency guarantees than NoSQL alternatives.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>They achieve this by sacrificing certain amounts of availability in the event of a networking partition. The trade offs between consistency and availability is a fundamental problem of distributed databases described by the CAP theorem.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Cap theorem asserts that in the event of a network partition, a distributed database can choose either to remain available or remain consistent, but it cannot do both</li>
+                  </ul>
                 </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Multi-model databases:</li>
                 <ul style="margin-left: 1.5rem;">
                   <li>e.g ArangoDB, OrientDB, CouchBase</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Combining the characteristics of more than one type of database</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>multi-model databases may allow users to access and manipulate data stored in different database types within a single query</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Multi-model databases also help maintain data consistency, which can be a problem when performing operations that modify data in many systems at once.</li>
                 </ul>
-            </ul>
             <p id="q-cloud-computing--cloud-storage" class="question"><strong>Cloud Computing & Cloud Storage</strong></p>
+                  </ul>
             <ul style="margin-left: 1.5rem;">
               <li>AWS</li>
                 <ul style="margin-left: 1.5rem;">
                   <li>Amazon Elastic Cloud Compute (EC2) and Amazon  Simple Storage Service (S3) are fundamentally different types of services [12].</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>EC2 allows you to run servers in the cloud with minimal effort on your part</li>
-                    <ul style="margin-left: 1.5rem;">
-                      <li>Most Amazon EC2 server instances are virtual machines hosted on Amazon Web Services infrastructure</li>
+                  <li>Most Amazon EC2 server instances are virtual machines hosted on Amazon Web Services infrastructure</li>
                     </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>S3 while the other is designed for storing large amounts of static data and ideal for data backups (storage).</li>
-                    <ul style="margin-left: 1.5rem;">
-                      <li>To get started with S3, users need to create a "bucket" - the endpoint resource where all uploaded data will virtually exist</li>
-                    </ul>
+                  <li>To get started with S3, users need to create a "bucket" - the endpoint resource where all uploaded data will virtually exist</li>
+                  </ul>
                 </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Azure & GCP</li>
                 <ul style="margin-left: 1.5rem;">
                   <li>similar and have cloud storage, compute services like AWS</li>
                 </ul>
-            </ul>
             <p id="q-batch-processing-pipeline" class="question"><strong>Batch Processing Pipeline</strong></p>
+                  </ul>
             <ul style="margin-left: 1.5rem;">
               <li>Apache Airflow (Batch Pipeline)</li>
                 <ul style="margin-left: 1.5rem;">
                   <li>Airflow is a processing  platform for developing, scheduling, and monitoring batch-oriented workflows [1].</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Very similar to dataswarm where you can stick different operators together to run a pipeline task</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Can't be used for continuous infinite processing of data (only batch)</li>
+                  </ul>
                 </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Google Kubeflow (Batch Pipeline)</li>
                 <ul style="margin-left: 1.5rem;">
                   <li>Does the same thing as Airflow</li>
                 </ul>
-            </ul>
             <p id="q-big-data-processing--analytics" class="question"><strong>Big Data Processing & Analytics</strong></p>
+                  </ul>
             <ul style="margin-left: 1.5rem;">
               <li>Apache Kafka (Stream Processing/ real time transport)</li>
                 <ul style="margin-left: 1.5rem;">
                   <li>Realtime stream processing, storage and analytics system for publishing, subscribing, storing, and processing streams of records in real time.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Apache calls these Topics which are used to store real time events/logs [se video in 3]</li>
+                  </ul>
                 </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Apache Spark (Unified Data Processing & Analytics)</li>
                 <ul style="margin-left: 1.5rem;">
                   <li>Unified analytics engine for big data and machine learning [8]</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Can connect to multiple databases and do data analytics, and ML (MLlib)</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Easy to use and can be with SQL (sparksql) or python (Pyspark)</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Spark can be 100x faster than Hadoop for large scale data processing by exploiting in memory computing and other optimizations</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Connects with multiple data sources e.g. Hadoop, MySQL, psotgresSQL, MongoDB, Kafka, Cassandra, elastic,</li>
+                  </ul>
                 </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Amazon kinesis</li>
                 <ul style="margin-left: 1.5rem;">
                   <li>same as Apache Kafka  (stream processing or real time transport)</li>
+                  </ul>
                 </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Hadoop (Big Data Processing & storage)</li>
                 <ul style="margin-left: 1.5rem;">
                   <li>Apache Hadoop is an open source software framework that provides highly reliable distributed processing of large data sets [9]</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Hadoop, known for its scalability, is built on clusters of commodity computers, providing a cost-effective solution for storing and processing massive amounts (MapReduce for parallel processing) of structured, semi-structured and unstructured data with no format requirements (HDFS for storing).</li>
                 </ul>
-            </ul>
             <p id="q-containerization" class="question"><strong>Containerization</strong></p>
+                  </ul>
             <ul style="margin-left: 1.5rem;">
               <li>Docker (Container)</li>
                 <ul style="margin-left: 1.5rem;">
                   <li>A Docker is a software tool that helps in building, deploying our applications efficiently. Docker is used to provide isolated environments enclosing the application and its dependencies [2]</li>
+                  </ul>
                 </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Kubernetes (Container Management)</li>
                 <ul style="margin-left: 1.5rem;">
                   <li>Kubernetes is an open-source software tool that can be used to manage containerized applications without manual intervention. In short Kubernetes can be used to manage several docker containers [2].</li>
                 </ul>
-            </ul>
             <p id="q-data-platformization" class="question"><strong>Data Platformization</strong></p>
+                  </ul>
             <ul style="margin-left: 1.5rem;">
               <li>Snowflake</li>
                 <ul style="margin-left: 1.5rem;">
                   <li>Snowflake is a cloud data platform built on the foundation of a data warehouse</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Enables customers to consolidate data into a single source of truth (since data come from various databases)</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Analytics can be done in snowflake to drive meaningful business insights, build data-driven applications, and share data.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Multi-cloud platform that can be used with different cloud providers Azure, AWS, GCP [4]</li>
+                  </ul>
                 </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Databricks</li>
                 <ul style="margin-left: 1.5rem;">
                   <li>Databricks is similarly a cloud data platform but built on the foundation of a data lake (either structured or unstructured data).</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>That data lake is used for data storage but its purpose is focused on enabling data scientists to leverage machine learning applications to analyze the data.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>The platform is primarily geared towards data science and machine learning applications [4]</li>
+                  </ul>
                 </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>AWS Sagemaker</li>
                 <ul style="margin-left: 1.5rem;">
                   <li>Deploying and monitoring ML models [11]</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Uses input from AWS cloud</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Supports most ML and DL models</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Simplifies the MLops work including monitoring, yuperparameter tuning, retraining  etc.</li>
+                    </ul>
+                </ul>
             <div class="references-section">
-              <h3>📚 References & Resources</h3>
+              <h3>References & Resources</h3>
               <ol class="references-list">
                 <li><a href="https://airflow.apache.org/docs/" target="_blank" rel="noopener noreferrer">What is Airflow? — Airflow Documentation</a></li>
                 <li><a href="https://www.analyticsvidhya.com/blog/2021/06/deploying-ml-models-using-kubernetes/" target="_blank" rel="noopener noreferrer">Deploying ML Models Using Kubernetes - Analytics Vidhya</a></li>
@@ -401,8 +504,6 @@
                 <li><a href="https://www.youtube.com/watch?v=your-video-id" target="_blank" rel="noopener noreferrer">Build, Train and Deploy Machine Learning Models on AWS with Amazon SageMaker - YouTube</a></li>
                 <li><a href="https://aws.amazon.com/compare/ec2-vs-s3/" target="_blank" rel="noopener noreferrer">EC2 vs S3: When You Need What in Amazon</a></li>
                 <li><a href="https://medium.com/swlh/understanding-gpt-3-openais-latest-language-model-8b8b8b8b8b8b" target="_blank" rel="noopener noreferrer">Understanding GPT-3: OpenAI's Latest Language Model - The Startup | Medium</a></li>
-                </ul>
-            </ul>
           </div>
         </div>
 

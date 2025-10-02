@@ -9,59 +9,53 @@ import os
 from pathlib import Path
 
 def parse_markdown_to_html(md_file):
-    """Convert markdown file to HTML content with table of contents"""
+    """Convert markdown file to HTML content with aman.ai-style table of contents"""
     with open(md_file, 'r', encoding='utf-8') as f:
         lines = f.readlines()
     
     html_content = []
     toc_items = []
-    in_list = False
-    in_nested_list = False
-    in_deep_nested_list = False
     
-    # First pass: collect all questions for TOC
-    question_counter = 0
+    # First pass: collect main topics for TOC
     for line in lines:
         line = line.rstrip()
         if not line.strip():
             continue
             
-        # Questions (no leading spaces, starts with -)
+        # Main topics (no leading spaces, starts with -)
         if line.startswith('- ') and not line.startswith('-   '):
             content = line[2:].strip()
             if content and not content.startswith('-'):
-                question_counter += 1
                 safe_content = re.sub(r'[^a-zA-Z0-9\s]', '', content).replace(' ', '-').lower()
                 anchor_id = f"q-{safe_content[:30]}"
                 toc_items.append({
                     'title': content,
-                    'anchor': anchor_id,
-                    'number': question_counter
+                    'anchor': anchor_id
                 })
     
-    # Generate Table of Contents
+    # Generate Table of Contents in aman.ai style
     if toc_items:
         html_content.append('            <div class="table-of-contents">')
-        html_content.append('              <h3>📋 Table of Contents</h3>')
         html_content.append('              <ul class="toc-list">')
         for item in toc_items:
-            html_content.append(f'                <li><a href="#{item["anchor"]}">{item["number"]}. {item["title"]}</a></li>')
+            html_content.append(f'                <li><a href="#{item["anchor"]}">* {item["title"]}</a></li>')
         html_content.append('              </ul>')
         html_content.append('            </div>')
         html_content.append('')
     
-    # Second pass: generate content
-    question_counter = 0
+    # Second pass: generate content with proper grouping
+    current_main_topic = None
+    current_subtopic = None
+    in_main_list = False
+    in_sub_list = False
+    in_deep_list = False
+    
     for line in lines:
         original_line = line
         line = line.rstrip()
         
-        # Skip empty lines
-        if not line.strip():
-            continue
-            
-        # Skip title lines (lines starting with #)
-        if line.strip().startswith('#'):
+        # Skip empty lines and titles
+        if not line.strip() or line.strip().startswith('#'):
             continue
         
         # Count leading spaces
@@ -70,21 +64,30 @@ def parse_markdown_to_html(md_file):
         
         # Handle references section
         if content.startswith('References & Resources:'):
+            # Close any open lists
+            if in_deep_list:
+                html_content.append('                    </ul>')
+                in_deep_list = False
+            if in_sub_list:
+                html_content.append('                </ul>')
+                in_sub_list = False
+            if in_main_list:
+                html_content.append('            </ul>')
+                in_main_list = False
+                
             html_content.append('            <div class="references-section">')
-            html_content.append('              <h3>📚 References & Resources</h3>')
+            html_content.append('              <h3>References & Resources</h3>')
             html_content.append('              <ol class="references-list">')
             continue
         
         # Handle numbered references
         if content.startswith(('1. ', '2. ', '3. ', '4. ', '5. ', '6. ', '7. ', '8. ', '9. ', '10. ', '11. ', '12. ', '13. ', '14. ', '15. ')):
-            # Extract the link from markdown format [text](url)
             link_match = re.search(r'\[([^\]]+)\]\(([^)]+)\)', content)
             if link_match:
                 link_text = link_match.group(1)
                 link_url = link_match.group(2)
                 html_content.append(f'                <li><a href="{link_url}" target="_blank" rel="noopener noreferrer">{link_text}</a></li>')
             else:
-                # Fallback for plain text
                 html_content.append(f'                <li>{content}</li>')
             continue
         
@@ -100,70 +103,74 @@ def parse_markdown_to_html(md_file):
         # Remove the '- ' prefix
         content = content[2:].strip()
         
-        # Top-level (0 spaces) - Questions
+        # Top-level (0 spaces) - Main topics (bold headers)
         if leading_spaces == 0:
-            # Close any open nested lists
-            if in_deep_nested_list:
-                html_content.append('                    </ul>')
-                in_deep_nested_list = False
-            if in_nested_list:
+            # Close any open lists first
+            if in_sub_list:
                 html_content.append('                </ul>')
-                in_nested_list = False
-            if in_list:
+                in_sub_list = False
+            if in_main_list:
+                html_content.append('              </li>')
                 html_content.append('            </ul>')
-                in_list = False
+                in_main_list = False
             
-            # Create anchor for question
-            question_counter += 1
+            # Create anchor for main topic
             safe_content = re.sub(r'[^a-zA-Z0-9\s]', '', content).replace(' ', '-').lower()
             anchor_id = f"q-{safe_content[:30]}"
             
-            # Add question without individual link
+            # Add bold header (like in your image)
             html_content.append(f'            <p id="{anchor_id}" class="question"><strong>{content}</strong></p>')
+            current_main_topic = content
+            current_subtopic = None
             
-        # First level indent (4 spaces) - Top-level answers
+        # First level indent (4 spaces) - Sub-topics
         elif leading_spaces == 4:
-            # Close nested lists if open
-            if in_deep_nested_list:
-                html_content.append('                    </ul>')
-                in_deep_nested_list = False
-            if in_nested_list:
+            # Close any deeper lists if open
+            if in_deep_list:
+                html_content.append('                  </ul>')
+                in_deep_list = False
+            if in_sub_list:
                 html_content.append('                </ul>')
-                in_nested_list = False
-                
-            if not in_list:
+                in_sub_list = False
+            
+            # Start new sub-topic
+            if not in_sub_list:
                 html_content.append('            <ul style="margin-left: 1.5rem;">')
-                in_list = True
+                in_sub_list = True
             
             html_content.append(f'              <li>{content}</li>')
             
-        # Second level indent (8 spaces) - Nested answers
+        # Second level indent (8 spaces) - Sub-sub-topics
         elif leading_spaces == 8:
-            # Close deep nested if open
-            if in_deep_nested_list:
+            # Close deeper lists if open
+            if in_deep_list:
                 html_content.append('                    </ul>')
-                in_deep_nested_list = False
-                
-            if not in_nested_list:
+                in_deep_list = False
+            
+            # Start sub-sub-topic list
+            if not in_deep_list:
                 html_content.append('                <ul style="margin-left: 1.5rem;">')
-                in_nested_list = True
+                in_deep_list = True
             
             html_content.append(f'                  <li>{content}</li>')
             
-        # Third level indent (12+ spaces) - Deep nested answers
+        # Third level indent (12+ spaces) - Deep nested content
         elif leading_spaces >= 12:
-            if not in_deep_nested_list:
-                html_content.append('                    <ul style="margin-left: 1.5rem;">')
-                in_deep_nested_list = True
+            if not in_deep_list:
+                html_content.append('                <ul style="margin-left: 1.5rem;">')
+                in_deep_list = True
             
-            html_content.append(f'                      <li>{content}</li>')
+            # Handle even deeper nesting
+            nested_level = (leading_spaces - 12) // 4
+            indent = '                  ' + '    ' * nested_level
+            html_content.append(f'{indent}<li>{content}</li>')
     
     # Close any open lists
-    if in_deep_nested_list:
+    if in_deep_list:
         html_content.append('                    </ul>')
-    if in_nested_list:
+    if in_sub_list:
         html_content.append('                </ul>')
-    if in_list:
+    if in_main_list:
         html_content.append('            </ul>')
     
     # Close references section if it was opened
@@ -280,46 +287,36 @@ def create_html_template(title, content, password):
         text-decoration: underline;
       }}
       
-      /* Table of Contents Styles */
+      /* Table of Contents Styles - aman.ai inspired */
       .table-of-contents {{
-        background: #f8f9fa;
-        border: 1px solid #e9ecef;
-        border-radius: 8px;
-        padding: 1.5rem;
         margin-bottom: 2rem;
-      }}
-      
-      .table-of-contents h3 {{
-        margin-top: 0;
-        margin-bottom: 1rem;
-        color: #495057;
-        font-size: 1.2rem;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       }}
       
       .toc-list {{
         list-style: none;
-        padding-left: 0;
+        padding: 0;
         margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.6;
       }}
       
       .toc-list li {{
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.3rem;
+        position: relative;
       }}
       
       .toc-list a {{
         color: #007bff;
         text-decoration: none;
-        font-weight: 500;
         display: block;
-        padding: 0.25rem 0;
-        border-radius: 4px;
-        transition: all 0.2s ease;
+        padding: 0.1rem 0;
+        transition: color 0.2s ease;
       }}
       
       .toc-list a:hover {{
-        background-color: #e7f3ff;
-        padding-left: 0.5rem;
-        text-decoration: none;
+        color: #0056b3;
+        text-decoration: underline;
       }}
       
       .question {{
@@ -504,7 +501,7 @@ def build_notes_hub(note_structure):
         folder_title = folder_name.replace('-', ' ').replace('_', ' ').title()
         hub_content.append(f'''
           <div class="toc-section" id="{folder_name}">
-            <h2>📚 {folder_title}</h2>
+            <h2>{folder_title}</h2>
             <ul class="toc-list">''')
         
         for file_info in files:
@@ -515,40 +512,142 @@ def build_notes_hub(note_structure):
             hub_content.append(f'''
               <li>
                 <a href="{html_file}">{file_title}</a>
-                <div class="toc-description">Complete reference for {file_title.lower()}</div>
               </li>''')
         
         hub_content.append('''
             </ul>
           </div>''')
     
-    # Read the hub template
+    # Create simple notes hub template
+    hub_template = '''<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Notes Hub - Study Materials</title>
+    <link rel="stylesheet" href="../assets/style.css" />
+    <style>
+      .notes-content { display: block; }
+      
+      .notes-header {
+        text-align: center;
+        margin: 2rem 0;
+        padding: 2rem;
+      }
+      
+      .notes-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        color: #333;
+      }
+      
+      .notes-header .subtitle {
+        color: #666;
+        font-size: 1.1rem;
+      }
+      
+      .toc-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+      
+      .toc-section {
+        margin-bottom: 2rem;
+      }
+      
+      .toc-section:last-child {
+        margin-bottom: 0;
+      }
+      
+      .toc-section h2 {
+        font-size: 1.5rem;
+        color: #333;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #ddd;
+      }
+      
+      .toc-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      
+      .toc-list li {
+        margin-bottom: 0.5rem;
+      }
+      
+      .toc-list a {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        display: block;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #f0f0f0;
+      }
+      
+      .toc-list a:hover {
+        color: #0056b3;
+        text-decoration: underline;
+      }
+      
+      @media (max-width: 768px) {
+        .notes-header h1 {
+          font-size: 2rem;
+        }
+        .toc-container {
+          margin: 0 1rem;
+          padding: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects and Research</a></li>
+          <li><a href="highlights.html">Highlights</a></li>
+          <li><a href="notes.html">Notes Hub</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div class="notes-content" id="notesContent">
+        <div class="notes-header">
+          <h1>Notes Hub</h1>
+          <p class="subtitle">Study materials and technical notes</p>
+        </div>
+        
+        <div class="toc-container">
+''' + ''.join(hub_content) + '''
+        </div>
+      </div>
+    </main>
+    
+    <footer>
+      <p>&copy; 2025 Notes Hub</p>
+    </footer>
+
+    <script>
+      console.log('Notes Hub loaded');
+    </script>
+  </body>
+</html>'''
+    
+    # Write the hub file
     script_dir = Path(__file__).parent
     hub_file = script_dir / '../pages/notes.html'
-    if not hub_file.exists():
-        print("Error: notes.html template not found")
-        return False
     
-    with open(hub_file, 'r', encoding='utf-8') as f:
-        hub_html = f.read()
-    
-    # Replace the dynamic content section
-    start_marker = '<!-- Dynamic Content Start -->'
-    end_marker = '<!-- Future Sections -->'
-    
-    start_idx = hub_html.find(start_marker)
-    end_idx = hub_html.find(end_marker)
-    
-    if start_idx != -1 and end_idx != -1:
-        new_content = ''.join(hub_content)
-        updated_hub = hub_html[:start_idx] + new_content + hub_html[end_idx:]
-    else:
-        # No password replacement needed - knowledge is free!
-        updated_hub = hub_html
-    
-    # Write back
     with open(hub_file, 'w', encoding='utf-8') as f:
-        f.write(updated_hub)
+        f.write(hub_template)
     
     return True
 

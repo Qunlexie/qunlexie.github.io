@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Recommendation Systems Basics - Notes</title>
-    <link rel="stylesheet" href="../assets/style.css?v=1759443501" />
+    <link rel="stylesheet" href="../assets/style.css?v=1759444768" />
     <style>
       /* Additional styles for notes page - always visible */
       .notes-content {
@@ -57,46 +57,36 @@
         text-decoration: underline;
       }
       
-      /* Table of Contents Styles */
+      /* Table of Contents Styles - aman.ai inspired */
       .table-of-contents {
-        background: #f8f9fa;
-        border: 1px solid #e9ecef;
-        border-radius: 8px;
-        padding: 1.5rem;
         margin-bottom: 2rem;
-      }
-      
-      .table-of-contents h3 {
-        margin-top: 0;
-        margin-bottom: 1rem;
-        color: #495057;
-        font-size: 1.2rem;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       }
       
       .toc-list {
         list-style: none;
-        padding-left: 0;
+        padding: 0;
         margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.6;
       }
       
       .toc-list li {
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.3rem;
+        position: relative;
       }
       
       .toc-list a {
         color: #007bff;
         text-decoration: none;
-        font-weight: 500;
         display: block;
-        padding: 0.25rem 0;
-        border-radius: 4px;
-        transition: all 0.2s ease;
+        padding: 0.1rem 0;
+        transition: color 0.2s ease;
       }
       
       .toc-list a:hover {
-        background-color: #e7f3ff;
-        padding-left: 0.5rem;
-        text-decoration: none;
+        color: #0056b3;
+        text-decoration: underline;
       }
       
       .question {
@@ -220,63 +210,100 @@
           <h2>Recommendation Systems Basics</h2>
           <div style="line-height: 1.8;">
             <div class="table-of-contents">
-              <h3>📋 Table of Contents</h3>
               <ul class="toc-list">
-                <li><a href="#q-pointwise-learning-to-rank-mos">1. Pointwise Learning to Rank (Most common)</a></li>
-                <li><a href="#q-pairwise-learning-to-rank">2. Pairwise Learning to Rank</a></li>
-                <li><a href="#q-listwise-learning-to-rank">3. Listwise Learning to Rank</a></li>
+                <li><a href="#q-pointwise-learning-to-rank-mos">* Pointwise Learning to Rank (Most common)</a></li>
+                <li><a href="#q-pairwise-learning-to-rank">* Pairwise Learning to Rank</a></li>
+                <li><a href="#q-listwise-learning-to-rank">* Listwise Learning to Rank</a></li>
               </ul>
             </div>
 
             <p id="q-pointwise-learning-to-rank-mos" class="question"><strong>Pointwise Learning to Rank (Most common)</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Predict absolute relevance score or class label for each item independently</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Loss Functions:</li>
                 <ul style="margin-left: 1.5rem;">
                   <li>Regression: MSE between predicted score and ground truth relevance</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Classification: Binary cross-entropy or softmax cross-entropy</li>
+                  </ul>
                 </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Training Tips:</li>
                 <ul style="margin-left: 1.5rem;">
                   <li>Use click/impression logs; label clicked items as positive</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Handle label imbalance with weighting or sampling</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Suitable for CTR prediction, early stages of ranking pipeline</li>
+                  </ul>
                 </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Examples: Logistic Regression, DeepFM, MLP Rankers</li>
-            </ul>
+                </ul>
             <p id="q-pairwise-learning-to-rank" class="question"><strong>Pairwise Learning to Rank</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Goal: Model learns relative ranking: S(u, r⁺) > S(u, r⁻), f = S(u, r⁺) − S(u, r⁻)</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Loss Functions:</li>
                 <ul style="margin-left: 1.5rem;">
                   <li>Hinge: max(0, 1 − (S(u,r⁺) − S(u,r⁻)))</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Logistic: log(1 + exp(−(S(u,r⁺) − S(u,r⁻))))</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Softmax (Exp): exp(S(u,r⁺)) / (exp(S(u,r⁺)) + exp(S(u,r⁻)))</li>
+                  </ul>
                 </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Training Tips:</li>
                 <ul style="margin-left: 1.5rem;">
                   <li>Construct data as pairs of positive (interaction) and negative (no interaction)</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>You can use in batch negatives i.e. using positives in the same batch as negatives</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Use hard negatives: include negatives that are closer to the positives in training to allow model to learn complex patterns</li>
+                  </ul>
                 </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Examples: LamdaMart, LamdaRank, RankNet</li>
-            </ul>
+                </ul>
             <p id="q-listwise-learning-to-rank" class="question"><strong>Listwise Learning to Rank</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Goal: Optimize the entire ranked list at once based on list-level metrics (e.g., NDCG)</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Loss Functions:</li>
                 <ul style="margin-left: 1.5rem;">
                   <li>ListMLE Loss: Maximizes likelihood estimate (MLE) of correct ranking</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>ApproxNDCG, LambdaLoss: Directly optimize ranking metrics</li>
+                  </ul>
                 </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Training Tips:</li>
                 <ul style="margin-left: 1.5rem;">
                   <li>Input is a list of items with known relevance labels</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Best for final-stage reranking</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>More complex but aligns closely with business objectives (e.g., NDCG@k)</li>
+                  </ul>
                 </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Examples: ListNet, ListMLE</li>
-            </ul>
+                </ul>
           </div>
         </div>
 

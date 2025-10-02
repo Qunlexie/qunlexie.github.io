@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Computer Vision - Notes</title>
-    <link rel="stylesheet" href="../assets/style.css?v=1759443501" />
+    <link rel="stylesheet" href="../assets/style.css?v=1759444768" />
     <style>
       /* Additional styles for notes page - always visible */
       .notes-content {
@@ -57,46 +57,36 @@
         text-decoration: underline;
       }
       
-      /* Table of Contents Styles */
+      /* Table of Contents Styles - aman.ai inspired */
       .table-of-contents {
-        background: #f8f9fa;
-        border: 1px solid #e9ecef;
-        border-radius: 8px;
-        padding: 1.5rem;
         margin-bottom: 2rem;
-      }
-      
-      .table-of-contents h3 {
-        margin-top: 0;
-        margin-bottom: 1rem;
-        color: #495057;
-        font-size: 1.2rem;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       }
       
       .toc-list {
         list-style: none;
-        padding-left: 0;
+        padding: 0;
         margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.6;
       }
       
       .toc-list li {
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.3rem;
+        position: relative;
       }
       
       .toc-list a {
         color: #007bff;
         text-decoration: none;
-        font-weight: 500;
         display: block;
-        padding: 0.25rem 0;
-        border-radius: 4px;
-        transition: all 0.2s ease;
+        padding: 0.1rem 0;
+        transition: color 0.2s ease;
       }
       
       .toc-list a:hover {
-        background-color: #e7f3ff;
-        padding-left: 0.5rem;
-        text-decoration: none;
+        color: #0056b3;
+        text-decoration: underline;
       }
       
       .question {
@@ -220,12 +210,11 @@
           <h2>Computer Vision</h2>
           <div style="line-height: 1.8;">
             <div class="table-of-contents">
-              <h3>📋 Table of Contents</h3>
               <ul class="toc-list">
-                <li><a href="#q-detection">1. Detection</a></li>
-                <li><a href="#q-mask-segmentation">2. Mask Segmentation</a></li>
-                <li><a href="#q-classification">3. Classification</a></li>
-                <li><a href="#q-key-concepts">4. Key Concepts</a></li>
+                <li><a href="#q-detection">* Detection</a></li>
+                <li><a href="#q-mask-segmentation">* Mask Segmentation</a></li>
+                <li><a href="#q-classification">* Classification</a></li>
+                <li><a href="#q-key-concepts">* Key Concepts</a></li>
               </ul>
             </div>
 
@@ -234,44 +223,86 @@
               <li>TLDR: object detection predicts tow things:</li>
                 <ul style="margin-left: 1.5rem;">
                   <li>the bounding box coordinates</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>and class label</li>
+                  </ul>
                 </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Starts with the input image (do some preprocessing)</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Backbone feature extraction network using a CNN or ConvNET e.g. AlexNet, Microsoft's ResNET (remember ResNET solved the problem of vanishing/exploding gradient using skip connections and that's why it sis still popular till date [5]) used of extracting useful features</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>This features are then passed through a Region Proposal network RPN (this network is specific Faster Regional Convolutional Network - Facebook's FasterRCNN) which builds anchor or Region of Interest, ROI boxes around the objects of interest [6]. Next it does two type of detection:</li>
                 <ul style="margin-left: 1.5rem;">
                   <li>Objectiveness: if an object is there (binary classification)</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
                   <li>Bounding Box prediction: If object is there predict the x-y coordinates using linear regression</li>
+                  </ul>
                 </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Final step is the object classification either car, goat, man</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Popular Detection Models: FasterRCNN, Mask RCN, Cascade RCNN (2 stage methods optimized for detection accuracy), YOLO, SSD, RetinaNET (1-stage methods optimized for inference speed)</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Popular Detection Datasets: Microsoft's Coco dataset</li>
-            </ul>
+                </ul>
             <p id="q-mask-segmentation" class="question"><strong>Mask Segmentation</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>A special case of detection is called Mask Segmentation</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>The ROI boxes are first layered with the ground truth to obtain an Intersection Over Union (IoU)</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>IoU > 0.5 is selected as a true region of interest</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>After that the segmentation mask is added to the architecture to obtain the mask segmented output [6].</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Popular Mask Segmentation Models: FasterRCNN, Mask RCNN [6]</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Popular Mask Segmentation Datasets: Microsoft's Coco dataset</li>
-            </ul>
+                </ul>
             <p id="q-classification" class="question"><strong>Classification</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Popular Classification Models: ResNET, VGG, AlexNet, DenseNet, EfficientNet</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Popular Classification Datasets: ImageNet, CIFAR-10, CIFAR-100</li>
-            </ul>
+                </ul>
             <p id="q-key-concepts" class="question"><strong>Key Concepts</strong></p>
             <ul style="margin-left: 1.5rem;">
               <li>Data Augmentation: Techniques like rotation, flipping, cropping, color jittering to increase dataset diversity</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Transfer Learning: Using pre-trained models (e.g., ImageNet) and fine-tuning for specific tasks</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Feature Maps: Intermediate representations learned by CNN layers</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Convolution Operations: Sliding window operations to detect features like edges, textures, patterns</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Pooling: Downsampling operations (max pooling, average pooling) to reduce spatial dimensions</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Activation Functions: ReLU, Leaky ReLU, Swish for introducing non-linearity</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Batch Normalization: Normalizing inputs to each layer for stable training</li>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Dropout: Regularization technique to prevent overfitting</li>
-            </ul>
+                </ul>
           </div>
         </div>
 

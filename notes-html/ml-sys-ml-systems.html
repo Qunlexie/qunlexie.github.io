@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>ML System Interview - Notes</title>
-    <link rel="stylesheet" href="../assets/style.css?v=1759443501" />
+    <link rel="stylesheet" href="../assets/style.css?v=1759444768" />
     <style>
       /* Additional styles for notes page - always visible */
       .notes-content {
@@ -57,46 +57,36 @@
         text-decoration: underline;
       }
       
-      /* Table of Contents Styles */
+      /* Table of Contents Styles - aman.ai inspired */
       .table-of-contents {
-        background: #f8f9fa;
-        border: 1px solid #e9ecef;
-        border-radius: 8px;
-        padding: 1.5rem;
         margin-bottom: 2rem;
-      }
-      
-      .table-of-contents h3 {
-        margin-top: 0;
-        margin-bottom: 1rem;
-        color: #495057;
-        font-size: 1.2rem;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       }
       
       .toc-list {
         list-style: none;
-        padding-left: 0;
+        padding: 0;
         margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.6;
       }
       
       .toc-list li {
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.3rem;
+        position: relative;
       }
       
       .toc-list a {
         color: #007bff;
         text-decoration: none;
-        font-weight: 500;
         display: block;
-        padding: 0.25rem 0;
-        border-radius: 4px;
-        transition: all 0.2s ease;
+        padding: 0.1rem 0;
+        transition: color 0.2s ease;
       }
       
       .toc-list a:hover {
-        background-color: #e7f3ff;
-        padding-left: 0.5rem;
-        text-decoration: none;
+        color: #0056b3;
+        text-decoration: underline;
       }
       
       .question {
@@ -220,11 +210,10 @@
           <h2>ML System Interview</h2>
           <div style="line-height: 1.8;">
             <div class="table-of-contents">
-              <h3>📋 Table of Contents</h3>
               <ul class="toc-list">
-                <li><a href="#q-feed-ranking--personalized-rec">1. Feed Ranking / Personalized Recommendation Systems</a></li>
-                <li><a href="#q-ads-recommendation-systems">2. Ads Recommendation Systems</a></li>
-                <li><a href="#q-system-design-considerations">3. System Design Considerations</a></li>
+                <li><a href="#q-feed-ranking--personalized-rec">* Feed Ranking / Personalized Recommendation Systems</a></li>
+                <li><a href="#q-ads-recommendation-systems">* Ads Recommendation Systems</a></li>
+                <li><a href="#q-other-considerations">* Other Considerations</a></li>
               </ul>
             </div>
 
@@ -232,73 +221,393 @@
             <ul style="margin-left: 1.5rem;">
               <li>Business Metrics</li>
                 <ul style="margin-left: 1.5rem;">
-                  <li>Maximize: Watch Time, Completion Rate, Engagement (likes, shares, saves, follows, profile views)</li>
-                  <li>Minimize: Safeguards (churn rate, drop in app opens, shorter session duration), Disengagement Signals (not interested, block, report, high scroll velocity)</li>
+                  <li>Maximize:</li>
+                  <li>Watch Time: encourage longer consumption, measured across different duration buckets.</li>
+                  <li>Completion Rate: e.g., proportion of users completing ≥70% of an item.</li>
+                  <li>Engagement: likes, shares, saves, follows, profile views.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Minimize:</li>
+                  <li>Safeguards: churn rate, drop in app opens, shorter session duration.</li>
+                  <li>Disengagement Signals: not interested, block, report, high scroll velocity.</li>
+                  </ul>
                 </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Data and Labels</li>
                 <ul style="margin-left: 1.5rem;">
-                  <li>Outputs: Probability of watch time > k seconds, Probability of completion, Probability of engagement</li>
-                  <li>Inputs: User Profile (demographics, app usage history), User-Content Interaction, Content Attributes, Graph Features, Contextual Information</li>
-                  <li>Scale and Latency: Hundreds of millions of daily active users, Millions of new content items daily, Target latency ≤ 100 ms per request</li>
+                  <li>Outputs:</li>
+                  <li>Probability of watch time > k seconds (bucketed outcomes).</li>
+                  <li>Probability of completion.</li>
+                  <li>Probability of engagement (like, share, follow, save) or a weighted composite engagement metric.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Inputs:</li>
+                  <li>User Profile: demographics, app usage history, community affiliations, location/places history.</li>
+                  <li>User-Content Interaction: recent history of watched, liked, shared, or skipped content.</li>
+                  <li>Content Attributes: creator profile, topic tags, captions, text/audio/image/video features.</li>
+                  <li>Graph Features: follower-followee links, creator interaction graph, PageRank, clustering coefficients.</li>
+                  <li>Contextual Information: device type, time of day, session-level activity.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Scale and Latency:</li>
+                  <li>Hundreds of millions of daily active users.</li>
+                  <li>Millions of new content items daily.</li>
+                  <li>Target latency: ≤ 100 ms per request.</li>
+                  </ul>
                 </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>System Architecture</li>
                 <ul style="margin-left: 1.5rem;">
-                  <li>Hybrid Batch + Real-Time: Batch Layer (compute embeddings daily), Real-Time Layer (session-enriched embeddings)</li>
-                  <li>System Flow: Candidate Generation (embedding-based retrieval, ANN search), Ranking (deep personalized models), Post-Processing (re-ranking, safety filtering)</li>
+                  <li>Hybrid Batch + Real-Time:</li>
+                  <li>Batch Layer: compute embeddings for all users and content daily.</li>
+                  <li>Real-Time Layer: session-enriched embeddings updated continuously for active users.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>System Flow:</li>
+                  <li>Candidate Generation: Embedding-based retrieval with high recall, ANN search engines (e.g., FAISS, ScaNN) for fast retrieval over 100M+ items.</li>
+                  <li>Ranking: Deep personalized models combining user, content, graph, and context features, Multitask prediction of engagement, completion, and watch time.</li>
+                  <li>Post-Processing: Re-ranking for freshness, diversity, recency, Content safety and policy filtering.</li>
+                  </ul>
                 </ul>
+            <ul style="margin-left: 1.5rem;">
               <li>Data & Feature Engineering</li>
                 <ul style="margin-left: 1.5rem;">
-                  <li>Feature Types: User (demographics, usage history), Content/Creator (metadata, tags, embeddings), Interaction (likes, shares, favorites), Graph (shared followers, PageRank)</li>
-                  <li>Feature Engineering: Cross features, Temporal features, Sequence modeling, Graph-based features</li>
-                </ul>
-              <li>Model Architecture</li>
+                  <li>Feature Types:</li>
+                  <li>User: demographics, usage history, places visited.</li>
+                  <li>Content/Creator: creator metadata, tags, captions, embeddings from multimodal encoders.</li>
+                  <li>Interaction: likes, shares, favorites, profile views.</li>
+                  <li>Graph: shared followers, community detection, PageRank, clustering coefficient.</li>
+                  <li>Context: time of day, device, session features.</li>
+                  <li>Cross Features: pairwise interactions such as (user age × content category).</li>
+                    </ul>
                 <ul style="margin-left: 1.5rem;">
-                  <li>Two-Tower Architecture: User Tower (encodes user features), Content Tower (encodes content features), Interaction (dot product or learned similarity)</li>
-                  <li>Deep Learning Components: Embedding layers, Dense layers, Attention mechanisms, Multi-task learning</li>
-                </ul>
-              <li>Training Strategy</li>
+                  <li>Handling Missing Data:</li>
+                  <li>Mean/median imputation.</li>
+                  <li>Predictive imputation where feasible.</li>
+                    </ul>
                 <ul style="margin-left: 1.5rem;">
-                  <li>Loss Functions: Binary cross-entropy for engagement, Regression loss for watch time, Multi-task loss</li>
-                  <li>Training Data: Positive samples (user interactions), Negative sampling (random vs hard negatives), Temporal validation</li>
-                </ul>
-              <li>Evaluation and Metrics</li>
+                  <li>Feature Representation:</li>
+                  <li>Numerical → normalization, bucketing.</li>
+                  <li>Categorical → embeddings for user IDs, content IDs, creator IDs.</li>
+                  <li>Text → embeddings from pretrained transformers (DistilBERT, word2vec).</li>
+                  <li>Video/Image → encoders such as CLIP or ViT.</li>
+                    </ul>
                 <ul style="margin-left: 1.5rem;">
-                  <li>Offline Metrics: AUC, Precision@K, Recall@K, NDCG, Hit Rate, Coverage</li>
-                  <li>Online Metrics: Click-through rate (CTR), Watch time per session, User engagement rate, Retention metrics</li>
-                </ul>
-              <li>Bias Mitigation</li>
+                  <li>Labels:</li>
+                  <li>Watch completion (binary).</li>
+                  <li>Engagement events (like, share, save).</li>
+                  <li>Watch time buckets.</li>
+                    </ul>
                 <ul style="margin-left: 1.5rem;">
-                  <li>Types of Bias: Selection bias (only observing interactions), Position bias (items higher get more clicks), Popularity bias, Demographic bias</li>
-                  <li>Mitigation Strategies: Inverse propensity weighting, Position-aware models, Diversity constraints, Fairness-aware training objectives</li>
-                </ul>
-              <li>A/B Testing Framework</li>
+                  <li>Sampling & Splitting:</li>
+                  <li>Negative sampling: time-based or exposed-but-skipped items.</li>
+                  <li>Stratified sampling to preserve diversity.</li>
+                  <li>Time-based splits for train/val/test (e.g., 10 months / 1 month / 1 month).</li>
+                    </ul>
                 <ul style="margin-left: 1.5rem;">
-                  <li>Test Design: Random assignment, Statistical significance testing, Multiple testing correction, Long-term vs short-term effects</li>
-                  <li>Key Metrics: Primary (engagement metrics), Secondary (user satisfaction, retention), Guardrail (safety, fairness metrics)</li>
+                  <li>Bias Challenges:</li>
+                  <li>Imbalanced Classes: oversample positives, use SMOTE, or apply hard negative mining.</li>
+                  <li>Positional Bias: model position explicitly or apply position-aware learning.</li>
+                  <li>Exposure Bias: apply inverse propensity weighting (IPW).</li>
+                  </ul>
                 </ul>
-            </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Modeling & Training</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Candidate Generation:</li>
+                  <li>Two-Tower Model: user tower + content tower.</li>
+                  <li>Contrastive learning (InfoNCE loss).</li>
+                  <li>Embedding indexing with FAISS/ScaNN.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Ranking:</li>
+                  <li>Multitask MLP predicting multiple objectives.</li>
+                  <li>Input: fused embeddings from user, content, graph, context.</li>
+                  <li>Post-ranking logic: promote diversity, surface long-tail content, enforce safety.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Loss Functions:</li>
+                  <li>Binary Cross Entropy.</li>
+                  <li>Normalized Cross Entropy.</li>
+                  <li>Calibration loss for probability alignment.</li>
+                  </ul>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Evaluation & Deployment</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Offline Metrics:</li>
+                  <li>Retrieval: NCE loss.</li>
+                  <li>Ranking: nDCG@k, Recall@k, MAP.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Online Metrics:</li>
+                  <li>Watch completion rate.</li>
+                  <li>Engagement/session.</li>
+                  <li>Average daily watch time per user.</li>
+                  <li>Aggregate metrics such as DAU × average watch time.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Deployment Strategies:</li>
+                  <li>Shadow launches.</li>
+                  <li>A/B testing with progressive rollout.</li>
+                  <li>Bandit frameworks for exploration of unseen creators/content.</li>
+                  </ul>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Monitoring & Continuous Learning:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Real-time ingestion of engagement signals.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Daily refresh of embeddings for active users and trending content.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Periodic retraining to capture evolving user interests.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Monitor drift across content types and modalities.</li>
+                  </ul>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Infrastructure:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Feature Store: ensure offline/online consistency.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Model Store: decouple retrieval and ranking models.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Serving: containerized inference (K8s), FAISS/ScaNN for retrieval, memory store (e.g., Redis) for graph embeddings.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Monitoring: dashboards for latency, skips, engagement anomalies.</li>
+                </ul>
             <p id="q-ads-recommendation-systems" class="question"><strong>Ads Recommendation Systems</strong></p>
+                  </ul>
             <ul style="margin-left: 1.5rem;">
-              <li>Business Objectives: Revenue maximization (CPM, CPC, CPA), User experience preservation, Advertiser satisfaction, Platform growth</li>
-              <li>System Components: Ad selection and ranking, Bid optimization, Budget pacing, Quality scoring</li>
-              <li>Technical Challenges: Real-time bidding, Multi-objective optimization, Ad relevance vs revenue trade-offs, Fraud detection</li>
-            </ul>
-            <p id="q-system-design-considerations" class="question"><strong>System Design Considerations</strong></p>
+              <li>Business Metrics:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Maximize: CTR, engagement (likes, shares), conversion events (install, purchase, sign-up).</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Minimize: negative feedback such as "not interested" or report rates.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Safeguards: avoid churn and fatigue from repetitive ads.</li>
+                  </ul>
+                </ul>
             <ul style="margin-left: 1.5rem;">
-              <li>Scalability: Microservices architecture, Horizontal scaling, Caching strategies, Database sharding</li>
-              <li>Reliability: Fault tolerance, Circuit breakers, Graceful degradation, Monitoring and alerting</li>
-              <li>Data Pipeline: Real-time streaming (Kafka, Flink), Batch processing (Spark, Hadoop), Feature stores, Model serving infrastructure</li>
-            <div class="references-section">
-              <h3>📚 References & Resources</h3>
-              <ol class="references-list">
-                <li><a href="https://research.google/pubs/pub45530/" target="_blank" rel="noopener noreferrer">Deep Neural Networks for YouTube Recommendations</a></li>
-                <li><a href="https://arxiv.org/abs/1606.07792" target="_blank" rel="noopener noreferrer">Wide & Deep Learning for Recommender Systems</a></li>
-                <li><a href="https://arxiv.org/abs/1708.05031" target="_blank" rel="noopener noreferrer">Neural Collaborative Filtering</a></li>
-                <li><a href="https://arxiv.org/abs/1904.06690" target="_blank" rel="noopener noreferrer">BERT4Rec: Sequential Recommendation with Bidirectional Encoder Representations</a></li>
-                <li><a href="https://arxiv.org/abs/1903.00780" target="_blank" rel="noopener noreferrer">Fairness in Recommendation Ranking through Pairwise Learning</a></li>
-            </ul>
-              </ol>
-            </div>
+              <li>Data and Labels:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Outputs:</li>
+                  <li>Probability of click, conversion, engagement (like/share).</li>
+                  <li>Probability of negative feedback.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Inputs:</li>
+                  <li>User: demographics, app usage, ad/content history.</li>
+                  <li>Ad: creative type, format, targeting attributes, historical CTR.</li>
+                  <li>Context: session time, device type, network status.</li>
+                  <li>Graph: user-user similarity, ad-ad co-engagement patterns, interest groups.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Scale & Latency:</li>
+                  <li>Tens of millions of ads daily.</li>
+                  <li>Latency: ≤ 100 ms.</li>
+                  </ul>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>System Flow:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Candidate Generation: retrieve ad candidates using embedding-based retrieval.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Filtering: enforce pacing, frequency caps, eligibility, and campaign rules.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Ranking: DeepFM or similar ranking models combining wide + deep features.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Post-Processing: enforce freshness, diversity, and revenue optimization.</li>
+                  </ul>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Data & Feature Engineering:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>User features: demographics, device type, activity history.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Ad features: ad ID, creative type, format, historical CTR.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Interaction features: recency/frequency of ad engagement.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Contextual features: session time, app usage streaks, scroll depth.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Graph features: co-view embeddings, interest communities.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Feature representation: embeddings for categorical IDs, transformers for text, vision encoders for images.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Cross features: interaction between user and ad attributes.</li>
+                  </ul>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Modeling & Training:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Candidate Generation:</li>
+                  <li>Two-tower retrieval (user tower + ad tower).</li>
+                  <li>Contrastive or triplet loss training.</li>
+                  <li>ANN indexing for large-scale retrieval.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Ranking:</li>
+                  <li>DeepFM: captures both low-order (linear) and high-order (nonlinear) feature interactions.</li>
+                  <li>Multi-task predictions: click, conversion, engagement, negative feedback.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Loss Functions:</li>
+                  <li>Binary Cross Entropy per action.</li>
+                  <li>Multi-task weighted loss balancing engagement vs safety.</li>
+                  <li>Calibration loss for probability correctness.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Re-ranking:</li>
+                  <li>Score re-weighting based on revenue or business rules.</li>
+                  <li>Diversity-aware adjustments.</li>
+                  </ul>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Evaluation & Deployment:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Offline Metrics:</li>
+                  <li>Ranking: nDCG@k, MAP.</li>
+                  <li>Retrieval: NCE loss.</li>
+                  <li>Calibration: Brier score, Expected Calibration Error (ECE).</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Online Metrics:</li>
+                  <li>CTR, conversion rate, ROAS.</li>
+                  <li>Report and not-interested rate.</li>
+                  <li>Churn and retention impacts.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Deployment Strategies:</li>
+                  <li>Shadow testing (prediction logging).</li>
+                  <li>A/B testing.</li>
+                  <li>Contextual bandits for exploration/exploitation trade-offs.</li>
+                  </ul>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Monitoring & Continuous Learning:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Training cadence:</li>
+                  <li>Daily → embedding refresh and ad index update.</li>
+                  <li>Weekly → retrain ranking models.</li>
+                  <li>Monthly → graph/community updates.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Feedback loop: negative sampling, bias correction.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Drift detection: monitor CTR, conversion, and engagement trends across cohorts.</li>
+                  </ul>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Infrastructure:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Feature store for online/offline consistency.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Model store with versioning.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>ANN indexes for ad retrieval.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Scalable inference frameworks (TF Serving, TorchServe, vLLM).</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Monitoring dashboards with latency, CTR, and anomaly detection.</li>
+                </ul>
+            <p id="q-other-considerations" class="question"><strong>Other Considerations</strong></p>
+                  </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Bias Mitigation:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Position Bias:</li>
+                  <li>Randomization techniques (interleaving, shuffling).</li>
+                  <li>Inverse Propensity Weighting (IPW).</li>
+                  <li>Click models (examination hypothesis, cascade models).</li>
+                  <li>Position-aware learning (use position features but neutralize at inference).</li>
+                  <li>Regularization against overfitting to position.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Selection Bias:</li>
+                  <li>Diversified data collection.</li>
+                  <li>Stratified sampling.</li>
+                  <li>Oversampling or synthetic augmentation of underrepresented groups.</li>
+                  <li>Reweighting samples inversely to selection probability.</li>
+                  <li>Fairness-aware objectives and adversarial debiasing.</li>
+                  <li>Continuous fairness monitoring (demographic parity, equal opportunity, disparate impact).</li>
+                  </ul>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>Evaluation Metrics:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Ranking Quality: nDCG@k, Recall@k, MAP.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Calibration: Brier score, Expected Calibration Error (ECE).</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Engagement Metrics: CTR and conversion rates adjusted for exposure bias.</li>
+                  </ul>
+                </ul>
+            <ul style="margin-left: 1.5rem;">
+              <li>A/B Testing: Challenges and Best Practices:</li>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Dilution:</li>
+                  <li>Occurs when the treatment group includes users not actually exposed to or affected by the change.</li>
+                  <li>Dilution reduces observed treatment effects, making it harder to detect real improvements.</li>
+                  <li>Solution: tightly define eligibility criteria for users in test groups.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Selection Bias:</li>
+                  <li>If users are not randomly assigned to groups, outcomes may reflect underlying differences rather than treatment effects.</li>
+                  <li>Example: if more active users are over-represented in treatment, results inflate.</li>
+                  <li>Solution: random or stratified random sampling.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Temporal Effects:</li>
+                  <li>Time-based factors (e.g., weekends, holidays, seasonality) may distort results.</li>
+                  <li>Solution: run experiments across multiple time periods to smooth temporal fluctuations.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Cross-Interference (Spillover):</li>
+                  <li>When control and treatment users influence each other's outcomes.</li>
+                  <li>Example: social graph or recommendation algorithms where one group's exposure indirectly affects another.</li>
+                  <li>Solution: ensure groups are isolated and independent.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Statistical Power:</li>
+                  <li>Without adequate sample size, true effects may not be detectable.</li>
+                  <li>Solution: compute required sample size in advance, considering expected effect size, variance, and confidence levels.</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Overemphasis on Short-Term Metrics:</li>
+                  <li>A/B tests often optimize for short-term metrics (e.g., CTR), which may not align with long-term success.</li>
+                  <li>Solution: run experiments for sufficient time, include long-term metrics (LTV, retention, churn).</li>
+                    </ul>
+                <ul style="margin-left: 1.5rem;">
+                  <li>Human Error and Confirmation Bias:</li>
+                  <li>Analysts may consciously or unconsciously bias interpretation if they know group assignments.</li>
+                  <li>Solution: blind analysis—conduct evaluation without revealing which group is control vs treatment.</li>
+                    </ul>
+                </ul>
           </div>
         </div>
 
